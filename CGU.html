@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>CGV — ENDENOMA Studio Créatif</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --mg:#FA06F2; --green:#39B54A;
+  --bg:#0e0e0e; --bg2:#141414; --card:#181818; --border:#2a2a2a;
+  --text:#f0f0f0; --muted:#888;
+  --font-display:'Bebas Neue',sans-serif;
+  --font-body:'Space Grotesk',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;line-height:1.7;}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:80px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 48px;
+  border-bottom:1px solid var(--border);
+  background:rgba(14,14,14,.95);backdrop-filter:blur(14px);
+}
+.nav-logo{font-family:var(--font-display);font-size:48px;letter-spacing:.12em;color:#fff;text-decoration:none;}
+.nav-logo span{color:var(--mg);}
+.nav-back{
+  font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;
+  border:1px solid var(--border);padding:10px 20px;
+  transition:all .2s;
+}
+.nav-back:hover{color:#fff;border-color:var(--muted);}
+
+/* ══ HERO ══ */
+.cgu-hero{
+  padding:calc(80px + 80px) 48px 64px;
+  border-bottom:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.cgu-hero::before{
+  content:'CGV';
+  font-family:var(--font-display);
+  font-size:clamp(200px,30vw,380px);
+  position:absolute;right:-20px;top:40px;
+  color:transparent;-webkit-text-stroke:1px var(--border);
+  line-height:1;pointer-events:none;user-select:none;
+}
+.cgu-eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--green);margin-bottom:20px;
+  display:flex;align-items:center;gap:14px;
+}
+.cgu-eyebrow::before{content:'';width:32px;height:1px;background:var(--green);}
+.cgu-title{
+  font-family:var(--font-display);
+  font-size:clamp(56px,8vw,120px);
+  line-height:.9;letter-spacing:.02em;
+  margin-bottom:24px;
+}
+.cgu-title em{font-style:normal;color:var(--mg);}
+.cgu-meta{
+  display:flex;gap:40px;flex-wrap:wrap;margin-top:32px;
+  padding-top:32px;border-top:1px solid var(--border);
+}
+.cgu-meta-item{display:flex;flex-direction:column;gap:4px;}
+.cgu-meta-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.cgu-meta-value{font-size:14px;font-weight:500;color:var(--text);}
+
+/* ══ DISCLAIMER ══ */
+.disclaimer{
+  margin:0 48px;
+  border:1px solid rgba(250,6,242,.35);
+  background:rgba(250,6,242,.05);
+  padding:20px 28px;
+  display:flex;gap:16px;align-items:flex-start;
+  margin-top:40px;
+}
+.disclaimer-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
+.disclaimer-text{font-size:13px;color:rgba(240,240,240,.65);line-height:1.65;}
+.disclaimer-text strong{color:var(--mg);font-weight:600;}
+
+/* ══ TOC ══ */
+.cgu-toc{
+  margin:40px 48px 0;
+  padding:32px;
+  background:var(--card);
+  border:1px solid var(--border);
+}
+.cgu-toc-title{
+  font-family:var(--font-display);font-size:22px;letter-spacing:.08em;
+  margin-bottom:20px;color:var(--text);
+}
+.cgu-toc-list{
+  columns:2;column-gap:40px;
+  list-style:none;
+}
+.cgu-toc-list li{
+  font-size:13px;color:var(--muted);
+  padding:6px 0;border-bottom:1px solid var(--border);
+  break-inside:avoid;
+}
+.cgu-toc-list li a{
+  color:inherit;text-decoration:none;
+  display:flex;align-items:center;gap:10px;
+  transition:color .2s;
+}
+.cgu-toc-list li a:hover{color:var(--text);}
+.cgu-toc-list li a::before{
+  content:attr(data-num);
+  font-family:var(--font-display);font-size:16px;
+  color:var(--border);min-width:24px;
+}
+
+/* ══ CONTENU ══ */
+.cgu-body{max-width:900px;margin:0 auto;padding:64px 48px 96px;}
+
+.cgu-section{
+  margin-bottom:64px;
+  padding-top:16px;
+  border-top:1px solid var(--border);
+}
+.cgu-section:first-child{border-top:none;}
+.cgu-section-num{
+  font-family:var(--font-display);font-size:13px;letter-spacing:.22em;
+  color:var(--green);margin-bottom:12px;display:block;
+}
+.cgu-section-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px,3vw,48px);
+  letter-spacing:.04em;line-height:1;
+  margin-bottom:28px;
+}
+.cgu-section p{
+  font-size:15px;color:rgba(240,240,240,.72);
+  margin-bottom:16px;
+  line-height:1.8;
+}
+.cgu-section p:last-child{margin-bottom:0;}
+
+.cgu-section ul,.cgu-section ol{
+  margin:16px 0 24px 24px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.cgu-section li{
+  font-size:15px;color:rgba(240,240,240,.72);line-height:1.7;
+}
+.cgu-section li::marker{color:var(--mg);}
+
+.cgu-section table{
+  width:100%;border-collapse:collapse;margin:20px 0;
+  font-size:14px;
+}
+.cgu-section table th{
+  text-align:left;padding:12px 16px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;
+  border-bottom:1px solid var(--border);
+}
+.cgu-section table td{
+  padding:14px 16px;color:rgba(240,240,240,.72);
+  border-bottom:1px solid rgba(42,42,42,.5);
+  vertical-align:top;
+}
+.cgu-section table tr:last-child td{border-bottom:none;}
+
+.cgu-highlight{
+  background:var(--card);border-left:3px solid var(--mg);
+  padding:18px 24px;margin:20px 0;
+  font-size:14px;color:rgba(240,240,240,.75);line-height:1.7;
+}
+.cgu-highlight strong{color:#fff;font-weight:600;}
+
+/* ══ SIGNATURE ══ */
+.cgu-signature{
+  margin:0 48px;padding:48px;
+  background:var(--card);border:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:32px;
+}
+.cgu-sig-left{}
+.cgu-sig-name{
+  font-family:var(--font-display);font-size:52px;letter-spacing:.06em;
+  line-height:.9;margin-bottom:8px;
+}
+.cgu-sig-name span{color:var(--mg);}
+.cgu-sig-sub{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+.cgu-sig-right{text-align:right;}
+.cgu-sig-date{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+.cgu-sig-version{font-family:var(--font-display);font-size:28px;letter-spacing:.08em;color:var(--border);}
+
+/* ══ FOOTER ══ */
+.cgu-footer{
+  margin-top:80px;padding:32px 48px;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.cgu-footer-logo{font-family:var(--font-display);font-size:28px;letter-spacing:.12em;color:var(--border);}
+.cgu-footer-copy{font-size:12px;color:var(--muted);letter-spacing:.08em;}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:768px){
+  nav{padding:0 20px;height:68px;}
+  .cgu-hero{padding:calc(68px + 48px) 20px 48px;}
+  .cgu-body{padding:48px 20px 72px;}
+  .disclaimer,.cgu-toc,.cgu-signature{margin-left:20px;margin-right:20px;}
+  .cgu-toc-list{columns:1;}
+  .cgu-footer{padding:24px 20px;}
+  .cgu-signature{padding:32px 24px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="index.html" onclick="if(history.length>1){history.back();return false;}">ENDENOMA<span>.</span></a>
+  <a class="nav-back" href="index.html" onclick="if(history.length>1){history.back();return false;}">← Retour au portfolio</a>
+</nav>
+
+<!-- HERO -->
+<div class="cgu-hero">
+  <div class="cgu-eyebrow">Document contractuel</div>
+  <h1 class="cgu-title">Conditions<br>Générales<br>de <em>Vente.</em></h1>
+  <div class="cgu-meta">
+    <div class="cgu-meta-item">
+      <span class="cgu-meta-label">Prestataire</span>
+      <span class="cgu-meta-value">Sébastien Gardes — ENDENOMA Studio</span>
+    </div>
+    <div class="cgu-meta-item">
+      <span class="cgu-meta-label">Activité</span>
+      <span class="cgu-meta-value">Création graphique, motion design, branding, UI/UX</span>
+    </div>
+    <div class="cgu-meta-item">
+      <span class="cgu-meta-label">Version</span>
+      <span class="cgu-meta-value">v1.0 — Juin 2026</span>
+    </div>
+    <div class="cgu-meta-item">
+      <span class="cgu-meta-label">Droit applicable</span>
+      <span class="cgu-meta-value">Droit français</span>
+    </div>
+  </div>
+</div>
+
+<!-- DISCLAIMER -->
+<div class="disclaimer">
+  <span class="disclaimer-icon">⚖️</span>
+  <p class="disclaimer-text"><strong>Note :</strong> Ce document constitue un modèle de conditions générales de vente. Il est recommandé de le faire relire par un professionnel du droit avant toute utilisation contractuelle. ENDENOMA Studio se réserve le droit de le mettre à jour sans préavis.</p>
+</div>
+
+<!-- TABLE DES MATIÈRES -->
+<div class="cgu-toc">
+  <div class="cgu-toc-title">Sommaire</div>
+  <ul class="cgu-toc-list">
+    <li><a href="#art1" data-num="01">Identification du prestataire</a></li>
+    <li><a href="#art2" data-num="02">Objet et champ d'application</a></li>
+    <li><a href="#art3" data-num="03">Devis et bon de commande</a></li>
+    <li><a href="#art4" data-num="04">Prix et conditions de paiement</a></li>
+    <li><a href="#art5" data-num="05">Délais de réalisation</a></li>
+    <li><a href="#art6" data-num="06">Livraison et validation des livrables</a></li>
+    <li><a href="#art7" data-num="07">Propriété intellectuelle</a></li>
+    <li><a href="#art8" data-num="08">Cession de droits d'auteur</a></li>
+    <li><a href="#art9" data-num="09">Droit de paternité et référence commerciale</a></li>
+    <li><a href="#art10" data-num="10">Obligations du client</a></li>
+    <li><a href="#art11" data-num="11">Responsabilité du prestataire</a></li>
+    <li><a href="#art12" data-num="12">Confidentialité</a></li>
+    <li><a href="#art13" data-num="13">Résiliation</a></li>
+    <li><a href="#art14" data-num="14">Protection des données (RGPD)</a></li>
+    <li><a href="#art15" data-num="15">Modifications des CGV</a></li>
+    <li><a href="#art16" data-num="16">Litiges et droit applicable</a></li>
+  </ul>
+</div>
+
+<!-- CORPS DU DOCUMENT -->
+<div class="cgu-body">
+
+  <!-- ART 1 -->
+  <div class="cgu-section" id="art1">
+    <span class="cgu-section-num">Article 01</span>
+    <h2 class="cgu-section-title">Identification du prestataire</h2>
+    <p>Les présentes conditions générales de vente (ci-après « CGV ») sont établies par :</p>
+    <ul>
+      <li><strong>Dénomination :</strong> ENDENOMA Studio — Sébastien Gardes</li>
+      <li><strong>Statut :</strong> Auto-entrepreneur / Micro-entrepreneur</li>
+      <li><strong>Activité principale :</strong> Création graphique, motion design, direction artistique, branding, UI/UX design et développement web</li>
+      <li><strong>Email de contact :</strong> contact@endenoma.studio</li>
+      <li><strong>Site web :</strong> Portfolio ENDENOMA</li>
+    </ul>
+    <p>Toute commande passée auprès d'ENDENOMA Studio implique l'acceptation pleine et entière des présentes CGV, qui prévalent sur tout autre document du client, sauf accord écrit dérogatoire.</p>
+  </div>
+
+  <!-- ART 2 -->
+  <div class="cgu-section" id="art2">
+    <span class="cgu-section-num">Article 02</span>
+    <h2 class="cgu-section-title">Objet et champ d'application</h2>
+    <p>Les présentes CGV régissent les relations contractuelles entre ENDENOMA Studio (ci-après « le Prestataire ») et toute personne physique ou morale (ci-après « le Client ») souhaitant bénéficier de ses services.</p>
+    <p>Elles s'appliquent à toutes les prestations proposées par le Prestataire, notamment :</p>
+    <ul>
+      <li>Création graphique et identité visuelle (logo, charte graphique, supports print & digital)</li>
+      <li>Motion design et animation (After Effects, Blender, Premiere Pro)</li>
+      <li>Montage vidéo et direction artistique audiovisuelle</li>
+      <li>Branding complet (naming, identité, système de marque)</li>
+      <li>UI/UX Design (interfaces, maquettes, prototypes, design systems)</li>
+      <li>Habillage de chaînes et plateformes (Twitch, YouTube, réseaux sociaux)</li>
+      <li>Développement web front-end et création de sites</li>
+      <li>Conseil en stratégie de communication visuelle</li>
+    </ul>
+    <p>Ces CGV s'appliquent à l'exclusion de toutes autres conditions, notamment celles du Client.</p>
+  </div>
+
+  <!-- ART 3 -->
+  <div class="cgu-section" id="art3">
+    <span class="cgu-section-num">Article 03</span>
+    <h2 class="cgu-section-title">Devis et bon de commande</h2>
+    <p>Toute demande de prestation donne lieu à l'établissement d'un devis détaillé, valable <strong>30 jours calendaires</strong> à compter de sa date d'émission. Au-delà, le Prestataire se réserve le droit de réévaluer les conditions tarifaires.</p>
+    <p>Le devis précise :</p>
+    <ul>
+      <li>La nature et l'étendue des prestations</li>
+      <li>Le montant total HT et TTC (selon le régime fiscal applicable)</li>
+      <li>Le nombre d'allers-retours de modifications inclus</li>
+      <li>Le calendrier prévisionnel de livraison</li>
+      <li>Les livrables attendus (formats, résolutions, supports)</li>
+    </ul>
+    <div class="cgu-highlight">
+      <strong>Validation du devis :</strong> La commande est considérée ferme et définitive à réception du devis signé (avec la mention « Bon pour accord ») accompagné du règlement de l'acompte défini à l'article 4. Aucune prestation ne sera initiée sans ces deux éléments.
+    </div>
+    <p>Toute modification du périmètre de la mission après validation du devis fera l'objet d'un avenant tarifaire. Les prestations supplémentaires seront facturées selon le tarif journalier ou forfaitaire en vigueur au moment de la demande.</p>
+  </div>
+
+  <!-- ART 4 -->
+  <div class="cgu-section" id="art4">
+    <span class="cgu-section-num">Article 04</span>
+    <h2 class="cgu-section-title">Prix et conditions de paiement</h2>
+    <p>Les prix sont exprimés en euros, hors taxes (HT). La TVA est applicable selon les règles en vigueur au moment de la facturation. Le Prestataire bénéficiant de la franchise en base de TVA (article 293 B du CGI) peut être exempté de TVA selon son statut ; cette information sera précisée sur chaque facture.</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Type de prestation</th>
+          <th>Acompte à la commande</th>
+          <th>Solde à la livraison</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Prestation &lt; 500 €</td>
+          <td>100 % à la commande</td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>Prestation entre 500 € et 2 000 €</td>
+          <td>50 % à la commande</td>
+          <td>50 % à la livraison finale</td>
+        </tr>
+        <tr>
+          <td>Prestation &gt; 2 000 €</td>
+          <td>40 % à la commande</td>
+          <td>60 % à la livraison finale</td>
+        </tr>
+        <tr>
+          <td>Projet long terme / mensualité</td>
+          <td>Selon planning convenu</td>
+          <td>Facturation mensuelle</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Le règlement s'effectue par virement bancaire (coordonnées communiquées sur facture). Les chèques et paiements en espèces peuvent être refusés pour des montants supérieurs à 1 000 €.</p>
+
+    <div class="cgu-highlight">
+      <strong>Délai de paiement :</strong> Les factures sont payables dans un délai de <strong>30 jours calendaires</strong> à compter de la date d'émission. Pour les clients professionnels (B2B), le délai maximum est de 60 jours fin de mois, conformément à l'article L. 441-6 du Code de commerce.
+    </div>
+
+    <p>Tout retard de paiement entraîne automatiquement et de plein droit, sans mise en demeure préalable :</p>
+    <ul>
+      <li>Des pénalités de retard calculées au taux de <strong>3 fois le taux d'intérêt légal</strong> en vigueur</li>
+      <li>Une indemnité forfaitaire pour frais de recouvrement de <strong>40 €</strong> (article D. 441-5 du Code de commerce)</li>
+      <li>La suspension immédiate de toutes les prestations en cours jusqu'au règlement complet</li>
+    </ul>
+    <p>Les fichiers sources et droits d'auteur definitifs ne seront transmis qu'après règlement intégral des sommes dues.</p>
+  </div>
+
+  <!-- ART 5 -->
+  <div class="cgu-section" id="art5">
+    <span class="cgu-section-num">Article 05</span>
+    <h2 class="cgu-section-title">Délais de réalisation</h2>
+    <p>Les délais de réalisation sont indiqués à titre prévisionnel dans le devis. Ils courent à compter de la réception de l'acompte ET de l'ensemble des éléments nécessaires à la réalisation de la mission (briefs, assets, accès, contenus).</p>
+    <p>Le Prestataire met tout en œuvre pour respecter les délais convenus. Toutefois, en cas de retard imputable au Client (réponses tardives, modifications en cours de projet, fourniture incomplète d'éléments), les délais sont automatiquement reportés à due concurrence, sans pénalité pour le Prestataire.</p>
+    <p>En cas de force majeure (maladie, accident, catastrophe naturelle, défaillance technique d'un tiers), le Prestataire informera le Client dans les meilleurs délais et proposera un nouveau calendrier.</p>
+    <div class="cgu-highlight">
+      <strong>Délai de validation :</strong> Le Client dispose d'un délai de <strong>7 jours ouvrés</strong> pour valider chaque livrable ou formuler des demandes de modifications motivées. Sans retour dans ce délai, le livrable est considéré comme tacitement accepté.
+    </div>
+  </div>
+
+  <!-- ART 6 -->
+  <div class="cgu-section" id="art6">
+    <span class="cgu-section-num">Article 06</span>
+    <h2 class="cgu-section-title">Livraison et validation des livrables</h2>
+    <p>Les livrables sont remis par voie numérique (lien de téléchargement, email, plateforme partagée). Les formats de livraison standard sont précisés dans le devis. Tout format supplémentaire peut faire l'objet d'une facturation complémentaire.</p>
+    <p>Le nombre d'allers-retours de modifications est défini dans le devis. Chaque cycle de révisions au-delà de ce nombre sera facturé selon le tarif horaire en vigueur (minimum 1 heure).</p>
+    <p>Les fichiers sources (fichiers de travail natifs : .ai, .psd, .aep, .fig, etc.) constituent une prestation distincte des fichiers d'export (PDF, PNG, MP4, etc.) et sont facturés séparément si le Client en fait la demande, sauf mention contraire dans le devis.</p>
+    <p>La validation définitive d'un livrable entraîne le transfert des droits d'exploitation définis à l'article 8, à condition que les factures correspondantes soient intégralement réglées.</p>
+  </div>
+
+  <!-- ART 7 -->
+  <div class="cgu-section" id="art7">
+    <span class="cgu-section-num">Article 07</span>
+    <h2 class="cgu-section-title">Propriété intellectuelle</h2>
+    <p>Le Prestataire est et demeure titulaire de l'ensemble des droits de propriété intellectuelle sur les créations réalisées dans le cadre de ses prestations, conformément au Code de la propriété intellectuelle (CPI).</p>
+    <p>Toute création graphique, audiovisuelle, typographique ou numérique réalisée par le Prestataire constitue une œuvre originale protégée par le droit d'auteur. Cette protection est automatique et ne nécessite aucun dépôt préalable.</p>
+    <p>Le Prestataire garantit au Client que les créations livrées n'incorporent pas, sans autorisation, de matériaux protégés appartenant à des tiers. En cas d'utilisation de ressources sous licence (polices, images stock, sons), le Prestataire s'assure de disposer des droits d'utilisation appropriés.</p>
+    <div class="cgu-highlight">
+      <strong>Important :</strong> Tant que la totalité des sommes dues n'est pas réglée, le Client ne bénéficie d'aucun droit sur les créations. Toute utilisation non autorisée constituerait une contrefaçon au sens des articles L. 335-2 et suivants du CPI.
+    </div>
+  </div>
+
+  <!-- ART 8 -->
+  <div class="cgu-section" id="art8">
+    <span class="cgu-section-num">Article 08</span>
+    <h2 class="cgu-section-title">Cession de droits d'auteur</h2>
+    <p>En contrepartie du règlement intégral des sommes dues et sauf mention contraire dans le devis, le Prestataire cède au Client les droits d'exploitation suivants sur les créations livrées :</p>
+    <ul>
+      <li><strong>Droit de reproduction :</strong> reproduction sur tous supports physiques et numériques</li>
+      <li><strong>Droit de représentation :</strong> communication au public par tous moyens numériques et analogiques</li>
+      <li><strong>Droit d'adaptation :</strong> traduction, mise en page, intégration dans d'autres supports</li>
+    </ul>
+    <p>Cette cession est consentie pour :</p>
+    <table>
+      <thead>
+        <tr><th>Paramètre</th><th>Portée</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Durée</td><td>5 ans à compter de la livraison finale (sauf accord contraire)</td></tr>
+        <tr><td>Territoire</td><td>Monde entier</td></tr>
+        <tr><td>Usage</td><td>Usage commercial lié à l'activité du Client</td></tr>
+        <tr><td>Exclusivité</td><td>Non exclusive, sauf mention spécifique et tarif dédié</td></tr>
+      </tbody>
+    </table>
+    <p>La cession d'une durée illimitée, d'une exclusivité, ou de droits supplémentaires (merchandising, dérivés, revente) fera l'objet d'une négociation tarifaire spécifique et devra être stipulée explicitement dans le devis.</p>
+    <p>Le droit moral de l'auteur (droit à la paternité, droit à l'intégrité de l'œuvre) reste inaliénable et ne peut en aucun cas être cédé.</p>
+  </div>
+
+  <!-- ART 9 -->
+  <div class="cgu-section" id="art9">
+    <span class="cgu-section-num">Article 09</span>
+    <h2 class="cgu-section-title">Droit de paternité et référence commerciale</h2>
+    <p>Conformément à l'article L. 121-1 du Code de la propriété intellectuelle, le Prestataire bénéficie du droit moral inaliénable au respect de son nom et de sa qualité d'auteur.</p>
+    <p>Le Prestataire se réserve le droit de mentionner les réalisations effectuées pour le Client à titre de référence dans ses supports de communication : portfolio, réseaux sociaux, présentations commerciales, candidatures à des appels d'offres.</p>
+    <div class="cgu-highlight">
+      <strong>Droit de mention :</strong> Sauf demande expresse de confidentialité formulée par écrit avant la signature du devis, le Prestataire peut mentionner le nom du Client et présenter des extraits des créations réalisées à des fins de promotion de son activité.
+    </div>
+    <p>En cas de demande de confidentialité totale, une clause spécifique devra être négociée et pourra entraîner une majoration tarifaire.</p>
+  </div>
+
+  <!-- ART 10 -->
+  <div class="cgu-section" id="art10">
+    <span class="cgu-section-num">Article 10</span>
+    <h2 class="cgu-section-title">Obligations du client</h2>
+    <p>Le Client s'engage à :</p>
+    <ul>
+      <li>Fournir au Prestataire toutes les informations, documents, accès et ressources nécessaires à la bonne réalisation de la mission dans les délais convenus</li>
+      <li>Disposer de tous les droits nécessaires sur les éléments (textes, images, logos, vidéos) fournis au Prestataire et garantir ce dernier contre toute action de tiers à ce sujet</li>
+      <li>Désigner un interlocuteur unique disposant du pouvoir de décision pour valider les livrables</li>
+      <li>Formuler ses demandes de modifications de manière claire, précise et regroupée (un seul retour par cycle de révision)</li>
+      <li>Régler les factures dans les délais convenus</li>
+      <li>Ne pas utiliser les livrables à des fins illicites, contraires aux lois en vigueur ou susceptibles de porter atteinte à la réputation du Prestataire</li>
+    </ul>
+    <p>Le Client est seul responsable du contenu qu'il fournit au Prestataire. Il garantit le Prestataire contre toute réclamation, plainte ou action de tiers résultant de la nature de ce contenu.</p>
+  </div>
+
+  <!-- ART 11 -->
+  <div class="cgu-section" id="art11">
+    <span class="cgu-section-num">Article 11</span>
+    <h2 class="cgu-section-title">Responsabilité du prestataire</h2>
+    <p>Le Prestataire s'engage à réaliser ses prestations avec soin, compétence et diligence, conformément aux règles de l'art. Il est soumis à une <strong>obligation de moyens</strong> et non de résultat.</p>
+    <p>La responsabilité du Prestataire est limitée au montant total des sommes effectivement perçues au titre de la prestation concernée. En aucun cas, la responsabilité du Prestataire ne saurait être engagée pour :</p>
+    <ul>
+      <li>Les préjudices indirects, pertes d'exploitation, manque à gagner, perte de chiffre d'affaires ou atteinte à l'image du Client</li>
+      <li>Les dommages résultant d'une mauvaise utilisation des livrables par le Client</li>
+      <li>Les erreurs ou omissions dans les contenus fournis par le Client</li>
+      <li>Les défaillances de prestataires tiers (hébergeurs, imprimeurs, plateformes)</li>
+      <li>Les cas de force majeure</li>
+    </ul>
+    <p>Le Prestataire ne garantit pas les résultats commerciaux, l'impact sur les ventes, le référencement naturel ou les performances publicitaires des créations livrées.</p>
+  </div>
+
+  <!-- ART 12 -->
+  <div class="cgu-section" id="art12">
+    <span class="cgu-section-num">Article 12</span>
+    <h2 class="cgu-section-title">Confidentialité</h2>
+    <p>Chaque partie s'engage à traiter comme strictement confidentielles toutes les informations de nature sensible échangées dans le cadre de la relation contractuelle : données commerciales, stratégiques, techniques ou financières.</p>
+    <p>Cette obligation de confidentialité survit à la fin de la relation contractuelle pour une durée de <strong>3 ans</strong> à compter de sa date de fin.</p>
+    <p>Ne sont pas considérées comme confidentielles les informations :</p>
+    <ul>
+      <li>Déjà connues du public au moment de leur divulgation</li>
+      <li>Reçues légitimement d'un tiers non tenu à confidentialité</li>
+      <li>Dont la divulgation est requise par la loi ou une décision judiciaire</li>
+    </ul>
+  </div>
+
+  <!-- ART 13 -->
+  <div class="cgu-section" id="art13">
+    <span class="cgu-section-num">Article 13</span>
+    <h2 class="cgu-section-title">Résiliation</h2>
+    <p>En cas de résiliation du contrat à l'initiative du <strong>Client</strong> avant l'achèvement de la mission :</p>
+    <ul>
+      <li>Les prestations réalisées jusqu'à la date de résiliation sont intégralement dues</li>
+      <li>L'acompte versé est conservé par le Prestataire à titre d'indemnisation</li>
+      <li>Si les travaux réalisés dépassent l'acompte versé, le solde est immédiatement exigible</li>
+    </ul>
+    <p>En cas de résiliation du contrat à l'initiative du <strong>Prestataire</strong> pour manquement grave du Client (non-paiement, fourniture d'éléments illicites, comportement abusif), les sommes dues au titre du travail réalisé restent exigibles.</p>
+    <p>En cas de force majeure persistant plus de <strong>60 jours</strong>, l'une ou l'autre des parties peut résilier le contrat de plein droit, sans pénalité, après notification par courrier recommandé avec accusé de réception.</p>
+    <div class="cgu-highlight">
+      <strong>Livraison des fichiers en cas de résiliation :</strong> Les livrables correspondant aux étapes intégralement réglées seront remis au Client. Les fichiers sources ne sont pas transmis en cas de résiliation, sauf accord express et règlement du solde de la totalité des prestations réalisées.
+    </div>
+  </div>
+
+  <!-- ART 14 -->
+  <div class="cgu-section" id="art14">
+    <span class="cgu-section-num">Article 14</span>
+    <h2 class="cgu-section-title">Protection des données personnelles (RGPD)</h2>
+    <p>Dans le cadre de ses prestations, le Prestataire est amené à collecter et traiter des données personnelles relatives à ses clients (nom, prénom, email, numéro de téléphone, données de facturation).</p>
+    <p>Ces données sont collectées et traitées conformément au Règlement (UE) 2016/679 du 27 avril 2016 relatif à la protection des données (RGPD) et à la loi Informatique et Libertés n°78-17 du 6 janvier 1978 modifiée.</p>
+    <p><strong>Base légale :</strong> Exécution du contrat et obligations légales (conservation des factures).</p>
+    <p><strong>Finalités :</strong> Gestion de la relation client, facturation, communication relative aux projets, prospection commerciale (avec consentement).</p>
+    <p><strong>Durée de conservation :</strong> Les données sont conservées pendant la durée de la relation contractuelle puis :</p>
+    <ul>
+      <li>3 ans à des fins de prospection commerciale</li>
+      <li>10 ans pour les documents comptables (obligations légales)</li>
+    </ul>
+    <p><strong>Droits :</strong> Tout Client dispose d'un droit d'accès, de rectification, d'effacement, de portabilité, de limitation et d'opposition sur ses données. Ces droits s'exercent par email à contact@endenoma.studio. En cas de réclamation non résolue, le Client peut saisir la CNIL (www.cnil.fr).</p>
+    <p>Les données ne sont pas transmises à des tiers à des fins commerciales et ne font pas l'objet de transfert hors de l'Union Européenne.</p>
+  </div>
+
+  <!-- ART 15 -->
+  <div class="cgu-section" id="art15">
+    <span class="cgu-section-num">Article 15</span>
+    <h2 class="cgu-section-title">Modifications des CGV</h2>
+    <p>Le Prestataire se réserve le droit de modifier les présentes CGV à tout moment. Les CGV applicables sont celles en vigueur à la date de signature du devis.</p>
+    <p>Les nouvelles CGV seront mises en ligne sur le site du Prestataire et communiquées aux clients existants par email au moins <strong>15 jours</strong> avant leur entrée en vigueur.</p>
+  </div>
+
+  <!-- ART 16 -->
+  <div class="cgu-section" id="art16">
+    <span class="cgu-section-num">Article 16</span>
+    <h2 class="cgu-section-title">Litiges et droit applicable</h2>
+    <p>Les présentes CGV sont soumises au <strong>droit français</strong>.</p>
+    <p>En cas de litige, les parties s'engagent à rechercher une solution amiable avant tout recours judiciaire. À cet effet, une mise en demeure préalable par courrier recommandé avec accusé de réception est obligatoire, laissant un délai de <strong>30 jours</strong> à la partie adverse pour régulariser la situation.</p>
+    <p>À défaut de résolution amiable, le litige sera soumis à la médiation conformément aux articles L. 611-1 et suivants du Code de commerce, avant tout recours judiciaire.</p>
+    <div class="cgu-highlight">
+      <strong>Compétence juridictionnelle :</strong> En cas d'échec de la médiation, le litige sera porté devant les <strong>tribunaux compétents du ressort du domicile du Prestataire</strong>, y compris en cas de référé, d'appel en garantie ou de pluralité de défendeurs.
+    </div>
+    <p>Pour les litiges avec des consommateurs (B2C), la juridiction compétente est déterminée conformément aux dispositions du Code de procédure civile.</p>
+  </div>
+
+</div>
+
+<!-- SIGNATURE -->
+<div class="cgu-signature">
+  <div class="cgu-sig-left">
+    <div class="cgu-sig-name">ENDENOMA<span>.</span></div>
+    <div class="cgu-sig-sub">Sébastien Gardes — Studio Créatif</div>
+  </div>
+  <div class="cgu-sig-right">
+    <div class="cgu-sig-date">Mise à jour — Juin 2026</div>
+    <div class="cgu-sig-version">v1.0</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="cgu-footer">
+  <div class="cgu-footer-logo">ENDENOMA.</div>
+  <div class="cgu-footer-copy">© 2026 ENDENOMA Studio — Tous droits réservés</div>
+</div>
+
+<script>
+/* Smooth scroll pour ancres */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+</script>
+</body>
+</html>
