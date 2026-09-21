@@ -1241,6 +1241,16 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
   padding:12px 22px;transition:background .2s ease,color .2s ease,border-color .2s ease;
 }
 .pk-cta:hover{background:var(--mg);border-color:var(--mg);color:#0e0e0e;}
+.pk-cond{
+  margin-top:8px;font-family:var(--font-body);font-size:11.5px;
+  line-height:1.6;color:rgba(136,136,136,.9);
+}
+.pk-custom{
+  margin-top:34px;padding:20px 24px;
+  background:var(--card);border-left:3px solid var(--green);
+  font-family:var(--font-body);font-size:13.5px;line-height:1.7;
+  color:rgba(240,240,240,.78);
+}
 .pk-foot{
   margin-top:30px;font-family:var(--font-body);font-size:12px;
   color:var(--muted);line-height:1.7;
@@ -1593,9 +1603,9 @@ function pageTransition(cb){
       </div>
 
       <div class="pk-card reveal" data-from="left" data-delay="2">
-        <div class="pk-cat">Réseaux sociaux</div>
+        <div class="pk-cat">Contenu court</div>
         <div class="pk-name">Pack Shorts Rythme</div>
-        <div class="pk-price">600 € / mois<small>engagement 3 mois</small></div>
+        <div class="pk-price">600 € / mois<small>contenu court prêt à publier</small></div>
         <ul class="pk-list">
           <li>8 shorts par mois</li>
           <li>Sous-titres animés</li>
@@ -1603,6 +1613,7 @@ function pageTransition(cb){
           <li>Calendrier de publication</li>
         </ul>
         <div class="pk-note">Premier lot livré <strong>sous 10 jours.</strong></div>
+        <div class="pk-cond">Rushes fournis par le client · 1 série de retouches incluse par vidéo · Engagement minimum de 3 mois.</div>
       </div>
 
       <div class="pk-card reveal" data-from="right" data-delay="3">
@@ -1619,7 +1630,7 @@ function pageTransition(cb){
 
       <div class="pk-card reveal" data-from="right" data-delay="4">
         <div class="pk-cat">Site web</div>
-        <div class="pk-name">Pack Site Vitrine IA</div>
+        <div class="pk-name">Pack Site Vitrine</div>
         <div class="pk-price">900 €<small>à partir de · livré en 2 à 3 semaines</small></div>
         <ul class="pk-list">
           <li>3 à 5 pages</li>
@@ -1656,6 +1667,8 @@ function pageTransition(cb){
       </div>
 
     </div>
+
+    <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, captation, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
 
     <p class="pk-foot">Tarifs indicatifs en euros hors taxes, hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:none;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
   </section>
