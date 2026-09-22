@@ -12,11 +12,14 @@
 <meta property="og:url" content="https://endenoma.studio/"/>
 <meta property="og:title" content="ENDENOMA Studio — Monteur vidéo, branding &amp; site web"/>
 <meta property="og:description" content="Studio créatif à Aix-en-Provence. Montage vidéo, motion design, branding et création de sites vitrine."/>
-<meta property="og:image" content="https://endenoma.studio/uploads/portrait_sebastien.jpg"/>
+<meta property="og:image" content="https://endenoma.studio/uploads/og-endenoma.jpg"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:image:alt" content="ENDENOMA Studio — Sébastien Gardes, monteur vidéo, branding et site web"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="ENDENOMA Studio — Monteur vidéo, branding &amp; site web"/>
 <meta name="twitter:description" content="Studio créatif à Aix-en-Provence. Montage vidéo, motion design, branding et création de sites vitrine."/>
-<meta name="twitter:image" content="https://endenoma.studio/uploads/portrait_sebastien.jpg"/>
+<meta name="twitter:image" content="https://endenoma.studio/uploads/og-endenoma.jpg"/>
 <title>ENDENOMA Studio — Monteur vidéo, branding &amp; site web</title>
 <style id="anti-fouc">html{background:#0e0e0e;}body{visibility:hidden;}body.fouc-ready{visibility:visible;}</style>
 <noscript><style>body{visibility:visible !important;}</style></noscript>
@@ -1154,6 +1157,16 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
 }
 
 
+/* ══ Équivalent sans JavaScript de la grille projets ══ */
+.ns-projects{margin-top:32px;}
+.ns-projects h3{font-family:var(--font-display);font-size:26px;letter-spacing:.06em;color:var(--text);margin-bottom:18px;}
+.ns-projects ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin:0;padding:0;}
+.ns-projects li{background:var(--card);border:1px solid var(--border);padding:22px;}
+.ns-projects li h3{font-size:22px;margin-bottom:8px;}
+.ns-projects li p{font-family:var(--font-body);font-size:13.5px;line-height:1.6;color:rgba(240,240,240,.72);margin-bottom:8px;}
+.ns-projects li p:last-child{margin-bottom:0;}
+.ns-projects strong{color:var(--green);font-weight:600;}
+
 /* ══ PACKS & TARIFS ══ */
 #packs{background:var(--bg2);border-top:1px solid var(--border);}
 .pk-intro{
@@ -1430,7 +1443,36 @@ function pageTransition(cb){
       </div>
       <div class="carousel-portal carousel-portal-right"></div>
     </div>
+  
+<noscript>
+  <section class="ns-projects">
+    <h3>Projets récents</h3>
+    <ul>
+      <li>
+        <h3>Maisons du Monde</h3>
+        <p><strong>Client :</strong> Maisons du Monde · <strong>Discipline :</strong> Motion Design</p>
+        <p>Campagne 30 ans — direction artistique &amp; stratégie de communication pour une marque emblématique.</p>
+      </li>
+      <li>
+        <h3>G-Shock × Willy's</h3>
+        <p><strong>Client :</strong> G-Shock / Willy's · <strong>Discipline :</strong> Branding</p>
+        <p>Identité visuelle complète pour la collaboration entre G-Shock et Willy's Wonderland.</p>
+      </li>
+      <li>
+        <h3>Endenoma Gaming</h3>
+        <p><strong>Client :</strong> Endenoma Gaming · <strong>Discipline :</strong> Branding</p>
+        <p>Identité de marque complète pour une chaîne Twitch — logo, overlays, panels &amp; habillage de stream.</p>
+      </li>
+      <li>
+        <h3>HuD Gaming</h3>
+        <p><strong>Client :</strong> Projet Personnel · <strong>Discipline :</strong> Motion Design</p>
+        <p>Interface HuD jeux vidéo — animation &amp; motion design pour univers gaming.</p>
+      </li>
+    </ul>
+    <p>Ces projets sont présentés en détail, avec leurs vidéos, sur la version interactive du site.</p>
   </section>
+</noscript>
+</section>
 
   <section id="about">
     <div class="section-label" style="padding: 0px">// Studio</div>
