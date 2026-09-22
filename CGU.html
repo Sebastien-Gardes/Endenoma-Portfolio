@@ -123,6 +123,13 @@ nav{
   letter-spacing:.04em;line-height:1;
   margin-bottom:28px;
 }
+.cgu-subtitle{
+  font-family:var(--font-display);
+  font-size:clamp(18px,1.8vw,24px);
+  letter-spacing:.06em;line-height:1.2;
+  color:var(--text);
+  margin:36px 0 18px;
+}
 .cgu-section p{
   font-size:15px;color:rgba(240,240,240,.72);
   margin-bottom:16px;
@@ -525,8 +532,10 @@ nav{
     <h2 class="cgu-section-title">Cookies et services tiers</h2>
 
     <div class="cgu-highlight">
-      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie et ne recourt à aucun
-      outil de mesure d'audience ni de publicité. Le stockage local (<em>localStorage</em>) n'est utilisé
+      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie, ne recourt à aucune
+      régie publicitaire et ne charge aucun outil de mesure d'audience dans votre navigateur. La
+      fréquentation est mesurée exclusivement côté serveur, à partir d'adresses IP tronquées, dans les
+      conditions décrites plus bas. Le stockage local (<em>localStorage</em>) n'est utilisé
       que pour mémoriser votre préférence d'affichage en contraste renforcé : cette mémorisation relève
       des fonctionnalités strictement nécessaires au service demandé par l'utilisateur, exemptées de
       consentement au titre de l'article 82 de la loi Informatique et Libertés. Aucun bandeau de consentement n'est donc requis.
@@ -559,10 +568,29 @@ nav{
     Une prise de contact par email direct à l'adresse indiquée à l'article 1 permet d'éviter cet
     intermédiaire.</p>
 
-    <p>Le site est hébergé sur un serveur dédié situé dans l'Union européenne. Les journaux de
-    connexion du serveur (adresse IP, date, page consultée) sont conservés pour des raisons de
-    sécurité et de diagnostic technique, pendant une durée maximale de <strong>12 mois</strong>,
-    conformément aux recommandations de la CNIL.</p>
+    <h3 class="cgu-subtitle">Mesure d'audience</h3>
+
+    <p>Le site est hébergé sur un serveur dédié situé dans l'Union européenne. Le Prestataire mesure
+    la fréquentation de son site à partir des seules requêtes reçues par ce serveur. Aucun script de
+    mesure n'est exécuté dans votre navigateur, aucun cookie ni identifiant n'est déposé sur votre
+    terminal, et aucune donnée n'est transmise à un prestataire tiers.</p>
+
+    <p>Votre adresse IP est <strong>tronquée avant tout enregistrement</strong> dans le journal servant
+    à cette mesure : le dernier octet est remplacé par un zéro pour les adresses IPv4, et seuls les deux
+    premiers groupes sont conservés pour les adresses IPv6. Le journal d'audience ne contient donc à
+    aucun moment d'adresse IP complète. Les données exploitées se limitent à la page demandée, la date
+    et l'heure, le code de réponse, la page de provenance et le type de navigateur et de système.</p>
+
+    <p>Ce traitement relève de l'exemption de consentement prévue pour la mesure d'audience : il est
+    strictement limité à la production de statistiques anonymes, réservé à l'usage exclusif du
+    Prestataire, sans recoupement avec d'autres traitements ni transmission à des tiers. Les statistiques
+    produites sont conservées <strong>13 mois</strong> au maximum, conformément aux recommandations de la
+    CNIL.</p>
+
+    <p>Indépendamment de cette mesure, le serveur tient un journal technique classique, comportant
+    l'adresse IP complète, nécessaire à la sécurité du site et au diagnostic des incidents. Ce journal
+    n'est pas utilisé à des fins statistiques et est effacé automatiquement au bout de
+    <strong>14 jours</strong>.</p>
   </div>
 
   <!-- ART 16 -->
