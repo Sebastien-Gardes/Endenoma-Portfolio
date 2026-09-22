@@ -1157,6 +1157,8 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
 }
 
 
+#carouselWrap{touch-action:pan-y;}
+
 /* ══ Équivalent sans JavaScript de la grille projets ══ */
 .ns-projects{margin-top:32px;}
 .ns-projects h3{font-family:var(--font-display);font-size:26px;letter-spacing:.06em;color:var(--text);margin-bottom:18px;}
@@ -2139,10 +2141,50 @@ document.querySelectorAll('#grid .project-card:not(.cs-card) .coming-soon').forE
   el.outerHTML='<div style="width:100%;height:100%;background:'+(proj&&proj.bg||'#111')+';"></div>';
 });
 const car={el:grid,wrap:document.getElementById('carouselWrap'),x:0,speed:.55,paused:false,lw:0,
+  drag:false,lastTouch:0,
   init(){requestAnimationFrame(()=>{this.lw=this.el.scrollWidth/3;this.run();});
-    this.wrap.addEventListener('mouseenter',()=>this.paused=true);
-    this.wrap.addEventListener('mouseleave',()=>this.paused=false);},
-  run(){if(!this.paused){this.x-=this.speed;if(Math.abs(this.x)>=this.lw)this.x=0;this.el.style.transform=`translateX(${this.x}px)`;}requestAnimationFrame(()=>this.run());}};
+    /* la pause au survol ne vaut que pour une vraie souris : sur mobile,
+       un tap synthetise un mouseenter sans mouseleave, le carrousel
+       resterait fige. */
+    this.wrap.addEventListener('mouseenter',()=>{if(Date.now()-this.lastTouch>600)this.paused=true;});
+    this.wrap.addEventListener('mouseleave',()=>{if(!this.drag)this.paused=false;});
+    this.bindDrag();},
+  /* ramene x dans ]-lw,0] : un seul set de cartes, sans saut visible */
+  norm(){const lw=this.lw;if(!lw)return;while(this.x<=-lw)this.x+=lw;while(this.x>0)this.x-=lw;},
+  bindDrag(){
+    const w=this.wrap;let sx=0,sy=0,ox=0,axe=null,bouge=false;
+    const stopClic=ev=>{ev.stopPropagation();ev.preventDefault();};
+    w.addEventListener('touchstart',e=>{
+      if(e.touches.length!==1)return;
+      this.lastTouch=Date.now();this.drag=true;this.paused=true;
+      axe=null;bouge=false;
+      sx=e.touches[0].clientX;sy=e.touches[0].clientY;ox=this.x;
+    },{passive:true});
+    w.addEventListener('touchmove',e=>{
+      if(!this.drag||e.touches.length!==1)return;
+      const dx=e.touches[0].clientX-sx,dy=e.touches[0].clientY-sy;
+      if(axe===null){
+        if(Math.abs(dx)<6&&Math.abs(dy)<6)return;
+        /* geste vertical : on rend la main au scroll de la page */
+        axe=Math.abs(dx)>Math.abs(dy)?'h':'v';
+        if(axe==='v'){this.drag=false;this.paused=false;return;}
+      }
+      e.preventDefault();
+      if(Math.abs(dx)>6)bouge=true;
+      this.x=ox+dx;this.norm();
+      this.el.style.transform=`translateX(${this.x}px)`;
+    },{passive:false});
+    const fin=()=>{
+      this.lastTouch=Date.now();
+      if(!this.drag)return;
+      this.drag=false;this.paused=false;
+      /* un glissement ne doit pas ouvrir la fiche projet */
+      if(bouge)w.addEventListener('click',stopClic,{capture:true,once:true});
+    };
+    w.addEventListener('touchend',fin,{passive:true});
+    w.addEventListener('touchcancel',fin,{passive:true});
+  },
+  run(){if(!this.paused&&this.lw){this.x-=this.speed;this.norm();this.el.style.transform=`translateX(${this.x}px)`;}requestAnimationFrame(()=>this.run());}};
 car.init();
 
 /* ── Auto-load vidéo carousel (IntersectionObserver) ── */
