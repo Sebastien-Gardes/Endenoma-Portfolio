@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://endenoma.studio/sitemap.xml
