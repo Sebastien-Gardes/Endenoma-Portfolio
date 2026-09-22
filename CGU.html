@@ -4,16 +4,26 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>CGV — ENDENOMA Studio Créatif</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link rel="icon" type="image/png" href="uploads/favicon-64.png"/>
+<link rel="apple-touch-icon" href="uploads/og-endenoma.jpg"/>
+<meta name="description" content="Conditions générales de vente d'ENDENOMA Studio Créatif : devis, tarifs, délais, révisions, droits d'auteur, confidentialité, données personnelles et mesure d'audience sans cookie. Sébastien Gardes, monteur vidéo, branding et site web."/>
+<link rel="preload" href="fonts/bebas-neue-latin.woff2" as="font" type="font/woff2" crossorigin/>
+<link rel="preload" href="fonts/space-grotesk-latin-variable.woff2" as="font" type="font/woff2" crossorigin/>
 <style>
+@font-face{font-family:'Bebas Neue';src:url('fonts/bebas-neue-latin.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Space Grotesk';src:url('fonts/space-grotesk-latin-variable.woff2') format('woff2');font-weight:300 700;font-style:normal;font-display:swap;}
+@font-face{font-family:'Bebas Neue Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');size-adjust:73.68%;ascent-override:122.15%;descent-override:40.72%;line-gap-override:0%;}
+@font-face{font-family:'Space Grotesk Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');size-adjust:111.72%;ascent-override:88.08%;descent-override:26.14%;line-gap-override:0%;}
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --mg:#FA06F2; --green:#39B54A;
   --bg:#0e0e0e; --bg2:#141414; --card:#181818; --border:#2a2a2a;
   --text:#f0f0f0; --muted:#888;
-  --font-display:'Bebas Neue',sans-serif;
-  --font-body:'Space Grotesk',sans-serif;
+  /* Mentions volontairement discrètes, mais qui doivent rester lisibles :
+     3.62:1 sur le fond, au-dessus du seuil de 3:1 exigé pour du grand texte. */
+  --faint:#6b6b6b;
+  --font-display:'Bebas Neue','Bebas Neue Fallback',sans-serif;
+  --font-body:'Space Grotesk','Space Grotesk Fallback',sans-serif;
 }
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);overflow-x:hidden;line-height:1.7;}
@@ -185,7 +195,7 @@ nav{
 .cgu-sig-sub{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);font-weight:500;}
 .cgu-sig-right{text-align:right;}
 .cgu-sig-date{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
-.cgu-sig-version{font-family:var(--font-display);font-size:28px;letter-spacing:.08em;color:var(--border);}
+.cgu-sig-version{font-family:var(--font-display);font-size:28px;letter-spacing:.08em;color:var(--faint);}
 
 /* ══ FOOTER ══ */
 .cgu-footer{
@@ -194,7 +204,7 @@ nav{
   display:flex;justify-content:space-between;align-items:center;
   flex-wrap:wrap;gap:16px;
 }
-.cgu-footer-logo{font-family:var(--font-display);font-size:28px;letter-spacing:.12em;color:var(--border);}
+.cgu-footer-logo{font-family:var(--font-display);font-size:28px;letter-spacing:.12em;color:var(--faint);}
 .cgu-footer-copy{font-size:12px;color:var(--muted);letter-spacing:.08em;}
 
 /* ══ RESPONSIVE ══ */
@@ -218,6 +228,7 @@ nav{
 </nav>
 
 <!-- HERO -->
+<main id="contenu" tabindex="-1">
 <div class="cgu-hero">
   <div class="cgu-eyebrow">Document contractuel</div>
   <h1 class="cgu-title">Conditions<br>Générales<br>de <em>Vente.</em></h1>
@@ -541,6 +552,9 @@ nav{
       consentement au titre de l'article 82 de la loi Informatique et Libertés. Aucun bandeau de consentement n'est donc requis.
     </div>
 
+    <p>Les polices de caractères du site sont hébergées sur le serveur du Prestataire : leur
+    affichage ne provoque aucune requête vers un service extérieur.</p>
+
     <p>Certains contenus sont en revanche hébergés par des services tiers. Leur chargement transmet
     votre adresse IP au service concerné, et certains sont susceptibles de déposer leurs propres
     cookies, sur lesquels le Prestataire n'a aucun contrôle.</p>
@@ -550,7 +564,6 @@ nav{
         <tr><th>Service</th><th>Usage sur le site</th><th>Cookies susceptibles d'être déposés</th></tr>
       </thead>
       <tbody>
-        <tr><td>Google Fonts</td><td>Polices de caractères</td><td>Non — transmission de l'adresse IP uniquement</td></tr>
         <tr><td>Google Drive</td><td>Lecture des vidéos de projets</td><td>Oui, au chargement du lecteur</td></tr>
         <tr><td>YouTube</td><td>Vignettes de projets</td><td>Oui, au chargement de l'image</td></tr>
         <tr><td>FormSubmit</td><td>Acheminement du formulaire de contact</td><td>Oui, à l'envoi du formulaire</td></tr>
@@ -615,6 +628,7 @@ nav{
   </div>
 
 </div>
+</main>
 
 <!-- SIGNATURE -->
 <div class="cgu-signature">

@@ -1,10 +1,17 @@
 /* Feuille partagée des pages projet — reprend les tokens du site. */
+@font-face{font-family:'Bebas Neue';src:url('../fonts/bebas-neue-latin.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap;}
+@font-face{font-family:'Montserrat';src:url('../fonts/montserrat-latin-variable.woff2') format('woff2');font-weight:100 900;font-style:normal;font-display:swap;}
+@font-face{font-family:'Bebas Neue Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');size-adjust:73.68%;ascent-override:122.15%;descent-override:40.72%;line-gap-override:0%;}
+@font-face{font-family:'Montserrat Fallback';src:local('Arial'),local('Helvetica'),local('Liberation Sans');size-adjust:119.26%;ascent-override:81.17%;descent-override:21.05%;line-gap-override:0%;}
 *{margin:0;padding:0;box-sizing:border-box;}
 :root{
   --mg:#FA06F2; --green:#39B54A; --bg:#0e0e0e; --bg2:#141414;
   --card:#181818; --border:#2a2a2a; --text:#f0f0f0; --muted:#888;
-  --font-display:'Bebas Neue',sans-serif;
-  --font-body:'Montserrat','Space Grotesk',sans-serif;
+  /* Mentions volontairement discrètes, mais qui doivent rester lisibles :
+     3.62:1 sur le fond, au-dessus du seuil de 3:1 exigé pour du grand texte. */
+  --faint:#6b6b6b;
+  --font-display:'Bebas Neue','Bebas Neue Fallback',sans-serif;
+  --font-body:'Montserrat','Montserrat Fallback',sans-serif;
 }
 html{scroll-behavior:smooth;background:var(--bg);}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.7;}
@@ -59,7 +66,7 @@ h2{font-family:var(--font-display);font-size:clamp(28px,3.4vw,44px);letter-spaci
 
 footer{border-top:1px solid var(--border);padding:30px 48px;display:flex;
   justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;}
-.foot-logo{font-family:var(--font-display);font-size:26px;letter-spacing:.12em;color:var(--border);}
+.foot-logo{font-family:var(--font-display);font-size:26px;letter-spacing:.12em;color:var(--faint);}
 .foot-copy{font-size:12px;color:var(--muted);letter-spacing:.06em;}
 footer a{color:var(--muted);text-decoration:none;}
 footer a:hover,footer a:focus{color:var(--mg);}
