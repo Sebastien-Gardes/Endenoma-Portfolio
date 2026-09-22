@@ -16,7 +16,7 @@ REPO="Sebastien-Gardes/Endenoma-Portfolio"
 BRANCHE="main"
 WEBROOT="/var/www/endenoma.studio"
 ETAT="/var/lib/endenoma-deploy.sha"
-CONTENU=(index.html CGU.html logos-data.js robots.txt sitemap.xml uploads)
+CONTENU=(index.html CGU.html logos-data.js robots.txt sitemap.xml uploads projets)
 
 log() { echo "$(date -Is) $*"; }
 
