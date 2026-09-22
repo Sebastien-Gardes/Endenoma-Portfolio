@@ -1,0 +1,26 @@
+# ─────────────────────────────────────────────────────────────
+#  Rotation du journal de mesure d'audience.
+#  → /etc/logrotate.d/endenoma-audience
+#
+#  Ce journal ne contient que des adresses IP tronquées : il peut
+#  donc être conservé sur la durée maximale admise par la CNIL
+#  pour la mesure d'audience, soit 13 mois.
+#
+#  Il est délibérément hors de /var/log/nginx : la règle Ubuntu
+#  par défaut y applique « rotate 14 » (14 jours), et deux règles
+#  visant le même fichier feraient échouer logrotate.
+# ─────────────────────────────────────────────────────────────
+
+/var/log/endenoma/audience.log {
+    monthly
+    rotate 13
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0640 www-data adm
+    sharedscripts
+    postrotate
+        [ -f /run/nginx.pid ] && kill -USR1 "$(cat /run/nginx.pid)"
+    endscript
+}
