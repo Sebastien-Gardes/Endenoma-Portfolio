@@ -39,6 +39,9 @@ nav{
 }
 .nav-logo{font-family:var(--font-display);font-size:48px;letter-spacing:.12em;color:#fff;text-decoration:none;}
 .nav-logo span{color:var(--mg);}
+nav{gap:16px;}
+.nav-logo{white-space:nowrap;flex-shrink:1;min-width:0;}
+.nav-back{white-space:nowrap;flex-shrink:0;}
 .nav-back{
   font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
   color:var(--muted);text-decoration:none;
@@ -172,6 +175,14 @@ nav{
   vertical-align:top;
 }
 .cgu-section table tr:last-child td{border-bottom:none;}
+.table-defilante{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:20px 0;}
+.table-defilante table{margin:0;}
+.table-defilante:focus-visible{outline:2px solid var(--mg);outline-offset:3px;}
+@media(max-width:600px){
+  .cgu-section table{font-size:13px;}
+  .cgu-section table th{padding:10px 12px;}
+  .cgu-section table td{padding:11px 12px;}
+}
 
 .cgu-highlight{
   background:var(--card);border-left:3px solid var(--mg);
@@ -210,12 +221,28 @@ nav{
 /* ══ RESPONSIVE ══ */
 @media(max-width:768px){
   nav{padding:0 20px;height:68px;}
+  .nav-logo{font-size:30px;}
+  .nav-back{padding:9px 15px;font-size:11px;letter-spacing:.14em;}
   .cgu-hero{padding:calc(68px + 48px) 20px 48px;}
   .cgu-body{padding:48px 20px 72px;}
   .cgu-toc,.cgu-signature{margin-left:20px;margin-right:20px;}
   .cgu-toc-list{columns:1;}
   .cgu-footer{padding:24px 20px;}
   .cgu-signature{padding:32px 24px;}
+}
+
+/* ── Bandeau sur petit écran ──
+   Le logo et le bouton de retour ne rétrécissaient pas : à 360 px le
+   bouton sortait de la barre, et sur les CGV c'est la page entière qui
+   débordait de 70 px. Les deux éléments ne peuvent pas non plus se
+   toucher, d'où l'écart minimal imposé. */
+@media(max-width:600px){
+  nav{gap:12px;}
+  .nav-logo{font-size:26px;}
+  .nav-back{padding:8px 13px;font-size:10px;letter-spacing:.12em;}
+  /* « au portfolio » disparaît ; aria-label garde l'intitulé complet
+     pour les lecteurs d'écran. */
+  .nav-back-plus{display:none;}
 }
 </style>
 </head>
@@ -224,7 +251,7 @@ nav{
 <!-- NAV -->
 <nav>
   <a class="nav-logo" href="index.html" onclick="if(history.length>1){history.back();return false;}">ENDENOMA<span>.</span></a>
-  <a class="nav-back" href="index.html" onclick="if(history.length>1){history.back();return false;}">← Retour au portfolio</a>
+  <a class="nav-back" href="index.html" onclick="if(history.length>1){history.back();return false;}" aria-label="Retour au portfolio">← Retour<span class="nav-back-plus"> au portfolio</span></a>
 </nav>
 
 <!-- HERO -->
@@ -338,7 +365,8 @@ nav{
     <h2 class="cgu-section-title">Prix et conditions de paiement</h2>
     <p>Les prix sont exprimés en euros, hors taxes (HT). La TVA est applicable selon les règles en vigueur au moment de la facturation. Le Prestataire bénéficiant de la franchise en base de TVA (article 293 B du CGI) peut être exempté de TVA selon son statut ; cette information sera précisée sur chaque facture.</p>
 
-    <table>
+    <div class="table-defilante" role="region" aria-label="Tableau, défilement horizontal possible" tabindex="0">
+<table>
       <thead>
         <tr>
           <th>Type de prestation</th>
@@ -369,6 +397,7 @@ nav{
         </tr>
       </tbody>
     </table>
+      </div>
 
     <p>Le règlement s'effectue par virement bancaire (coordonnées communiquées sur facture). Les chèques et paiements en espèces peuvent être refusés pour des montants supérieurs à 1 000 €.</p>
 
@@ -430,7 +459,8 @@ nav{
       <li><strong>Droit d'adaptation :</strong> traduction, mise en page, intégration dans d'autres supports</li>
     </ul>
     <p>Cette cession est consentie pour :</p>
-    <table>
+    <div class="table-defilante" role="region" aria-label="Tableau, défilement horizontal possible" tabindex="0">
+<table>
       <thead>
         <tr><th>Paramètre</th><th>Portée</th></tr>
       </thead>
@@ -441,6 +471,7 @@ nav{
         <tr><td>Exclusivité</td><td>Non exclusive, sauf mention spécifique et tarif dédié</td></tr>
       </tbody>
     </table>
+      </div>
     <p>La cession d'une durée illimitée, d'une exclusivité, ou de droits supplémentaires (merchandising, dérivés, revente) fera l'objet d'une négociation tarifaire spécifique et devra être stipulée explicitement dans le devis.</p>
     <p>Le droit moral de l'auteur (droit à la paternité, droit à l'intégrité de l'œuvre) reste inaliénable et ne peut en aucun cas être cédé.</p>
   </div>
@@ -559,7 +590,8 @@ nav{
     votre adresse IP au service concerné, et certains sont susceptibles de déposer leurs propres
     cookies, sur lesquels le Prestataire n'a aucun contrôle.</p>
 
-    <table>
+    <div class="table-defilante" role="region" aria-label="Tableau, défilement horizontal possible" tabindex="0">
+<table>
       <thead>
         <tr><th>Service</th><th>Usage sur le site</th><th>Cookies susceptibles d'être déposés</th></tr>
       </thead>
@@ -569,6 +601,7 @@ nav{
         <tr><td>FormSubmit</td><td>Acheminement du formulaire de contact</td><td>Oui, à l'envoi du formulaire</td></tr>
       </tbody>
     </table>
+      </div>
 
     <p>Ces dépôts relèvent des politiques de confidentialité respectives de ces prestataires. Pour les
     refuser, le Client peut paramétrer son navigateur de manière à bloquer les cookies tiers, sans que

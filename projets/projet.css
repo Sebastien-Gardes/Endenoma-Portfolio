@@ -30,6 +30,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;height:76px;display:flex;
   color:var(--muted);text-decoration:none;border:1px solid var(--border);padding:10px 20px;
   transition:color .2s,border-color .2s;}
 .nav-back:hover,.nav-back:focus{color:#fff;border-color:var(--muted);}
+nav{gap:16px;}
+.nav-logo{white-space:nowrap;flex-shrink:1;min-width:0;}
+.nav-back{white-space:nowrap;flex-shrink:0;}
 
 .wrap{max-width:1040px;margin:0 auto;padding:0 48px;}
 .hero{padding:150px 0 52px;border-bottom:1px solid var(--border);}
@@ -51,6 +54,10 @@ h2{font-family:var(--font-display);font-size:clamp(28px,3.4vw,44px);letter-spaci
 
 .media{width:100%;background:#000;border:1px solid var(--border);margin-bottom:22px;}
 .media-video{aspect-ratio:16/9;}
+/* Format vertical : une vidéo 9/16 affichée en pleine largeur serait
+   démesurée sur un écran d'ordinateur, on la borne donc en largeur
+   et on la centre. */
+.media-vertical{aspect-ratio:9/16;max-width:min(340px,86vw);margin-left:auto;margin-right:auto;}
 .media-video iframe,.media-video video{width:100%;height:100%;border:0;display:block;background:#000;}
 .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
 .gallery img{width:100%;height:auto;display:block;border:1px solid var(--border);}
@@ -76,6 +83,7 @@ a:focus-visible,.cta:focus-visible,.nav-back:focus-visible{outline:2px solid var
 @media(max-width:768px){
   nav{padding:0 20px;height:64px;}
   .nav-logo{font-size:30px;}
+  .nav-back{padding:9px 15px;font-size:11px;letter-spacing:.14em;}
   .wrap{padding:0 20px;}
   .hero{padding:110px 0 40px;}
   .meta{gap:24px;}
@@ -103,3 +111,17 @@ a:focus-visible,.cta:focus-visible,.nav-back:focus-visible{outline:2px solid var
 @media(max-width:768px){.autres-grid{grid-template-columns:1fr 1fr;gap:14px;}
   .autre-nom{font-size:19px;} .autre-txt{padding:13px 14px 15px;}}
 @media(max-width:420px){.autres-grid{grid-template-columns:1fr;}}
+
+/* ── Bandeau sur petit écran ──
+   Le logo et le bouton de retour ne rétrécissaient pas : à 360 px le
+   bouton sortait de la barre, et sur les CGV c'est la page entière qui
+   débordait de 70 px. Les deux éléments ne peuvent pas non plus se
+   toucher, d'où l'écart minimal imposé. */
+@media(max-width:600px){
+  nav{gap:12px;}
+  .nav-logo{font-size:26px;}
+  .nav-back{padding:8px 13px;font-size:10px;letter-spacing:.12em;}
+  /* « au portfolio » disparaît ; aria-label garde l'intitulé complet
+     pour les lecteurs d'écran. */
+  .nav-back-plus{display:none;}
+}

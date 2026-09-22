@@ -43,6 +43,7 @@
      carrousel avant que le script ne le remplisse, sans quoi la page
      se décale au moment du remplissage. */
   --card-w:520px;
+  --reel-w:270px;   /* carte verticale 9/16 des formats courts */
   --font-display:'Bebas Neue','Bebas Neue Fallback',sans-serif;
   --font-body:'Montserrat','Montserrat Fallback',sans-serif;
 }
@@ -71,13 +72,41 @@ nav.scrolled{border-color:var(--border);backdrop-filter:blur(14px);background:rg
 }
 .nav-logo:hover .nav-logo-text{color:var(--mg);}
 .nav-logo-text .dot{color:var(--green);}
-.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links{display:flex;gap:14px;align-items:center;}
 .nav-links a{
+  position:relative;z-index:0;
+  padding:10px 14px;
   color:var(--muted);text-decoration:none;font-size:11px;
   letter-spacing:.18em;text-transform:uppercase;font-weight:500;
-  transition:color .2s;cursor:pointer;
+  cursor:pointer;
+  transition:color .25s ease,text-shadow .25s ease;
 }
-.nav-links a:hover,.nav-links a.active{color:var(--mg);}
+/* Halo diffus derrière le libellé. Posé en ::before avec un z-index
+   négatif : le lien crée son propre contexte d'empilement (z-index:0),
+   le halo reste donc derrière le texte sans passer sous la barre. */
+.nav-links a::before{
+  content:'';position:absolute;inset:0;z-index:-1;
+  background:radial-gradient(ellipse at center,rgba(250,6,242,.22),rgba(250,6,242,.06) 55%,transparent 75%);
+  opacity:0;transition:opacity .25s ease;
+}
+/* Trait lumineux qui se déploie depuis le centre. */
+.nav-links a::after{
+  content:'';position:absolute;left:50%;right:50%;bottom:4px;height:1px;
+  background:var(--mg);box-shadow:0 0 6px var(--mg),0 0 14px rgba(250,6,242,.6);
+  transition:left .28s ease,right .28s ease;
+}
+.nav-links a:hover,.nav-links a:focus-visible,.nav-links a.active{
+  color:#fff;
+  text-shadow:0 0 10px rgba(250,6,242,.9),0 0 24px rgba(250,6,242,.45);
+}
+.nav-links a:hover::before,.nav-links a:focus-visible::before,.nav-links a.active::before{opacity:1;}
+.nav-links a:hover::after,.nav-links a:focus-visible::after,.nav-links a.active::after{left:12px;right:12px;}
+.nav-links a:focus-visible{outline:2px solid var(--mg);outline-offset:2px;}
+/* Réglage système « réduire les animations » : l'illumination reste,
+   seul le mouvement disparaît. */
+@media(prefers-reduced-motion:reduce){
+  .nav-links a,.nav-links a::before,.nav-links a::after{transition:none;}
+}
 .nav-cta{
   background:transparent;border:1px solid var(--border);color:var(--text);
   padding:8px 20px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;
@@ -200,7 +229,8 @@ section{padding:60px 48px;}
 
 /* ══ CAROUSEL ══ */
 #work{background:var(--bg);padding-left:0;padding-right:0;}
-#work .section-label,#work .section-title,#work .section-subtitle{padding-left:48px;padding-right:48px;}
+#work .section-label,#work .section-title,#work .section-subtitle,
+.fmt-filtres,.fmt-bloc-titre,.reels-row{padding-left:48px;padding-right:48px;}
 .carousel-wrap{
   /* Hauteur réservée dès le premier affichage : la piste est remplie par
      le script, et sans cette réserve la section passe de zéro à sa
@@ -228,6 +258,46 @@ section{padding:60px 48px;}
 .carousel-portal-left{left:0;}
 .carousel-portal-right{right:0;animation-delay:1.4s;}
 .carousel-track{display:flex;gap:20px;width:max-content;padding:4px 48px 8px;will-change:transform;}
+/* ══ Types de vidéo : filtres et blocs ══
+   Les deux formats n'ont pas la même proportion — 16/9 contre 9/16 —
+   les mélanger dans une même rangée donnerait une ligne bancale. D'où
+   deux blocs étiquetés, et un filtre pour n'en garder qu'un. */
+.fmt-filtres{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 36px;}
+.fmt-filtre{
+  font-family:var(--font-body);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);background:transparent;
+  border:1px solid var(--border);
+  padding:10px 20px;cursor:pointer;
+  transition:color .2s,border-color .2s,background .2s;
+}
+.fmt-filtre:hover{color:var(--text);border-color:var(--muted);}
+.fmt-filtre[aria-pressed="true"]{color:#000;background:var(--mg);border-color:var(--mg);}
+.fmt-filtre:focus-visible{outline:2px solid var(--mg);outline-offset:3px;}
+/* Pas d'opacité ici : elle faisait tomber le compteur à 2,4:1 sur le
+   fond sombre. La hiérarchie passe par la graisse et la taille. */
+.fmt-compte{margin-left:8px;font-weight:400;font-size:10px;}
+
+.fmt-bloc{margin-bottom:54px;}
+.fmt-bloc:last-child{margin-bottom:0;}
+.fmt-bloc[hidden]{display:none;}
+.fmt-bloc-titre{
+  font-family:var(--font-body);font-size:11px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--text);
+  margin:0 0 18px;
+}
+.fmt-bloc-titre span{color:var(--muted);letter-spacing:.1em;text-transform:none;}
+
+/* Rangée des formats courts : pas de défilement automatique, ils sont
+   peu nombreux et une carte verticale se lit d'un coup d'œil. */
+.reels-row{display:flex;gap:20px;flex-wrap:wrap;padding-bottom:8px;}
+/* Doublement de classe : ces règles doivent l'emporter sur .project-card
+   quel que soit leur ordre dans la feuille de style. */
+.project-card.reel-card{width:var(--reel-w);aspect-ratio:9/16;}
+.project-card.reel-card .project-overlay{padding:20px 16px;}
+.project-card.reel-card .project-name{font-size:22px;line-height:1.05;}
+.project-card.reel-card .project-desc{font-size:12px;}
+
 .project-card{
   position:relative;width:var(--card-w);aspect-ratio:16/9;
   overflow:hidden;cursor:pointer;background:var(--card);flex-shrink:0;
@@ -313,7 +383,7 @@ section{padding:60px 48px;}
   color:#000;background:var(--mg);border-color:var(--mg);
 }
 .works-filter .wf-count{
-  margin-left:8px;opacity:.5;font-weight:400;
+  margin-left:8px;font-weight:400;font-size:10px;
 }
 .works-grid{
   display:grid;
@@ -829,7 +899,8 @@ footer:hover::before{-webkit-text-stroke-color:var(--mg);opacity:.15;}
   .nav-logo-text{font-size:40px;}
   section{padding:52px 32px;}
   #hero{padding:calc(var(--nav-h) + 48px) 32px 44px;}
-  #work .section-label,#work .section-title,#work .section-subtitle{padding-left:32px;padding-right:32px;}
+  #work .section-label,#work .section-title,#work .section-subtitle,
+  .fmt-filtres,.fmt-bloc-titre,.reels-row{padding-left:32px;padding-right:32px;}
   .about-grid{grid-template-columns:1fr;gap:48px;}
   .about-portrait{display:none;}
 }
@@ -846,12 +917,15 @@ footer:hover::before{-webkit-text-stroke-color:var(--mg);opacity:.15;}
   }
   .nav-links.open{opacity:1;visibility:visible;pointer-events:auto;}
   body.menu-open{overflow:hidden;}
-  .nav-links.open a{font-size:14px;}
+  /* Cible tactile d'au moins 44 px de haut, seuil recommandé pour un
+     appui au doigt sans erreur. */
+  .nav-links.open a{font-size:14px;padding:14px 20px;}
   .hamburger{display:flex;}
   .nav-cta{display:none;}
   section{padding:40px 20px;}
   #hero{padding:calc(var(--nav-h) + 32px) 20px 40px;}
-  #work .section-label,#work .section-title,#work .section-subtitle{padding-left:20px;padding-right:20px;}
+  #work .section-label,#work .section-title,#work .section-subtitle,
+  .fmt-filtres,.fmt-bloc-titre,.reels-row{padding-left:20px;padding-right:20px;}
   .hero-inner{flex-direction:column-reverse;align-items:flex-start;gap:16px;}
   .hero-avatar{width:110px;height:136px;}
   .hero-right{flex-direction:row;align-items:flex-end;}
@@ -1196,7 +1270,7 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
   background:none;border:1px solid var(--border);color:var(--muted);
   font-size:17px;line-height:1;cursor:pointer;
   width:38px;height:38px;display:flex;align-items:center;justify-content:center;
-  margin-left:auto;margin-right:16px;flex-shrink:0;
+  margin-right:16px;flex-shrink:0;
   transition:color .2s,border-color .2s;
 }
 .contrast-toggle:hover,.contrast-toggle:focus-visible{color:var(--mg);border-color:var(--mg);}
@@ -1603,7 +1677,7 @@ body.contraste .nav-links a{color:#e8e8e8;}
 
 /* ── Carousel : cartes adaptées à l'écran ── */
 @media(max-width:768px){
-  :root{--card-w:min(82vw,320px);}
+  :root{--card-w:min(82vw,320px);--reel-w:min(30vw,230px);}
   .carousel-track{padding:4px 20px 8px;gap:14px;}
   .carousel-wrap{
     mask-image:linear-gradient(to right,transparent 0%,#000 8%,#000 92%,transparent 100%);
@@ -1611,7 +1685,8 @@ body.contraste .nav-links a{color:#e8e8e8;}
   }
 }
 @media(max-width:480px){
-  :root{--card-w:min(88vw,300px);}
+  :root{--card-w:min(88vw,300px);--reel-w:min(42vw,200px);}
+  .reels-row{gap:14px;}
 }
 
 /* ── Hero : meilleure lisibilité mobile ── */
@@ -1979,12 +2054,22 @@ function pageTransition(cb){
     <div class="section-label" style="margin: 0px 0px 38px">// Sélection 2024–2026</div>
     <h2 class="section-title" style="margin: 0 0 16px;">Projets Récents</h2>
     <p class="section-subtitle" style="padding-left:48px">Une sélection de travaux personnels et commandes créatives montrant mon approche du rythme, de l'image et de la direction visuelle.</p>
-    <div class="carousel-outer">
-      <div class="carousel-portal carousel-portal-left"></div>
-      <div class="carousel-wrap" id="carouselWrap">
-        <div class="carousel-track" id="grid" style="padding: 0px 48px 8px"></div>
+    <div class="fmt-filtres" id="fmtFiltres" role="group" aria-label="Filtrer les projets par type de vidéo"></div>
+
+    <div class="fmt-bloc" id="blocLong">
+      <h3 class="fmt-bloc-titre">Formats longs <span>— 16:9 · YouTube, LinkedIn</span></h3>
+      <div class="carousel-outer">
+        <div class="carousel-portal carousel-portal-left"></div>
+        <div class="carousel-wrap" id="carouselWrap">
+          <div class="carousel-track" id="grid" style="padding: 0px 48px 8px"></div>
+        </div>
+        <div class="carousel-portal carousel-portal-right"></div>
       </div>
-      <div class="carousel-portal carousel-portal-right"></div>
+    </div>
+
+    <div class="fmt-bloc" id="blocCourt">
+      <h3 class="fmt-bloc-titre">Formats courts <span>— 9:16 · Reels, Shorts</span></h3>
+      <div class="reels-row" id="reelsRow"></div>
     </div>
   
 <noscript>
@@ -2394,17 +2479,22 @@ function pageTransition(cb){
 
 <script>
 const PROJECTS=[
-  {id:'maisons-du-monde',tag:'// Motion Design',name:'Maisons du Monde',tagline:"Campagne 30 ans — direction artistique & stratégie de communication pour une marque emblématique.",client:'Maisons du Monde',duration:'1 semaine',year:'2026',problem:"Maisons du Monde souhaitait marquer son 30ème anniversaire avec une campagne de communication forte, capable de toucher émotionnellement un large public tout en valorisant l'héritage de la marque autour du voyage et des intérieurs.",solution:"Conception d'une stratégie de communication complète pour les 30 ans de la marque : direction artistique de la campagne print, motion design, positionnement, axes créatifs et supports de communication multicanaux. Campagne autour du concept : \"30 ans de voyage, vos intérieurs en gardent la mémoire\".",tools:['Illustrator','Photoshop'],bg:'#1a0010',icon:'🎬',images:[],related:['gshock','maohienergy'],hasVideo:true,hasPdf:true,driveId:'11fWzkvIJnA8onZFi1i_rVwbGK47WaVDJ',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/FInal%20ads%20youtube%2030%20ans-subtitles.mp4'},
-  {id:'gshock',tag:'// Branding',name:"G-Shock × Willy's",tagline:"Identité visuelle complète pour la collaboration entre G-Shock et Willy's Wonderland.",client:"G-Shock / Willy's",duration:'1  semaine',problem:"La marque avait besoin d'une identité cohérente pour sa collaboration capsule — capable de fusionner l'univers robuste de G-Shock avec l'esthétique décalée et pop de Willy's Wonderland.",solution:"Création d'un système graphique complet : logotype co-brandé, palette chromatique, déclinaisons sur packaging, affichage et motion assets pour les réseaux sociaux.",tools:['Illustrator','Photoshop','After Effects'],bg:'#001a10',icon:'⌚',images:['⌚','🎨','📦','🖼️'],related:['maisons-du-monde','mate'],driveId:'1rL7arsNfZmxTx48DmOSzz4dZPouOeJvy',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/G%20shock%20willys.mp4'},
-  {id:'endenoma-gaming',tag:'// Branding',name:'Endenoma Gaming',tagline:"Identité de marque complète pour une chaîne Twitch — logo, overlays, panels & habillage de stream.",client:'Endenoma Gaming',duration:'2 semaines',problem:"La chaîne avait besoin d'une identité visuelle forte et reconnaissable pour se démarquer sur Twitch et fédérer une communauté autour d'un univers gaming cohérent.",solution:"Création d'un système de marque complet : logotype, palette néon, overlays de stream, panels de profil, écrans d'attente et transitions animées pour le live.",tools:['Illustrator','Photoshop','After Effects'],bg:'#0a0016',icon:'🎮',images:[],related:['gshock','maohienergy'],hasVideo:true,driveId:'1QjTQyGPHKA3uFw7ZWhaaEDN4iFGonssc',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/Endenoma-logo-twitch-anim.mp4'},
-  {id:'hud-jeux-video',tag:'// Motion Design',name:'HuD Gaming',tagline:"Interface HuD jeux vidéo — animation & motion design pour univers gaming.",client:'Projet Personnel',duration:'2 semaines',year:'2025',problem:"Concevoir un HuD immersif et lisible pour un univers jeu vidéo, alliant précision de combat et esthétique gaming haut de gamme.",solution:"Création et animation d'éléments HuD complets : barres de vie, minimap, indicateurs de statut, alertes et transitions dynamiques — conçus sous After Effects avec assets vectoriels Illustrator.",tools:['After Effects','Illustrator'],bg:'#000a1a',icon:'🕹️',images:[],related:['endenoma-gaming','gshock'],hasVideo:true,videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/HUD_Sebastien%20%281%29.mp4'},
+  {id:'maisons-du-monde',format:'long',youtubeId:'esbVlV-ngm4',tag:'// Motion Design',name:'Maisons du Monde',tagline:"Campagne 30 ans — direction artistique & stratégie de communication pour une marque emblématique.",client:'Maisons du Monde',duration:'1 semaine',year:'2026',problem:"Maisons du Monde souhaitait marquer son 30ème anniversaire avec une campagne de communication forte, capable de toucher émotionnellement un large public tout en valorisant l'héritage de la marque autour du voyage et des intérieurs.",solution:"Conception d'une stratégie de communication complète pour les 30 ans de la marque : direction artistique de la campagne print, motion design, positionnement, axes créatifs et supports de communication multicanaux. Campagne autour du concept : \"30 ans de voyage, vos intérieurs en gardent la mémoire\".",tools:['Illustrator','Photoshop'],bg:'#1a0010',icon:'🎬',images:[],related:['gshock','maohienergy'],hasVideo:true,hasPdf:true,driveId:'11fWzkvIJnA8onZFi1i_rVwbGK47WaVDJ',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/FInal%20ads%20youtube%2030%20ans-subtitles.mp4'},
+  {id:'gshock',format:'long',poster:'uploads/ww_nc-1920.webp',posterSmall:'uploads/ww_nc-960.webp',tag:'// Branding',name:"G-Shock × Willy's",tagline:"Identité visuelle complète pour la collaboration entre G-Shock et Willy's Wonderland.",client:"G-Shock / Willy's",duration:'1  semaine',problem:"La marque avait besoin d'une identité cohérente pour sa collaboration capsule — capable de fusionner l'univers robuste de G-Shock avec l'esthétique décalée et pop de Willy's Wonderland.",solution:"Création d'un système graphique complet : logotype co-brandé, palette chromatique, déclinaisons sur packaging, affichage et motion assets pour les réseaux sociaux.",tools:['Illustrator','Photoshop','After Effects'],bg:'#001a10',icon:'⌚',images:['⌚','🎨','📦','🖼️'],related:['maisons-du-monde','mate'],driveId:'1rL7arsNfZmxTx48DmOSzz4dZPouOeJvy',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/G%20shock%20willys.mp4'},
+  {id:'endenoma-gaming',format:'long',tag:'// Branding',name:'Endenoma Gaming',tagline:"Identité de marque complète pour une chaîne Twitch — logo, overlays, panels & habillage de stream.",client:'Endenoma Gaming',duration:'2 semaines',problem:"La chaîne avait besoin d'une identité visuelle forte et reconnaissable pour se démarquer sur Twitch et fédérer une communauté autour d'un univers gaming cohérent.",solution:"Création d'un système de marque complet : logotype, palette néon, overlays de stream, panels de profil, écrans d'attente et transitions animées pour le live.",tools:['Illustrator','Photoshop','After Effects'],bg:'#0a0016',icon:'🎮',images:[],related:['gshock','maohienergy'],hasVideo:true,driveId:'1QjTQyGPHKA3uFw7ZWhaaEDN4iFGonssc',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/Endenoma-logo-twitch-anim.mp4'},
+  {id:'hud-jeux-video',format:'long',tag:'// Motion Design',name:'HuD Gaming',tagline:"Interface HuD jeux vidéo — animation & motion design pour univers gaming.",client:'Projet Personnel',duration:'2 semaines',year:'2025',problem:"Concevoir un HuD immersif et lisible pour un univers jeu vidéo, alliant précision de combat et esthétique gaming haut de gamme.",solution:"Création et animation d'éléments HuD complets : barres de vie, minimap, indicateurs de statut, alertes et transitions dynamiques — conçus sous After Effects avec assets vectoriels Illustrator.",tools:['After Effects','Illustrator'],bg:'#000a1a',icon:'🕹️',images:[],related:['endenoma-gaming','gshock'],hasVideo:true,videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/HUD_Sebastien%20%281%29.mp4'},
+  {id:'grdf-aftermovie',format:'long',tag:'// Montage vidéo',name:'GRDF — Aftermovie',tagline:"Aftermovie de l'alternance chez GRDF — format long pensé pour YouTube et LinkedIn.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Restituer une année d'alternance en une seule vidéo : donner à voir les missions, les équipes et les terrains, sans transformer le film en catalogue.",solution:"Montage d'un aftermovie au format horizontal, rythmé pour tenir sur une diffusion YouTube comme sur un fil LinkedIn, où il doit accrocher dès les premières secondes.",tools:['Premiere Pro','After Effects'],bg:'#001a14',icon:'🎞️',images:[],related:['grdf-biomethane','grdf-terrain'],hasVideo:true,driveId:'13lqgVfGDPC19lluhr53alL8mBVn7pAdW'},
+  {id:'grdf-biomethane',format:'court',tag:'// Motion Design',name:'GRDF — Biométhane en LEGO',tagline:"Reel pédagogique en stop-motion : le parcours du biométhane, étape par étape.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Expliquer le fonctionnement d'une unité de méthanisation à un public non spécialiste, dans un format vertical de moins d'une minute.",solution:"Animation image par image d'une maquette construite en briques, avec un parcours numéroté qui suit la matière depuis la collecte agricole jusqu'à l'installation. Le format vertical et le rythme court sont pensés pour Instagram et LinkedIn.",tools:['Premiere Pro','After Effects'],bg:'#06240f',icon:'🧱',images:[],related:['grdf-terrain','grdf-aftermovie'],hasVideo:true,poster:'uploads/videos/grdf-biomethane-poster.webp',posterSmall:'uploads/videos/grdf-biomethane-poster-270.webp',videoUrl:'uploads/videos/grdf-biomethane.mp4',apercuUrl:'uploads/videos/grdf-biomethane-apercu.mp4'},
+  {id:'grdf-terrain',format:'court',tag:'// Montage vidéo',name:'GRDF — Sur le terrain',tagline:"Reportage vertical sous-titré : une journée de sensibilisation à Marseille.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Donner à voir une campagne de sensibilisation de terrain, et la rendre lisible sans le son — là où l'essentiel des vues se fait en silencieux.",solution:"Captation et montage d'un reportage au format vertical, sous-titré de bout en bout, qui suit l'équipe sur les stands de quartier et les visites à domicile.",tools:['Premiere Pro'],bg:'#0a1628',icon:'🎤',images:[],related:['grdf-biomethane','grdf-aftermovie'],hasVideo:true,poster:'uploads/videos/grdf-terrain-poster.webp',posterSmall:'uploads/videos/grdf-terrain-poster-270.webp',videoUrl:'uploads/videos/grdf-terrain.mp4',apercuUrl:'uploads/videos/grdf-terrain-apercu.mp4'},
   {id:'archizen',tag:'// UI/UX',name:'Archizen',tagline:"Refonte UI/UX d'une plateforme d'architecture — identité glassmorphique et navigation immersive.",client:'Archizen',duration:'1  semaine',problem:"Many architecture firms struggle with outdated, uninspiring websites that fail to showcase their expertise and attract new clients. Without a visually appealing and functional site, firms lose credibility and potential projects.",solution:"Archizen provides a refined, high-converting website tailored for architecture firms. With a clean, modern design and a seamless user experience, it helps architects present their portfolio effectively and attract high-value clients.",tools:['Figma','Framer','Webflow'],bg:'#00101a',icon:'🏛️',images:['🏛️','🖥️','📐','🔲'],related:['campus','gshock']},
   {id:'maohienergy',tag:'// Branding',name:'Maōhi Energy',tagline:"Direction artistique de la nouvelle gamme de boisson énergisante — packaging & motion.",client:'Maōhi Energy',duration:'4 mois',problem:"La marque Maōhi cherchait à se démarquer dans un marché ultra-concurrentiel des boissons énergisantes, avec une identité visuelle forte ancrée dans la culture polynésienne.",solution:"Développement complet de l'identité visuelle : logotype, palette, packaging 3D, animations de produits et kit de communication pour les réseaux sociaux.",tools:['Illustrator','Cinema 4D','After Effects','Photoshop'],bg:'#1a1000',icon:'⚡',images:['⚡','🌺','📦','✨'],related:['gshock','mate']},
   {id:'campus',tag:'// UI/UX',name:'Campus',tagline:"Application mobile éducative — UX research, prototypage et design system complet.",client:'Campus App',duration:'3 mois',problem:"L'application existante souffrait d'un taux d'abandon élevé dès l'onboarding. La navigation était confuse et le design system inexistant, rendant chaque sprint de développement chaotique.",solution:"Refonte complète basée sur une phase de UX research, création d'un design system robuste sous Figma et prototypage haute fidélité de l'ensemble des parcours utilisateurs.",tools:['Figma','Maze','Notion'],bg:'#0a001a',icon:'📱',images:['📱','🎓','📊','🔷'],related:['archizen','maisons-du-monde']},
   {id:'mate',tag:'// Branding',name:'Mate Studio',tagline:"Création de marque pour un studio de céramique artisanale — logo, charte & shootings.",client:'Mate Studio',duration:'6 semaines',problem:"Mate Studio, jeune atelier de céramique artisanale, manquait d'une identité visuelle capable de refléter son positionnement premium et d'attirer une clientèle design-conscious.",solution:"Création from scratch de l'identité : logotype inspiré des formes organiques de la céramique, charte graphique minimaliste, direction artistique des shootings produits et templates réseaux sociaux.",tools:['Illustrator','Figma','Lightroom'],bg:'#1a000a',icon:'🏺',images:['🏺','🤍','📸','🎨'],related:['gshock','maohienergy']},
 ];
 const PM={};PROJECTS.forEach(p=>PM[p.id]=p);
-const VISIBLE=PROJECTS.filter(p=>!!p.videoUrl);
+const VISIBLE=PROJECTS.filter(p=>!!p.format);
+const LONGS=VISIBLE.filter(p=>p.format==='long');
+const COURTS=VISIBLE.filter(p=>p.format==='court');
 function gdriveThumbFail(img){
   const wrap=img.closest('.card-video-bg');
   if(wrap)wrap.outerHTML='<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>';
@@ -2646,17 +2736,57 @@ window.addEventListener('scroll',()=>{document.getElementById('navbar').classLis
   window.__closeMenu = closeMenu;
 })();
 
-/* CAROUSEL rAF */
-const grid=document.getElementById('grid');
-[...VISIBLE,...VISIBLE,...VISIBLE].forEach(p=>{
-  const c=document.createElement('a');c.className='project-card';c.dataset.id=p.id;
+/* Vignette d'une carte projet.
+   Ordre de préférence : image auto-hébergée, puis miniature YouTube,
+   puis miniature Drive (avec repli si le partage n'est pas public),
+   enfin un bloc « Coming soon ». */
+function vignetteProjet(p){
+  const badge='<div class="card-video-badge">▶ Vidéo</div>';
+  if(p.poster){
+    /* Les deux proportions coexistent : 16/9 pour les formats longs,
+       9/16 pour les reels. Les dimensions déclarées évitent tout
+       décalage de mise en page pendant le chargement. */
+    const court=p.format==='court';
+    const L=court?540:1920, H=court?960:1080;
+    const petit=court?270:960;
+    const tailles=court?'(max-width:768px) 44vw, 270px':'(max-width:768px) 86vw, 420px';
+    const srcset=p.posterSmall?` srcset="${p.posterSmall} ${petit}w, ${p.poster} ${L}w" sizes="${tailles}"`:'';
+    return `<div class="card-video-bg"><img src="${p.poster}"${srcset} width="${L}" height="${H}" alt="${p.name}" loading="lazy" decoding="async"/>${badge}</div>`;
+  }
+  if(p.vignetteHtml) return p.vignetteHtml;
+  if(p.youtubeId) return `<div class="card-video-bg"><img src="https://img.youtube.com/vi/${p.youtubeId}/maxresdefault.jpg" alt="${p.name}" loading="lazy" decoding="async"/>${badge}</div>`;
+  if(p.driveId)   return `<div class="card-video-bg"><img src="https://drive.google.com/thumbnail?id=${p.driveId}&sz=w1000" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="gdriveThumbFail(this)"/>${badge}</div>`;
+  return '<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>';
+}
+
+/* Fabrique une carte projet. Le carrousel 16/9 et la rangée verticale
+   partagent exactement le même balisage : seule la classe supplémentaire
+   change la largeur et la proportion, tout le reste du style suit. */
+function creerCarte(p, classeEnPlus){
+  const c=document.createElement('a');
+  c.className='project-card'+(classeEnPlus?' '+classeEnPlus:'');
+  c.dataset.id=p.id;
   /* vrai lien : la fiche existe aussi en page autonome, indexable et partageable */
   c.setAttribute('href','projets/'+p.id+'.html');
-  const thumbInner=(p.id==='gshock')?`<div class="card-video-bg"><img src="uploads/ww_nc-1920.webp" srcset="uploads/ww_nc-960.webp 960w, uploads/ww_nc-1920.webp 1920w" sizes="(max-width:768px) 86vw, 420px" width="1920" height="1080" alt="G-Shock × Willy's Wonderland" loading="lazy" decoding="async"/><div class="card-video-badge">▶ Vidéo</div></div>`:(p.id==='maisons-du-monde')?`<div class="card-video-bg"><img src="https://img.youtube.com/vi/esbVlV-ngm4/maxresdefault.jpg" alt="Maisons du Monde"/><div class="card-video-badge">▶ Vidéo</div></div>`:(p.id==='endenoma-gaming')?`<div class="card-video-bg"><img src="https://drive.google.com/thumbnail?id=1QjTQyGPHKA3uFw7ZWhaaEDN4iFGonssc&sz=w1000" alt="Endenoma Gaming" referrerpolicy="no-referrer" onerror="gdriveThumbFail(this)"/><div class="card-video-badge">▶ Vidéo</div></div>`:`<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>`;c.innerHTML=`<div class="thumb" style="background:${p.bg};padding:0">${thumbInner}</div><div class="project-overlay"><div class="project-tag">${p.tag}</div><div class="project-name">${p.name}</div><div class="project-desc">${p.tagline}</div></div><div class="project-arrow">↗</div>`;
+  c.innerHTML=`<div class="thumb" style="background:${p.bg};padding:0">${vignetteProjet(p)}</div>`
+    +`<div class="project-overlay"><div class="project-tag">${p.tag}</div>`
+    +`<div class="project-name">${p.name}</div><div class="project-desc">${p.tagline}</div></div>`
+    +`<div class="project-arrow">↗</div>`;
   c.addEventListener('click',e=>{e.preventDefault();showPage('project',p.id);});
-  if(p.videoUrl){c.dataset.videoUrl=p.videoUrl;}
-  grid.appendChild(c);
-});
+  /* Pour la vignette animée on préfère l'aperçu court et muet quand il
+     existe : quelques dizaines de kilo-octets au lieu de la vidéo entière. */
+  const apercu=p.apercuUrl||p.videoUrl;
+  if(apercu){c.dataset.videoUrl=apercu;}
+  return c;
+}
+
+/* CAROUSEL rAF — formats longs uniquement */
+const grid=document.getElementById('grid');
+[...LONGS,...LONGS,...LONGS].forEach(p=>grid.appendChild(creerCarte(p)));
+
+/* Rangée des formats courts */
+const reelsRow=document.getElementById('reelsRow');
+COURTS.forEach(p=>reelsRow.appendChild(creerCarte(p,'reel-card')));
 /* ajoute 2 cartes Coming Soon dans le carousel */
 (function addCSCarousel(){
   var csColors=['#0d001a','#001a0a'];
@@ -2672,7 +2802,7 @@ const grid=document.getElementById('grid');
 })();
 /* repositionne 1 CS card par set pour boucle correcte */
 (function fixCSCarousel(){
-  var perSet=VISIBLE.length;
+  var perSet=LONGS.length;
   var csCards=Array.prototype.slice.call(grid.querySelectorAll('.cs-card'));
   csCards.forEach(function(c){c.parentNode.removeChild(c);});
   var remainCards=Array.prototype.slice.call(grid.children);
@@ -2690,6 +2820,9 @@ document.querySelectorAll('#grid .project-card:not(.cs-card) .coming-soon').forE
 });
 const car={el:grid,wrap:document.getElementById('carouselWrap'),x:0,speed:.55,paused:false,lw:0,
   drag:false,lastTouch:0,
+  /* Reprend la largeur d'un set de cartes. Nécessaire après un
+     ré-affichage du bloc : masqué, il mesurait zéro. */
+  remesurer(){const l=this.el.scrollWidth/3; if(l>0)this.lw=l;},
   init(){requestAnimationFrame(()=>{this.lw=this.el.scrollWidth/3;this.run();});
     /* la pause au survol ne vaut que pour une vraie souris : sur mobile,
        un tap synthetise un mouseenter sans mouseleave, le carrousel
@@ -2733,6 +2866,7 @@ const car={el:grid,wrap:document.getElementById('carouselWrap'),x:0,speed:.55,pa
     w.addEventListener('touchcancel',fin,{passive:true});
   },
   run(){if(!this.paused&&this.lw){this.x-=this.speed;this.norm();this.el.style.transform=`translateX(${this.x}px)`;}requestAnimationFrame(()=>this.run());}};
+window.__car=car;
 car.init();
 
 /* ── Auto-load vidéo carousel (IntersectionObserver) ── */
@@ -2750,11 +2884,54 @@ if('IntersectionObserver' in window){
     });
   },{threshold:0.15,rootMargin:'0px'});
   requestAnimationFrame(function(){
-    document.querySelectorAll('#grid .project-card').forEach(function(c){
+    document.querySelectorAll('#grid .project-card, #reelsRow .project-card').forEach(function(c){
       if(c.dataset.videoUrl) _carObs.observe(c);
     });
   });
 }
+
+/* ══ Filtre par type de vidéo ══
+   Boutons visibles plutôt que menu déroulant : il n'y a que trois choix,
+   et les montrer est précisément le but — distinguer les formats. Chaque
+   bouton porte son état dans aria-pressed, lisible au clavier comme au
+   lecteur d'écran. */
+(function filtresFormat(){
+  const barre=document.getElementById('fmtFiltres');
+  const blocs={long:document.getElementById('blocLong'),court:document.getElementById('blocCourt')};
+  if(!barre||!blocs.long||!blocs.court) return;
+
+  const choix=[
+    {cle:'tous',  libelle:'Tous',          n:LONGS.length+COURTS.length},
+    {cle:'long',  libelle:'Format long',   n:LONGS.length},
+    {cle:'court', libelle:'Format court',  n:COURTS.length}
+  ].filter(c=>c.n>0);
+
+  let actif='tous';
+  function appliquer(){
+    blocs.long.hidden  = !(actif==='tous'||actif==='long');
+    blocs.court.hidden = !(actif==='tous'||actif==='court');
+    barre.querySelectorAll('.fmt-filtre').forEach(b=>{
+      b.setAttribute('aria-pressed', String(b.dataset.cle===actif));
+    });
+    /* le carrousel mesure sa largeur au démarrage : après un ré-affichage
+       il faut la reprendre, sinon la boucle saute. */
+    if(!blocs.long.hidden && window.__car && typeof window.__car.remesurer==='function'){
+      window.__car.remesurer();
+    }
+  }
+
+  choix.forEach(c=>{
+    const b=document.createElement('button');
+    b.type='button';
+    b.className='fmt-filtre';
+    b.dataset.cle=c.cle;
+    b.setAttribute('aria-pressed', String(c.cle==='tous'));
+    b.innerHTML=c.libelle+'<span class="fmt-compte">'+String(c.n).padStart(2,'0')+'</span>';
+    b.addEventListener('click',()=>{ actif=c.cle; appliquer(); });
+    barre.appendChild(b);
+  });
+  appliquer();
+})();
 
 /* ══ WORKS PAGE (all projects) ══ */
 function buildWorksGrid(){
@@ -2768,7 +2945,8 @@ function buildWorksGrid(){
   });
   // build cards
   VISIBLE.forEach((p,i)=>{
-    const carCard = document.querySelector(`#grid .project-card[data-id="${p.id}"]`);
+    /* les formats courts vivent dans leur propre rangée, pas dans le carrousel */
+      const carCard = document.querySelector(`#grid .project-card[data-id="${p.id}"], #reelsRow .project-card[data-id="${p.id}"]`);
     let thumb = '';
     if(carCard){
       const innerThumb = carCard.querySelector('.thumb');
