@@ -525,12 +525,22 @@ nav{
     <h2 class="cgu-section-title">Cookies et services tiers</h2>
 
     <div class="cgu-highlight">
-      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie et ne recourt à aucun
-      outil de mesure d'audience ni de publicité. Le stockage local (<em>localStorage</em>) n'est utilisé
+      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie par défaut et ne
+      recourt à aucune publicité. Le stockage local (<em>localStorage</em>) n'est utilisé
       que pour mémoriser votre préférence d'affichage en contraste renforcé : cette mémorisation relève
       des fonctionnalités strictement nécessaires au service demandé par l'utilisateur, exemptées de
-      consentement au titre de l'article 82 de la loi Informatique et Libertés. Aucun bandeau de consentement n'est donc requis.
+      consentement au titre de l'article 82 de la loi Informatique et Libertés. Aucun cookie n'est déposé tant que vous n'y avez pas
+      expressément consenti.
     </div>
+
+    <p><strong>Mesure d'audience.</strong> Le site peut recourir à Google Analytics pour mesurer sa
+    fréquentation. Cet outil dépose des cookies : conformément à la position de la CNIL, il n'est
+    chargé qu'après votre consentement explicite, recueilli par une bannière au premier affichage.
+    Refuser n'altère en rien la consultation du site. Aucun script de mesure n'est chargé avant ce
+    consentement, et les cookies concernés sont supprimés en cas de refus ultérieur.</p>
+
+    <p>Vous pouvez revenir sur votre choix à tout moment :
+    <a href="#" onclick="event.preventDefault();if(window.endenomaAudience&amp;&amp;!window.endenomaAudience()){this.textContent='Aucune mesure d\u2019audience n\u2019est actuellement activée sur ce site.';}" style="color:var(--mg);">modifier mon choix sur la mesure d'audience</a>.</p>
 
     <p>Certains contenus sont en revanche hébergés par des services tiers. Leur chargement transmet
     votre adresse IP au service concerné, et certains sont susceptibles de déposer leurs propres
@@ -541,6 +551,7 @@ nav{
         <tr><th>Service</th><th>Usage sur le site</th><th>Cookies susceptibles d'être déposés</th></tr>
       </thead>
       <tbody>
+        <tr><td>Google Analytics</td><td>Mesure d'audience</td><td>Oui — uniquement après consentement</td></tr>
         <tr><td>Google Fonts</td><td>Polices de caractères</td><td>Non — transmission de l'adresse IP uniquement</td></tr>
         <tr><td>Google Drive</td><td>Lecture des vidéos de projets</td><td>Oui, au chargement du lecteur</td></tr>
         <tr><td>YouTube</td><td>Vignettes de projets</td><td>Oui, au chargement de l'image</td></tr>
@@ -616,5 +627,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
   });
 });
 </script>
+<script src="analytics.js" defer></script>
 </body>
 </html>
