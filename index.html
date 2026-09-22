@@ -1179,6 +1179,49 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
 .ns-projects li p:last-child{margin-bottom:0;}
 .ns-projects strong{color:var(--green);font-weight:600;}
 
+/* ══ CONTRASTE RENFORCÉ ══ */
+.contrast-toggle{
+  background:none;border:1px solid var(--border);color:var(--muted);
+  font-size:17px;line-height:1;cursor:pointer;
+  width:38px;height:38px;display:flex;align-items:center;justify-content:center;
+  margin-left:auto;margin-right:16px;flex-shrink:0;
+  transition:color .2s,border-color .2s;
+}
+.contrast-toggle:hover,.contrast-toggle:focus-visible{color:var(--mg);border-color:var(--mg);}
+.contrast-toggle[aria-pressed="true"]{color:var(--mg);border-color:var(--mg);}
+.contrast-toggle:focus-visible{outline:2px solid var(--mg);outline-offset:2px;}
+
+/* Remonte les textes gris et les bordures au-dessus du ratio 4.5:1,
+   sans toucher à l'identité chromatique (magenta, vert). */
+body.contraste{
+  --muted:#cfcfcf;
+  --border:#5a5a5a;
+  --text:#ffffff;
+  --card:#1d1d1d;
+}
+body.contraste .hero-desc,
+body.contraste .hero-extra,
+body.contraste .pk-intro,
+body.contraste .pk-list li,
+body.contraste .pk-note,
+body.contraste .pk-cond,
+body.contraste .pk-custom,
+body.contraste .pk-combo-desc,
+body.contraste .pk-combo-for,
+body.contraste .pk-foot,
+body.contraste .about-text p,
+body.contraste .ns-projects li p,
+body.contraste .section-desc,
+body.contraste p{color:#ececec !important;}
+body.contraste .section-label,
+body.contraste .pk-cat{color:#6EE87F !important;}
+body.contraste .pk-price,
+body.contraste .pk-combo-price,
+body.contraste .hero-title span[style*="fa06f2"]{color:#FF7DF6 !important;}
+body.contraste .pk-card,
+body.contraste .ns-projects li{border-color:#6a6a6a;}
+body.contraste .nav-links a{color:#e8e8e8;}
+
 /* ══ PACKS & TARIFS ══ */
 #packs{background:var(--bg2);border-top:1px solid var(--border);}
 .pk-intro{
@@ -1455,6 +1498,10 @@ setTimeout(function(){document.body.classList.add('fouc-ready');},2500);</script
     <a id="nav-contact" onclick="pageTransition(function(){showPage('contact');})">Contact</a>
     <a href="CGU.html" id="nav-cgv" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">CGV</a>
   </div>
+  <button type="button" id="contrast-toggle" class="contrast-toggle"
+    aria-pressed="false" aria-label="Activer le contraste renforcé" title="Contraste renforcé">
+    <span aria-hidden="true">◐</span>
+  </button>
   <div class="hamburger" id="hamburger" role="button" tabindex="0" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="navlinks"><span></span><span></span><span></span></div>
 </nav>
 
@@ -2244,9 +2291,11 @@ window.addEventListener('scroll',()=>{document.getElementById('navbar').classLis
 /* CAROUSEL rAF */
 const grid=document.getElementById('grid');
 [...VISIBLE,...VISIBLE,...VISIBLE].forEach(p=>{
-  const c=document.createElement('div');c.className='project-card';c.dataset.id=p.id;
+  const c=document.createElement('a');c.className='project-card';c.dataset.id=p.id;
+  /* vrai lien : la fiche existe aussi en page autonome, indexable et partageable */
+  c.setAttribute('href','projets/'+p.id+'.html');
   const thumbInner=(p.id==='gshock')?`<div class="card-video-bg"><img src="uploads/ww_nc.png" alt="G-Shock × Willy's Wonderland" loading="lazy" decoding="async"/><div class="card-video-badge">▶ Vidéo</div></div>`:(p.id==='maisons-du-monde')?`<div class="card-video-bg"><img src="https://img.youtube.com/vi/esbVlV-ngm4/maxresdefault.jpg" alt="Maisons du Monde"/><div class="card-video-badge">▶ Vidéo</div></div>`:(p.id==='endenoma-gaming')?`<div class="card-video-bg"><img src="https://drive.google.com/thumbnail?id=1QjTQyGPHKA3uFw7ZWhaaEDN4iFGonssc&sz=w1000" alt="Endenoma Gaming" referrerpolicy="no-referrer" onerror="gdriveThumbFail(this)"/><div class="card-video-badge">▶ Vidéo</div></div>`:`<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>`;c.innerHTML=`<div class="thumb" style="background:${p.bg};padding:0">${thumbInner}</div><div class="project-overlay"><div class="project-tag">${p.tag}</div><div class="project-name">${p.name}</div><div class="project-desc">${p.tagline}</div></div><div class="project-arrow">↗</div>`;
-  c.addEventListener('click',()=>showPage('project',p.id));
+  c.addEventListener('click',e=>{e.preventDefault();showPage('project',p.id);});
   if(p.videoUrl){c.dataset.videoUrl=p.videoUrl;}
   grid.appendChild(c);
 });
@@ -2773,6 +2822,35 @@ window._loadVidInCard = function _loadVidInCard(card,videoUrl){
         hb.setAttribute('aria-label',ouvert?'Fermer le menu':'Ouvrir le menu');
       }).observe(nl,{attributes:true,attributeFilter:['class']});
     }
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<script>
+/* ── Contraste renforcé ──
+   La préférence est mémorisée dans localStorage : stockage fonctionnel,
+   exempté de consentement, documenté à l'article 15 des CGV. */
+(function(){
+  var CLE='endenoma-contraste';
+  function appliquer(actif,btn){
+    document.body.classList.toggle('contraste',actif);
+    if(!btn) return;
+    btn.setAttribute('aria-pressed',actif?'true':'false');
+    btn.setAttribute('aria-label',actif?'Désactiver le contraste renforcé':'Activer le contraste renforcé');
+  }
+  function init(){
+    var btn=document.getElementById('contrast-toggle');
+    var actif=false;
+    try{ actif=localStorage.getItem(CLE)==='1'; }catch(e){}
+    appliquer(actif,btn);
+    if(!btn) return;
+    btn.addEventListener('click',function(){
+      var nouveau=!document.body.classList.contains('contraste');
+      appliquer(nouveau,btn);
+      try{ localStorage.setItem(CLE,nouveau?'1':'0'); }catch(e){}
+    });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();

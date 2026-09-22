@@ -72,19 +72,6 @@ nav{
 .cgu-meta-label{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500;}
 .cgu-meta-value{font-size:14px;font-weight:500;color:var(--text);}
 
-/* ══ DISCLAIMER ══ */
-.disclaimer{
-  margin:0 48px;
-  border:1px solid rgba(250,6,242,.35);
-  background:rgba(250,6,242,.05);
-  padding:20px 28px;
-  display:flex;gap:16px;align-items:flex-start;
-  margin-top:40px;
-}
-.disclaimer-icon{font-size:20px;flex-shrink:0;margin-top:2px;}
-.disclaimer-text{font-size:13px;color:rgba(240,240,240,.65);line-height:1.65;}
-.disclaimer-text strong{color:var(--mg);font-weight:600;}
-
 /* ══ TOC ══ */
 .cgu-toc{
   margin:40px 48px 0;
@@ -208,7 +195,7 @@ nav{
   nav{padding:0 20px;height:68px;}
   .cgu-hero{padding:calc(68px + 48px) 20px 48px;}
   .cgu-body{padding:48px 20px 72px;}
-  .disclaimer,.cgu-toc,.cgu-signature{margin-left:20px;margin-right:20px;}
+  .cgu-toc,.cgu-signature{margin-left:20px;margin-right:20px;}
   .cgu-toc-list{columns:1;}
   .cgu-footer{padding:24px 20px;}
   .cgu-signature{padding:32px 24px;}
@@ -245,12 +232,6 @@ nav{
       <span class="cgu-meta-value">Droit français</span>
     </div>
   </div>
-</div>
-
-<!-- DISCLAIMER -->
-<div class="disclaimer">
-  <span class="disclaimer-icon">⚖️</span>
-  <p class="disclaimer-text"><strong>Note :</strong> Ce document constitue un modèle de conditions générales de vente. Il est recommandé de le faire relire par un professionnel du droit avant toute utilisation contractuelle. ENDENOMA Studio se réserve le droit de le mettre à jour sans préavis.</p>
 </div>
 
 <!-- TABLE DES MATIÈRES -->
@@ -544,10 +525,11 @@ nav{
     <h2 class="cgu-section-title">Cookies et services tiers</h2>
 
     <div class="cgu-highlight">
-      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie, n'utilise ni
-      <em>localStorage</em> ni <em>sessionStorage</em>, et ne recourt à aucun outil de mesure d'audience
-      ni de publicité. Aucun bandeau de consentement n'est donc requis au titre de l'article 82 de la
-      loi Informatique et Libertés.
+      <strong>Aucun cookie déposé par ce site.</strong> Le site ne dépose aucun cookie et ne recourt à aucun
+      outil de mesure d'audience ni de publicité. Le stockage local (<em>localStorage</em>) n'est utilisé
+      que pour mémoriser votre préférence d'affichage en contraste renforcé : cette mémorisation relève
+      des fonctionnalités strictement nécessaires au service demandé par l'utilisateur, exemptées de
+      consentement au titre de l'article 82 de la loi Informatique et Libertés. Aucun bandeau de consentement n'est donc requis.
     </div>
 
     <p>Certains contenus sont en revanche hébergés par des services tiers. Leur chargement transmet
