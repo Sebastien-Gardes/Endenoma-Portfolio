@@ -980,6 +980,10 @@ footer:hover::before{-webkit-text-stroke-color:var(--mg);opacity:.15;}
 .card-video-bg{
   width:100%;height:100%;position:relative;overflow:hidden;
 }
+.card-visuel-repli{
+  width:100%;height:100%;display:flex;align-items:center;justify-content:center;
+  font-size:58px;opacity:.5;
+}
 .card-video-bg img{
   width:100%;height:100%;object-fit:cover;
   animation:ken-burns 8s ease-in-out infinite alternate;
@@ -2495,9 +2499,21 @@ const PM={};PROJECTS.forEach(p=>PM[p.id]=p);
 const VISIBLE=PROJECTS.filter(p=>!!p.format);
 const LONGS=VISIBLE.filter(p=>p.format==='long');
 const COURTS=VISIBLE.filter(p=>p.format==='court');
+/* Repli commun aux miniatures hébergées ailleurs (Drive, YouTube). */
 function gdriveThumbFail(img){
   const wrap=img.closest('.card-video-bg');
-  if(wrap)wrap.outerHTML='<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>';
+  if(!wrap) return;
+  const carte=img.closest('[data-id]');
+  const p=carte&&PM[carte.dataset.id];
+  /* Un projet qui existe ne doit pas basculer en « Coming soon » parce
+     que Google Drive n'a pas servi sa miniature : la carte garde la
+     couleur et l'icône du projet, et reste cliquable vers sa page. */
+  if(p){
+    wrap.outerHTML='<div class="card-visuel-repli" style="background:'+(p.bg||'#111')+'">'
+      +'<span aria-hidden="true">'+(p.icon||'')+'</span></div>';
+  }else{
+    wrap.outerHTML='<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>';
+  }
 }
 
 function showPage(name,arg){
@@ -2754,7 +2770,9 @@ function vignetteProjet(p){
     return `<div class="card-video-bg"><img src="${p.poster}"${srcset} width="${L}" height="${H}" alt="${p.name}" loading="lazy" decoding="async"/>${badge}</div>`;
   }
   if(p.vignetteHtml) return p.vignetteHtml;
-  if(p.youtubeId) return `<div class="card-video-bg"><img src="https://img.youtube.com/vi/${p.youtubeId}/maxresdefault.jpg" alt="${p.name}" loading="lazy" decoding="async"/>${badge}</div>`;
+  /* Même filet que pour Drive : une miniature YouTube indisponible ne doit
+     pas laisser une image cassée sur la carte. */
+  if(p.youtubeId) return `<div class="card-video-bg"><img src="https://img.youtube.com/vi/${p.youtubeId}/maxresdefault.jpg" alt="${p.name}" loading="lazy" decoding="async" onerror="gdriveThumbFail(this)"/>${badge}</div>`;
   if(p.driveId)   return `<div class="card-video-bg"><img src="https://drive.google.com/thumbnail?id=${p.driveId}&sz=w1000" alt="${p.name}" referrerpolicy="no-referrer" loading="lazy" decoding="async" onerror="gdriveThumbFail(this)"/>${badge}</div>`;
   return '<div class="coming-soon"><div class="cs-q">?</div><div class="cs-label">Coming soon</div></div>';
 }
