@@ -20,6 +20,16 @@ CONTENU=(index.html CGU.html logos-data.js robots.txt sitemap.xml uploads projet
 
 log() { echo "$(date -Is) $*"; }
 
+# ── Verrou d'exclusion ──
+# Deux passages simultanés — ligne cron dupliquée, ou lancement manuel
+# pendant un passage automatique — copieraient dans le webroot en même
+# temps, ce qui peut laisser un fichier tronqué le temps de la copie.
+exec 9>/var/lock/endenoma-deploy.lock
+if ! flock -n 9; then
+  log "un deploiement est deja en cours, passage ignore"
+  exit 0
+fi
+
 # ── Commit actuel de la branche ──
 SHA=$(curl -fsSL --max-time 30 "https://api.github.com/repos/$REPO/commits/$BRANCHE" \
       | python3 -c 'import sys,json; print(json.load(sys.stdin)["sha"])')
