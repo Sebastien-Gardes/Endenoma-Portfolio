@@ -1118,6 +1118,22 @@ a.proj-live-link:hover{background:var(--green);color:#000;}
   inset:0;width:100%;height:100%;
   border:none;display:block;
 }
+/* Vidéo verticale dans la fiche. Le conteneur est une rangée flexible
+   sur fond noir pleine largeur, pensée pour le 16/9 : un cadre 9/16 et
+   le lien de secours s'y plaçaient côte à côte, la vidéo décalée à
+   gauche, le lien flottant à droite. En colonne, sans bande noire, la
+   vidéo est centrée et le lien passe dessous. */
+.proj-video-outer.proj-video-outer--vertical{
+  flex-direction:column;gap:14px;
+  max-height:none;overflow:visible;
+  background:transparent;padding:8px 0 4px;
+}
+.proj-video-outer--vertical .proj-video-wrap.proj-video-vertical{
+  width:min(400px,88vw,calc(80vh * 9 / 16));
+  border:1px solid var(--border);
+  box-shadow:0 30px 80px -34px rgba(250,6,242,.38);
+}
+.proj-video-outer--vertical .proj-video-secours{margin:0;}
 /* Contrôle volume overlay */
 .vol-overlay{
   position:absolute;
@@ -2499,7 +2515,7 @@ const PROJECTS=[
   {id:'gshock',format:'long',poster:'uploads/ww_nc-1920.webp',posterSmall:'uploads/ww_nc-960.webp',tag:'// Branding',name:"G-Shock × Willy's",tagline:"Identité visuelle complète pour la collaboration entre G-Shock et Willy's Wonderland.",client:"G-Shock / Willy's",duration:'1  semaine',problem:"La marque avait besoin d'une identité cohérente pour sa collaboration capsule — capable de fusionner l'univers robuste de G-Shock avec l'esthétique décalée et pop de Willy's Wonderland.",solution:"Création d'un système graphique complet : logotype co-brandé, palette chromatique, déclinaisons sur packaging, affichage et motion assets pour les réseaux sociaux.",tools:['Illustrator','Photoshop','After Effects'],bg:'#001a10',icon:'⌚',images:['⌚','🎨','📦','🖼️'],related:['maisons-du-monde','mate'],driveId:'1rL7arsNfZmxTx48DmOSzz4dZPouOeJvy',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/G%20shock%20willys.mp4'},
   {id:'endenoma-gaming',format:'long',tag:'// Branding',name:'Endenoma Gaming',tagline:"Identité de marque complète pour une chaîne Twitch — logo, overlays, panels & habillage de stream.",client:'Endenoma Gaming',duration:'2 semaines',problem:"La chaîne avait besoin d'une identité visuelle forte et reconnaissable pour se démarquer sur Twitch et fédérer une communauté autour d'un univers gaming cohérent.",solution:"Création d'un système de marque complet : logotype, palette néon, overlays de stream, panels de profil, écrans d'attente et transitions animées pour le live.",tools:['Illustrator','Photoshop','After Effects'],bg:'#0a0016',icon:'🎮',images:[],related:['gshock','maohienergy'],hasVideo:true,driveId:'1QjTQyGPHKA3uFw7ZWhaaEDN4iFGonssc',videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/Endenoma-logo-twitch-anim.mp4'},
   {id:'hud-jeux-video',format:'long',tag:'// Motion Design',name:'HuD Gaming',tagline:"Interface HuD jeux vidéo — animation & motion design pour univers gaming.",client:'Projet Personnel',duration:'2 semaines',year:'2025',problem:"Concevoir un HuD immersif et lisible pour un univers jeu vidéo, alliant précision de combat et esthétique gaming haut de gamme.",solution:"Création et animation d'éléments HuD complets : barres de vie, minimap, indicateurs de statut, alertes et transitions dynamiques — conçus sous After Effects avec assets vectoriels Illustrator.",tools:['After Effects','Illustrator'],bg:'#000a1a',icon:'🕹️',images:[],related:['endenoma-gaming','gshock'],hasVideo:true,videoUrl:'https://mintsol.net/SEB/Vid%C3%A9os%20du%20site%20portfolio%20Endenoma/HUD_Sebastien%20%281%29.mp4'},
-  {id:'grdf-aftermovie',format:'court',tag:'// Montage vidéo',name:'GRDF — Aftermovie',tagline:"Aftermovie vertical de l'alternance chez GRDF, pensé pour YouTube Shorts et LinkedIn.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Restituer une année d'alternance en une seule vidéo : donner à voir les missions, les équipes et les terrains, sans transformer le film en catalogue.",solution:"Montage d'un aftermovie au format vertical, rythmé pour un fil LinkedIn ou YouTube Shorts, où il doit accrocher dès les premières secondes.",tools:['Premiere Pro','After Effects'],bg:'#001a14',icon:'🎞️',images:[],related:['grdf-biomethane','grdf-terrain'],hasVideo:true,driveId:'13lqgVfGDPC19lluhr53alL8mBVn7pAdW'},
+  {id:'grdf-aftermovie',format:'long',tag:'// Montage vidéo',name:'GRDF — Aftermovie',tagline:"Aftermovie de l'alternance chez GRDF — format long pensé pour YouTube et LinkedIn.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Restituer une année d'alternance en une seule vidéo : donner à voir les missions, les équipes et les terrains, sans transformer le film en catalogue.",solution:"Montage d'un aftermovie au format horizontal, rythmé pour tenir sur une diffusion YouTube comme sur un fil LinkedIn, où il doit accrocher dès les premières secondes.",tools:['Premiere Pro','After Effects'],bg:'#001a14',icon:'🎞️',images:[],related:['grdf-biomethane','grdf-terrain'],hasVideo:true,driveId:'13lqgVfGDPC19lluhr53alL8mBVn7pAdW'},
   {id:'grdf-biomethane',format:'court',tag:'// Motion Design',name:'GRDF — Biométhane en LEGO',tagline:"Reel pédagogique en stop-motion : le parcours du biométhane, étape par étape.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Expliquer le fonctionnement d'une unité de méthanisation à un public non spécialiste, dans un format vertical de moins d'une minute.",solution:"Animation image par image d'une maquette construite en briques, avec un parcours numéroté qui suit la matière depuis la collecte agricole jusqu'à l'installation. Le format vertical et le rythme court sont pensés pour Instagram et LinkedIn.",tools:['Premiere Pro','After Effects'],bg:'#06240f',icon:'🧱',images:[],related:['grdf-terrain','grdf-aftermovie'],hasVideo:true,poster:'uploads/videos/grdf-biomethane-poster.webp',posterSmall:'uploads/videos/grdf-biomethane-poster-270.webp',videoUrl:'uploads/videos/grdf-biomethane.mp4',apercuUrl:'uploads/videos/grdf-biomethane-apercu.mp4'},
   {id:'grdf-terrain',format:'court',tag:'// Montage vidéo',name:'GRDF — Sur le terrain',tagline:"Reportage vertical sous-titré : une journée de sensibilisation à Marseille.",client:'GRDF',duration:'À compléter',year:'2026',problem:"Donner à voir une campagne de sensibilisation de terrain, et la rendre lisible sans le son — là où l'essentiel des vues se fait en silencieux.",solution:"Captation et montage d'un reportage au format vertical, sous-titré de bout en bout, qui suit l'équipe sur les stands de quartier et les visites à domicile.",tools:['Premiere Pro'],bg:'#0a1628',icon:'🎤',images:[],related:['grdf-biomethane','grdf-aftermovie'],hasVideo:true,poster:'uploads/videos/grdf-terrain-poster.webp',posterSmall:'uploads/videos/grdf-terrain-poster-270.webp',videoUrl:'uploads/videos/grdf-terrain.mp4',apercuUrl:'uploads/videos/grdf-terrain-apercu.mp4'},
   {id:'narbonne-salins',format:'court',tag:'// Montage vidéo',name:'Narbonne — Plage des Salins',tagline:"Format court vertical tourné à Narbonne, plage des Salins.",client:'',duration:'',year:'2026',solution:"Montage au format vertical 9:16, pensé pour une diffusion sur Instagram et LinkedIn.",tools:['Premiere Pro'],bg:'#08202a',icon:'🌊',images:[],related:['grdf-biomethane','grdf-terrain'],hasVideo:true,driveId:'1bK7eSaQZsd8SVF6KHpHVMvyg85ogAxBe'},
@@ -2658,7 +2674,7 @@ function renderProject(id){
         ? `<p class="proj-video-secours">La vidéo ne s'affiche pas ? <a href="https://drive.google.com/file/d/${p.driveId}/view" target="_blank" rel="noopener">L'ouvrir dans un nouvel onglet</a>.</p>`
         : '';
       galleryHTML = `
-        <div class="proj-video-outer">
+        <div class="proj-video-outer${vertical?' proj-video-outer--vertical':''}">
           <div class="proj-video-wrap${vertical?' proj-video-vertical':''}">${media}</div>
           ${secours}
         </div>`;
