@@ -2665,19 +2665,25 @@ function renderProject(id){
       /* Branche générique. Les branches ci-dessus sont codées en dur pour
          les quatre projets d'origine : tout projet ajouté ensuite tombait
          dans le pavé d'icônes, sans vidéo. Celle-ci lit les champs du
-         projet — Drive ou fichier local, format vertical ou non. */
+         projet — fichier du serveur ou Drive, format vertical ou non.
+         Le fichier du serveur passe en premier : le lecteur Drive restait
+         noir sur les vidéos lourdes, encore en cours de traitement chez
+         Google. Drive ne sert plus que de lien de secours. */
       const vertical=p.format==='court';
-      const media=p.driveId
-        ? `<iframe src="https://drive.google.com/file/d/${p.driveId}/preview" title="${p.name} — vidéo" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`
-        : `<video style="width:100%;height:100%;object-fit:contain;background:#000;" controls playsinline preload="metadata"${p.poster?` poster="${p.poster}"`:''}><source src="${p.videoUrl}" type="video/mp4"/></video>`;
-      const secours=p.driveId
-        ? `<p class="proj-video-secours">La vidéo ne s'affiche pas ? <a href="https://drive.google.com/file/d/${p.driveId}/view" target="_blank" rel="noopener">L'ouvrir dans un nouvel onglet</a>.</p>`
-        : '';
+      const media=p.videoUrl
+        ? `<video style="width:100%;height:100%;object-fit:contain;background:#000;" controls playsinline preload="${p.poster?'none':'metadata'}"${p.poster?` poster="${p.poster}"`:''} title="${p.name} — vidéo"><source src="${p.videoUrl}" type="video/mp4"/></video>`
+        : `<iframe src="https://drive.google.com/file/d/${p.driveId}/preview" title="${p.name} — vidéo" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+      const secours=!p.driveId ? ''
+        : p.videoUrl
+          ? `<p class="proj-video-secours">La vidéo met du temps à charger ? <a href="https://drive.google.com/file/d/${p.driveId}/view" target="_blank" rel="noopener">La voir sur Google Drive</a>.</p>`
+          : `<p class="proj-video-secours">La vidéo ne s'affiche pas ? <a href="https://drive.google.com/file/d/${p.driveId}/view" target="_blank" rel="noopener">L'ouvrir dans un nouvel onglet</a>.</p>`;
+      /* Le lien passe sous le cadre, hors du bandeau noir : dedans, la
+         rangée flexible le plaçait à côté de la vidéo, au bord droit. */
       galleryHTML = `
         <div class="proj-video-outer${vertical?' proj-video-outer--vertical':''}">
           <div class="proj-video-wrap${vertical?' proj-video-vertical':''}">${media}</div>
-          ${secours}
-        </div>`;
+        </div>
+        ${secours}`;
     } else {
     const icons=p.images||[];
     galleryHTML = `
