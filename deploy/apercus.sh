@@ -42,6 +42,13 @@ if [ "$H" -gt "$L" ]; then
 else
   APERCU=640:360; AFFICHE=1920:1080; PETITE=960:540; FORME="paysage"
 fi
+# Une seconde au-delà de la fin donnerait un aperçu vide : on se rabat
+# sur le premier tiers de la vidéo.
+D=$(ffprobe -v error -show_entries format=duration -of default=nw=1:nk=1 "$SOURCE" | cut -d. -f1)
+if [ -n "$D" ] && [ "${T%%.*}" -ge "$D" ]; then
+  echo "La vidéo dure ${D} s : ${T} s est après la fin, extrait pris à $((D/3)) s." >&2
+  T=$((D/3))
+fi
 cadre() { echo "scale=$1:force_original_aspect_ratio=increase,crop=$1"; }
 
 echo "$1 : $FORME ${L}×${H}, extrait à partir de ${T} s"
