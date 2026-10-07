@@ -807,6 +807,12 @@ footer:hover::before{-webkit-text-stroke-color:var(--mg);opacity:.15;}
   animation:pulse-dot 2s ease infinite;
 }
 @keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(1.4);}}
+/* Indicateur de disponibilité : disponible (vert, pulsé) et projet en
+   cours (magenta, fixe), l'un sous l'autre. */
+.contact-dispo{display:flex;flex-direction:column;align-items:flex-start;gap:12px;margin-top:32px;position:relative;z-index:1;}
+.contact-dispo .contact-avail{margin-top:0;}
+.contact-avail--encours{color:var(--mg);}
+.contact-avail--encours::before{background:var(--mg);animation:none;}
 
 /* ── Colonne droite (formulaire) ── */
 .contact-right{padding:72px 56px;overflow-y:auto;}
@@ -2387,7 +2393,7 @@ function pageTransition(cb){
 
     <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, captation, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
 
-    <p class="pk-foot">Tarifs indicatifs en euros hors taxes (TVA à 20 % en sus), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
+    <p class="pk-foot">Tarifs indicatifs en euros (TVA non applicable, article 293 B du CGI), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
   </section>
 
 
@@ -2450,7 +2456,10 @@ function pageTransition(cb){
             <div class="contact-info-value">48h ouvrées</div>
           </div>
         </div>
-        <div class="contact-avail">DISPONIBLE POUR DE NOUVEAUX PROJETS</div>
+        <div class="contact-dispo">
+          <div class="contact-avail">DISPONIBLE POUR DE NOUVEAUX PROJETS</div>
+          <div class="contact-avail contact-avail--encours">1 PROJET EN COURS</div>
+        </div>
       </div>
     </div>
 
