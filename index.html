@@ -813,6 +813,9 @@ footer:hover::before{-webkit-text-stroke-color:var(--mg);opacity:.15;}
 .contact-dispo .contact-avail{margin-top:0;}
 .contact-avail--encours{color:var(--mg);}
 .contact-avail--encours::before{background:var(--mg);animation:none;}
+.contact-legal{margin-top:24px;font-size:11px;letter-spacing:.08em;color:var(--muted);position:relative;z-index:1;}
+.contact-legal a{color:var(--muted);text-decoration:underline;text-underline-offset:3px;}
+.contact-legal a:hover{color:var(--mg);}
 
 /* ── Colonne droite (formulaire) ── */
 .contact-right{padding:72px 56px;overflow-y:auto;}
@@ -2460,6 +2463,7 @@ function pageTransition(cb){
           <div class="contact-avail">DISPONIBLE POUR DE NOUVEAUX PROJETS</div>
           <div class="contact-avail contact-avail--encours">1 PROJET EN COURS</div>
         </div>
+        <p class="contact-legal"><a href="CGU.html#mentions-legales">Mentions légales</a> · <a href="CGU.html">CGV</a></p>
       </div>
     </div>
 

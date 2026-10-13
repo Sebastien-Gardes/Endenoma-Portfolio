@@ -126,6 +126,8 @@ nav{gap:16px;}
   border-top:1px solid var(--border);
 }
 .cgu-section:first-child{border-top:none;}
+/* le bandeau fixe (80 px) masquait le titre d'une section ouverte par ancre */
+.cgu-section{scroll-margin-top:100px;}
 .cgu-section-num{
   font-family:var(--font-display);font-size:13px;letter-spacing:.22em;
   color:var(--green);margin-bottom:12px;display:block;
@@ -283,6 +285,7 @@ nav{gap:16px;}
 <div class="cgu-toc">
   <div class="cgu-toc-title">Sommaire</div>
   <ul class="cgu-toc-list">
+    <li><a href="#mentions-legales" data-num="—">Mentions légales</a></li>
     <li><a href="#art1" data-num="01">Identification du prestataire</a></li>
     <li><a href="#art2" data-num="02">Objet et champ d'application</a></li>
     <li><a href="#art3" data-num="03">Devis et bon de commande</a></li>
@@ -306,6 +309,22 @@ nav{gap:16px;}
 <!-- CORPS DU DOCUMENT -->
 <div class="cgu-body">
 
+  <!-- MENTIONS LÉGALES (loi n° 2004-575 du 21 juin 2004, art. 6) -->
+  <div class="cgu-section" id="mentions-legales">
+    <span class="cgu-section-num">Site endenoma.studio</span>
+    <h2 class="cgu-section-title">Mentions légales</h2>
+    <ul>
+      <li><strong>Éditeur du site :</strong> Sébastien Gardes, entrepreneur individuel (micro-entreprise), exerçant sous le nom commercial ENDENOMA Studio</li>
+      <li><strong>SIRET :</strong> 850 003 096 00029</li>
+      <li><strong>Adresse :</strong> 169 impasse des Prairies de la Dîme, 13300 Salon-de-Provence, France</li>
+      <li><strong>Email :</strong> contact@endenoma.studio</li>
+      <li><strong>TVA :</strong> non applicable, article 293 B du CGI</li>
+      <li><strong>Directeur de la publication :</strong> Sébastien Gardes</li>
+      <li><strong>Hébergeur :</strong> OVH SAS, 2 rue Kellermann, 59100 Roubaix, France — www.ovhcloud.com</li>
+    </ul>
+    <p>Les contenus du site (textes, visuels, vidéos, logos) sont la propriété d'ENDENOMA Studio ou de ses clients et ne peuvent être reproduits sans autorisation. Le traitement des données personnelles et l'usage des services tiers sont décrits aux articles 14 et 15 ci-dessous.</p>
+  </div>
+
   <!-- ART 1 -->
   <div class="cgu-section" id="art1">
     <span class="cgu-section-num">Article 01</span>
@@ -314,6 +333,8 @@ nav{gap:16px;}
     <ul>
       <li><strong>Dénomination :</strong> ENDENOMA Studio — Sébastien Gardes</li>
       <li><strong>Statut :</strong> Auto-entrepreneur / Micro-entrepreneur</li>
+      <li><strong>SIRET :</strong> 850 003 096 00029</li>
+      <li><strong>Adresse :</strong> 169 impasse des Prairies de la Dîme, 13300 Salon-de-Provence, France</li>
       <li><strong>Régime de TVA :</strong> Non assujetti à la TVA (franchise en base, article 293 B du CGI)</li>
       <li><strong>Activité principale :</strong> Création graphique, motion design, direction artistique, branding, UI/UX design et développement web</li>
       <li><strong>Email de contact :</strong> contact@endenoma.studio</li>
@@ -545,6 +566,7 @@ nav{gap:16px;}
       <li>L'acompte versé est conservé par le Prestataire à titre d'indemnisation</li>
       <li>Si les travaux réalisés dépassent l'acompte versé, le solde est immédiatement exigible</li>
     </ul>
+    <p><strong>Prestations récurrentes (abonnements mensuels, dont le Pack Shorts Rythme) :</strong> elles sont souscrites pour une durée minimale de <strong>3 mois</strong>. Le Client ne peut résilier qu'à l'issue de cette période, moyennant un <strong>préavis de 15 jours</strong> notifié par écrit (email ou courrier). Les mois engagés et la période de préavis restent dus.</p>
     <p>En cas de résiliation du contrat à l'initiative du <strong>Prestataire</strong> pour manquement grave du Client (non-paiement, fourniture d'éléments illicites, comportement abusif), les sommes dues au titre du travail réalisé restent exigibles.</p>
     <p>En cas de force majeure persistant plus de <strong>60 jours</strong>, l'une ou l'autre des parties peut résilier le contrat de plein droit, sans pénalité, après notification par courrier recommandé avec accusé de réception.</p>
     <div class="cgu-highlight">
@@ -679,7 +701,7 @@ nav{gap:16px;}
 <!-- FOOTER -->
 <div class="cgu-footer">
   <div class="cgu-footer-logo">ENDENOMA.</div>
-  <div class="cgu-footer-copy">© 2026 ENDENOMA Studio — Tous droits réservés</div>
+  <div class="cgu-footer-copy">© 2026 ENDENOMA Studio — Tous droits réservés — <a href="#mentions-legales" style="color:inherit">Mentions légales</a></div>
 </div>
 
 <script>
