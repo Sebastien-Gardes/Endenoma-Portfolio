@@ -1465,7 +1465,116 @@ body.contraste .nav-links a{color:#e8e8e8;}
   margin-top:30px;font-family:var(--font-body);font-size:12px;
   color:var(--muted);line-height:1.7;
 }
+/* — Carte pleine largeur (Montage vidéo, seule sur sa ligne) — */
+@media(min-width:900px){
+  .pk-card--wide{display:grid;grid-template-columns:minmax(220px,1fr) 2fr;column-gap:48px;align-items:start;}
+  .pk-card--wide .pk-list{margin-top:4px;columns:2;column-gap:32px;}
+  .pk-card--wide .pk-list li{break-inside:avoid;}
+}
+
+/* — Captation & Tournage — */
+.pk-tv{
+  position:relative;margin:44px 0 48px;padding:44px 40px 40px;
+  background:
+    radial-gradient(90% 70% at 100% 0%,rgba(57,5,105,.38) 0%,transparent 60%),
+    radial-gradient(60% 50% at 0% 100%,rgba(57,181,74,.06) 0%,transparent 70%),
+    var(--bg);
+  border:1px solid var(--border);
+}
+.pk-tv::before{
+  content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:linear-gradient(90deg,var(--green) 0%,var(--mg) 55%,var(--purple) 100%);
+}
+.pk-tv-head{max-width:680px;margin-bottom:36px;}
+.pk-tv-title{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(40px,5vw,68px);line-height:.95;letter-spacing:.03em;
+  color:#fff;margin:0 0 12px;
+}
+.pk-tv-sub{
+  font-family:var(--font-body);font-size:17px;font-weight:600;line-height:1.5;
+  color:var(--text);margin:0 0 14px;
+}
+.pk-tv-intro{
+  font-family:var(--font-body);font-size:15px;line-height:1.7;
+  color:rgba(240,240,240,.66);margin:0;
+}
+.pk-tv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.pk-tv-card{
+  position:relative;display:flex;flex-direction:column;
+  background:var(--card);border:1px solid var(--border);
+  padding:30px 26px 24px;
+  transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;
+}
+.pk-tv-card:hover{border-color:rgba(250,6,242,.55);transform:translateY(-4px);box-shadow:0 0 30px rgba(250,6,242,.12);}
+.pk-tv-card--star{
+  border-color:rgba(250,6,242,.42);
+  background:linear-gradient(160deg,rgba(250,6,242,.08) 0%,rgba(57,5,105,.18) 50%,var(--card) 100%);
+}
+.pk-tv-hook{
+  font-family:var(--font-body);font-size:15px;font-weight:600;line-height:1.45;
+  color:var(--text);margin:16px 0 8px;
+}
+.pk-tv-desc{
+  font-family:var(--font-body);font-size:13.5px;line-height:1.65;
+  color:rgba(240,240,240,.66);margin:0 0 18px;
+}
+.pk-tv-inc{
+  font-family:var(--font-body);font-size:10px;font-weight:600;
+  letter-spacing:.2em;text-transform:uppercase;color:var(--green);
+}
+.pk-tv-card .pk-list{margin-top:12px;}
+.pk-tv-for{
+  margin-top:16px;padding-top:14px;border-top:1px solid var(--border);
+  font-family:var(--font-body);font-size:12.5px;line-height:1.6;color:rgba(240,240,240,.78);
+}
+.pk-tv-for span{
+  display:block;font-size:10px;font-weight:600;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);margin-bottom:4px;
+}
+.pk-tv-label{
+  font-family:var(--font-display);font-size:24px;letter-spacing:.08em;
+  color:var(--text);margin:40px 0 16px;
+  display:flex;align-items:center;gap:16px;
+}
+.pk-tv-label::after{content:'';flex:1;height:1px;background:var(--border);}
+.pk-tv-more{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.pk-tv-item{
+  padding:20px 22px;background:rgba(24,24,24,.7);
+  border:1px solid var(--border);border-left:2px solid var(--purple);
+}
+.pk-tv-item-top{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:10px;}
+.pk-tv-item-name{font-family:var(--font-display);font-size:22px;letter-spacing:.04em;color:var(--text);line-height:1;}
+.pk-tv-item-price{font-family:var(--font-display);font-size:20px;letter-spacing:.03em;color:var(--mg);line-height:1;white-space:nowrap;}
+.pk-tv-item p{
+  font-family:var(--font-body);font-size:13px;line-height:1.6;
+  color:rgba(240,240,240,.66);margin:0;
+}
+.pk-tv-item p.pk-tv-item-for{margin-top:8px;color:var(--muted);font-style:italic;}
+.pk-tv-note{
+  margin:22px 0 0;padding:16px 20px;border-left:3px solid var(--green);
+  background:rgba(24,24,24,.7);
+  font-family:var(--font-body);font-size:13px;line-height:1.7;color:rgba(240,240,240,.74);
+}
+.pk-tv-opts{
+  list-style:none;margin:0 0 32px;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:0 40px;
+}
+.pk-tv-opts li{
+  display:flex;justify-content:space-between;align-items:baseline;gap:16px;
+  padding:11px 0;border-bottom:1px solid var(--border);
+  font-family:var(--font-body);font-size:13.5px;color:rgba(240,240,240,.78);
+}
+.pk-tv-opts strong{font-weight:600;color:var(--mg);white-space:nowrap;}
+body.contraste .pk-tv-opts li,
+body.contraste .pk-tv-for{color:#ececec !important;}
+body.contraste .pk-tv-card,
+body.contraste .pk-tv-item{border-color:#6a6a6a;}
+@media(max-width:1024px){
+  .pk-tv-grid,.pk-tv-more{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));}
+}
 @media(max-width:768px){
+  .pk-tv{padding:32px 20px 28px;margin:32px 0 36px;}
   .pk-grid,.pk-combos{grid-template-columns:1fr;}
   .pk-combo{padding:28px 22px 26px;}
   .pk-combo-name{font-size:34px;}
@@ -1518,6 +1627,14 @@ body.contraste .nav-links a{color:#e8e8e8;}
        "@type": "Service",
        "name": "Montage vidéo",
        "description": "Montage et habillage graphique de vidéos, formats 16:9 et 9:16."
+      }
+     },
+     {
+      "@type": "Offer",
+      "itemOffered": {
+       "@type": "Service",
+       "name": "Captation et tournage",
+       "description": "Interviews, reportages d'entreprise et podcasts vidéo filmés, montés et prêts à diffuser."
       }
      },
      {
@@ -2314,20 +2431,126 @@ function pageTransition(cb){
     <p class="pk-intro">Des formules claires, du montage vidéo à la création de site vitrine. Chaque pack est un point de départ : le périmètre exact et le devis sont ajustés à votre projet.</p>
 
     <div class="pk-grid">
+      <div class="pk-card pk-card--wide reveal" data-from="left" data-delay="1">
+        <div class="pk-wide-head">
+          <div class="pk-cat">Montage vidéo</div>
+          <div class="pk-name">Pack Vidéo Impact</div>
+          <div class="pk-price">650 €<small>à partir de</small></div>
+        </div>
+        <div class="pk-wide-body">
+          <ul class="pk-list">
+            <li>3 vidéos</li>
+            <li>Formats 16:9 + 9:16</li>
+            <li>Habillage graphique</li>
+            <li>2 séries de retouches incluses</li>
+          </ul>
+          <div class="pk-note">Une seule vidéo ? <strong>À partir de 250 €.</strong></div>
+        </div>
+      </div>
+    </div>
 
-      <div class="pk-card reveal" data-from="left" data-delay="1">
-        <div class="pk-cat">Montage vidéo</div>
-        <div class="pk-name">Pack Vidéo Impact</div>
-        <div class="pk-price">650 €<small>à partir de</small></div>
-        <ul class="pk-list">
-          <li>3 vidéos</li>
-          <li>Formats 16:9 + 9:16</li>
-          <li>Habillage graphique</li>
-          <li>2 séries de retouches incluses</li>
-        </ul>
-        <div class="pk-note">Une seule vidéo ? <strong>À partir de 250 €.</strong></div>
+    <!-- Captation & Tournage : offres où le studio filme lui-même. -->
+    <div class="pk-tv" id="captation">
+      <div class="pk-tv-head reveal" data-from="bottom">
+        <div class="pk-cat">// Nouveau</div>
+        <h3 class="pk-tv-title">Captation &amp; Tournage</h3>
+        <p class="pk-tv-sub">Des vidéos professionnelles filmées, montées et prêtes à diffuser.</p>
+        <p class="pk-tv-intro">Vous n’avez pas le temps de filmer ni de gérer le montage ? ENDENOMA Studio s’occupe de la captation, du montage et des formats adaptés à vos canaux. Vous repartez avec des contenus clairs, soignés et prêts à publier.</p>
       </div>
 
+      <div class="pk-tv-grid">
+
+        <article class="pk-tv-card reveal" data-from="left" data-delay="1">
+          <div class="pk-name">Interview Signature</div>
+          <div class="pk-price">890 € HT<small>à partir de</small></div>
+          <p class="pk-tv-hook">Faites parler ceux qui font vivre votre entreprise.</p>
+          <p class="pk-tv-desc">Une interview filmée et montée pour présenter votre expertise, incarner votre marque ou recueillir un témoignage client.</p>
+          <div class="pk-tv-inc">Inclus</div>
+          <ul class="pk-list">
+            <li>Demi-journée de tournage sur 1 lieu</li>
+            <li>1 intervenant</li>
+            <li>Interview montée de 2 à 4 minutes</li>
+            <li>2 capsules verticales pour réseaux sociaux</li>
+            <li>Sous-titres</li>
+            <li>Habillage graphique simple</li>
+            <li>1 série de retouches incluse</li>
+          </ul>
+          <div class="pk-tv-for"><span>Idéal pour</span>Dirigeant, expert, collaborateur, témoignage client.</div>
+        </article>
+
+        <article class="pk-tv-card pk-tv-card--star reveal" data-from="bottom" data-delay="2">
+          <div class="pk-name">Reportage Entreprise</div>
+          <div class="pk-price">1 490 € HT<small>à partir de</small></div>
+          <p class="pk-tv-hook">Racontez votre activité en images.</p>
+          <p class="pk-tv-desc">Un reportage vidéo qui montre votre savoir-faire, vos équipes et votre univers.</p>
+          <div class="pk-tv-inc">Inclus</div>
+          <ul class="pk-list">
+            <li>Journée de tournage sur 1 lieu</li>
+            <li>Interviews et images d’activité</li>
+            <li>Vidéo montée de 3 à 5 minutes</li>
+            <li>3 capsules verticales pour réseaux sociaux</li>
+            <li>Sous-titres</li>
+            <li>Habillage graphique simple</li>
+            <li>2 séries de retouches incluses</li>
+          </ul>
+          <div class="pk-tv-for"><span>Idéal pour</span>PME, artisan, commerce, association, projet ou entreprise.</div>
+        </article>
+
+        <article class="pk-tv-card reveal" data-from="right" data-delay="3">
+          <div class="pk-name">Podcast Vidéo / Série</div>
+          <div class="pk-price">1 290 € HT<small>à partir de · par épisode</small></div>
+          <p class="pk-tv-hook">Créez une série qui installe votre expertise.</p>
+          <p class="pk-tv-desc">Captation d’un podcast vidéo, montage dynamique et déclinaison en extraits courts pour les réseaux sociaux.</p>
+          <div class="pk-tv-inc">Inclus</div>
+          <ul class="pk-list">
+            <li>Demi-journée de tournage</li>
+            <li>1 à 2 intervenants</li>
+            <li>Épisode monté de 20 à 45 minutes</li>
+            <li>3 extraits verticaux pour Reels, Shorts et TikTok</li>
+            <li>Sous-titres</li>
+            <li>Habillage graphique simple</li>
+            <li>1 série de retouches incluse</li>
+          </ul>
+          <div class="pk-tv-for"><span>Idéal pour</span>Expert, coach, entreprise, communauté ou marque qui veut produire du contenu régulier.</div>
+        </article>
+
+      </div>
+
+      <div class="pk-tv-label">Autres formules</div>
+      <div class="pk-tv-more">
+        <div class="pk-tv-item reveal" data-from="bottom" data-delay="1">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Capsule Tournée</span><span class="pk-tv-item-price">dès 690 € HT</span></div>
+          <p>Demi-journée de tournage sur 1 lieu, 1 vidéo de 30 à 60 secondes, montage, sous-titres, 1 format 16:9 ou 9:16, 1 série de retouches incluse.</p>
+          <p class="pk-tv-item-for">Idéal pour : témoignage client, annonce, présentation rapide.</p>
+        </div>
+        <div class="pk-tv-item reveal" data-from="bottom" data-delay="2">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Vidéo Signature</span><span class="pk-tv-item-price">dès 1 190 € HT</span></div>
+          <p>Journée de tournage sur 1 lieu, captation multi-plans et interviews, 1 vidéo de 1 à 2 minutes, formats 16:9 + 9:16, sous-titres, habillage graphique simple, 2 séries de retouches incluses.</p>
+          <p class="pk-tv-item-for">Idéal pour : présentation d’entreprise, savoir-faire, service ou projet.</p>
+        </div>
+        <div class="pk-tv-item reveal" data-from="bottom" data-delay="3">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Pack Contenus Tournés</span><span class="pk-tv-item-price">dès 1 690 € HT</span></div>
+          <p>Journée de tournage sur 1 lieu, 1 vidéo principale de 1 à 2 minutes, 3 capsules verticales pour Reels, Shorts et TikTok, sous-titres animés, habillage graphique simple, 2 séries de retouches incluses.</p>
+          <p class="pk-tv-item-for">Idéal pour : entreprises qui veulent des contenus réguliers sans gérer la production.</p>
+        </div>
+      </div>
+
+      <p class="pk-tv-note">Déplacements inclus dans un rayon de 30 km autour de Salon-de-Provence. Au-delà, frais de déplacement à prévoir. Drone, voix-off, lieu supplémentaire, intervenant supplémentaire ou captation événementielle : devis personnalisé.</p>
+
+      <div class="pk-tv-label">Options</div>
+      <ul class="pk-tv-opts">
+        <li><span>2<sup>e</sup> intervenant</span><strong>dès 150 € HT</strong></li>
+        <li><span>Lieu supplémentaire</span><strong>dès 250 € HT</strong></li>
+        <li><span>Voix-off professionnelle</span><strong>dès 250 € HT</strong></li>
+        <li><span>Motion design / animation de logo</span><strong>dès 300 € HT</strong></li>
+        <li><span>Sous-titres traduits</span><strong>dès 150 € HT</strong></li>
+        <li><span>Captation événementielle</span><strong>sur devis</strong></li>
+      </ul>
+
+      <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis tournage</a>
+    </div>
+
+    <div class="pk-grid">
       <div class="pk-card reveal" data-from="left" data-delay="2">
         <div class="pk-cat">Contenu court</div>
         <div class="pk-name">Pack Shorts Rythme</div>
@@ -2394,7 +2617,7 @@ function pageTransition(cb){
 
     </div>
 
-    <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, captation, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
+    <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
 
     <p class="pk-foot">Tarifs indicatifs en euros (TVA non applicable, article 293 B du CGI), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
   </section>
@@ -2495,6 +2718,7 @@ function pageTransition(cb){
           <select class="field-select" id="f-type">
             <option value="" disabled selected>Sélectionner …</option>
             <option>Montage vidéo</option>
+            <option>Captation &amp; tournage</option>
             <option>Motion design</option>
             <option>Identité visuelle</option>
             <option>Direction artistique</option>
