@@ -2191,7 +2191,7 @@ function pageTransition(cb){
         <div class="hero-eyebrow">Studio Créatif —</div>
         <h1 class="hero-name">Sébastien<br>Gardes</h1>
         <div class="hero-title"><span style="color:#fa06f2">Monteur Vidéo</span><span style="color:#ffffff">, Branding &amp; Site Web</span></div>
-        <p class="hero-desc" style="color:rgb(255,255,255)">Je conçois des vidéos, des identités de marque et des sites web pour les entreprises et les projets qui veulent une image claire, forte et professionnelle.</p>
+        <p class="hero-slogan">Des images qui marquent.<br><span>Des marques qu’on retient.</span></p>
         <p class="hero-extra">Montage vidéo, motion design, branding et création de site vitrine. Une approche précise, esthétique et pensée pour donner plus d'impact à votre image.</p>
         <div class="hero-cta">
           <a class="cta-primary" onclick="const r=document.getElementById('work').getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-80,behavior:'smooth'});">Voir les projets</a>
@@ -2259,6 +2259,35 @@ function pageTransition(cb){
   </section>
 </noscript>
 </section>
+
+  <!-- Pourquoi des images marquantes rapportent plus -->
+  <section id="impact">
+    <div class="section-label">// Pourquoi ça marche</div>
+    <h2 class="section-title">Des images qui marquent.<br><span class="impact-accent">Des marques qu’on retient.</span></h2>
+    <div class="impact-intro reveal" data-from="bottom">
+      <p class="impact-lead">Une vidéo qu’on oublie, c’est un budget perdu.</p>
+      <p>Chaque jour, vos clients voient défiler des centaines de contenus. La plupart disparaissent en deux secondes. Ceux qui restent ont un point commun : une image forte, un rythme qui accroche, une identité qu’on reconnaît.</p>
+      <p>C’est ce que je crée. Des vidéos et des visuels pensés pour marquer, pas seulement pour exister.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal" data-from="left" data-delay="1">
+        <div class="impact-num">01</div>
+        <h3>On s’arrête sur votre contenu</h3>
+        <p>Une image soignée et un montage rythmé captent l’attention dès les premières secondes, là où tout se joue sur les réseaux.</p>
+      </div>
+      <div class="impact-card reveal" data-from="bottom" data-delay="2">
+        <div class="impact-num">02</div>
+        <h3>On se souvient de vous</h3>
+        <p>Une identité visuelle cohérente, vidéo après vidéo, installe votre marque dans la tête de votre public. Le jour où il a besoin de vous, c’est à vous qu’il pense.</p>
+      </div>
+      <div class="impact-card reveal" data-from="right" data-delay="3">
+        <div class="impact-num">03</div>
+        <h3>Chaque euro investi travaille plus longtemps</h3>
+        <p>Un contenu marquant se regarde jusqu’au bout, se partage et se réutilise. Il continue de vous faire connaître bien après sa publication.</p>
+      </div>
+    </div>
+    <p class="impact-close reveal" data-from="bottom">Moins de contenus oubliés, <span>plus de clients qui reviennent vers vous.</span></p>
+  </section>
 
   <section id="about">
     <div class="section-label" style="padding: 0px">// Studio</div>
@@ -2424,6 +2453,17 @@ function pageTransition(cb){
       <div class="about-portrait"><img src="uploads/portrait_sebastien-928.webp" srcset="uploads/portrait_sebastien-464.webp 464w, uploads/portrait_sebastien-928.webp 928w" sizes="(max-width:768px) 72vw, 320px" width="928" height="1152" alt="Sébastien Gardes" loading="lazy" decoding="async" style="border-radius: 56px"/></div>
     </div>
   </section>
+
+  <!-- Bandeau des savoir-faire : deux lignes qui défilent en sens
+       inverse, accélérées par le défilement de la page. Décoratif. -->
+  <div class="svc-band" aria-hidden="true">
+    <div class="svc-row svc-row--plein"><div class="svc-track">
+      <span>Montage vidéo</span><i>✦</i><span>Motion design</span><i>✦</i><span>Captation &amp; tournage</span><i>✦</i><span>Branding</span><i>✦</i><span>Site vitrine</span><i>✦</i>
+    </div></div>
+    <div class="svc-row svc-row--contour"><div class="svc-track">
+      <span>Contenu court</span><i>✦</i><span>Interview</span><i>✦</i><span>Reportage</span><i>✦</i><span>Podcast vidéo</span><i>✦</i><span>Aftermovie</span><i>✦</i>
+    </div></div>
+  </div>
 
   <section id="packs">
     <div class="section-label">// Prestations</div>
@@ -3643,6 +3683,326 @@ window._loadVidInCard = function _loadVidInCard(card,videoUrl){
       appliquer(nouveau,btn);
       try{ localStorage.setItem(CLE,nouveau?'1':'0'); }catch(e){}
     });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<style>
+/* ══ INTERACTIONS SOURIS ══
+   Curseur, boutons aimantés, lueur et inclinaison des cartes : seulement
+   avec une souris (pointer:fine) et sans « réduire les animations ». */
+
+/* — Révélation : un léger flou qui se dissipe — */
+.reveal{
+  filter:blur(6px);
+  transition:opacity .75s cubic-bezier(.22,.61,.36,1),
+             transform .75s cubic-bezier(.22,.61,.36,1),
+             filter .75s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.visible{filter:none;}
+
+/* — Curseur : point magenta + anneau qui suit avec du retard — */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:10000;pointer-events:none;
+  border-radius:50%;opacity:0;transition:opacity .25s ease;will-change:transform;}
+.cur-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--mg);}
+.cur-ring{width:38px;height:38px;margin:-19px 0 0 -19px;
+  display:flex;align-items:center;justify-content:center;}
+.cur-ring::before{content:'';position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(250,6,242,.6);
+  transition:transform .3s cubic-bezier(.22,.61,.36,1),border-color .25s,background .25s;}
+.cur-ring span{position:relative;font-family:var(--font-display);font-size:13px;
+  letter-spacing:.14em;color:#0e0e0e;opacity:0;transform:scale(.6);
+  transition:opacity .2s,transform .3s cubic-bezier(.22,.61,.36,1);}
+html.cur-on .cur-dot,html.cur-on .cur-ring{opacity:1;}
+html.cur-lien .cur-ring::before{transform:scale(1.5);border-color:var(--green);}
+html.cur-voir .cur-ring::before{transform:scale(2.2);background:var(--green);border-color:var(--green);}
+html.cur-voir .cur-ring span{opacity:1;transform:none;}
+html.cur-voir .cur-dot,html.cur-texte .cur-dot,html.cur-texte .cur-ring{opacity:0;}
+html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
+
+/* — Boutons aimantés — */
+.mag{transition:transform .35s cubic-bezier(.22,.61,.36,1),background .25s,color .25s,border-color .25s,box-shadow .25s;}
+
+/* — Lueur qui suit la souris sur les cartes — */
+.spot{position:relative;}
+.spot::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(250,6,242,.13),transparent 65%);
+  transition:opacity .3s ease;}
+.spot:hover::after{opacity:1;}
+.pk-tv-card.spot,.pk-card.spot{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;}
+
+/* — Bandeau des savoir-faire — */
+.svc-band{overflow:hidden;padding:46px 0;background:var(--bg);
+  border-top:1px solid var(--border);}
+.svc-row{overflow:hidden;white-space:nowrap;}
+.svc-row + .svc-row{margin-top:6px;}
+.svc-track{display:inline-flex;align-items:center;gap:34px;padding-right:34px;will-change:transform;}
+.svc-track span{font-family:var(--font-display);font-size:clamp(52px,8vw,118px);
+  line-height:1;letter-spacing:.02em;text-transform:uppercase;transition:color .3s,-webkit-text-stroke-color .3s;}
+.svc-track i{font-style:normal;font-size:clamp(24px,3vw,44px);color:var(--mg);}
+.svc-row--plein span{color:var(--text);}
+.svc-row--plein span:hover{color:var(--mg);}
+.svc-row--contour span{color:transparent;-webkit-text-stroke:1px rgba(240,240,240,.38);}
+.svc-row--contour span:hover{-webkit-text-stroke-color:var(--green);}
+.svc-row--contour i{color:var(--green);}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{filter:none;}
+  .cur-dot,.cur-ring{display:none;}
+}
+</style>
+
+<script>
+/* ── Interactions souris : curseur, aimants, lueur, inclinaison, bandeau ── */
+(function(){
+  var reduit=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var souris=window.matchMedia('(pointer: fine)').matches;
+  var html=document.documentElement;
+
+  /* Bandeau : défilement continu, accéléré par le scroll ; deux sens. */
+  function bandeau(){
+    var rangs=[].slice.call(document.querySelectorAll('.svc-row'));
+    if(!rangs.length) return;
+    rangs.forEach(function(r){
+      var t=r.querySelector('.svc-track');
+      t.parentNode.appendChild(t.cloneNode(true)); /* 2 copies pour boucler */
+    });
+    if(reduit) return;
+    var pos=0, boost=0, dernierY=window.scrollY, visible=true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(rangs[0].parentNode);
+    }
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY; boost=Math.min(14,boost+Math.abs(y-dernierY)*.06); dernierY=y;
+    },{passive:true});
+    (function boucle(){
+      if(visible){
+        pos+=.45+boost; boost*=.92;
+        rangs.forEach(function(r,i){
+          var largeur=r.firstElementChild.offsetWidth||1;
+          var x=pos%largeur;
+          var v=i%2? x-largeur : -x;
+          [].forEach.call(r.children,function(t){t.style.transform='translate3d('+v+'px,0,0)';});
+        });
+      }
+      requestAnimationFrame(boucle);
+    })();
+  }
+
+  function souriseffets(){
+    if(reduit||!souris) return;
+
+    /* Curseur */
+    var dot=document.createElement('div'); dot.className='cur-dot';
+    var ring=document.createElement('div'); ring.className='cur-ring';
+    ring.innerHTML='<span>Voir</span>';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    var mx=-100,my=-100,rx=-100,ry=-100;
+    window.addEventListener('pointermove',function(e){
+      if(e.pointerType!=='mouse') return;
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform='translate3d('+mx+'px,'+my+'px,0)';
+      html.classList.add('cur-on');
+      var el=e.target;
+      html.classList.toggle('cur-voir',!!(el.closest&&el.closest('.project-card,.works-card')));
+      html.classList.toggle('cur-texte',!!(el.closest&&el.closest('input,textarea,select,[contenteditable]')));
+      html.classList.toggle('cur-lien',!!(el.closest&&el.closest('a,button,[role="button"],.pk-cta,label,summary')));
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){html.classList.remove('cur-on');});
+    (function suivre(){
+      rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+      ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+      requestAnimationFrame(suivre);
+    })();
+
+    /* Boutons aimantés */
+    document.querySelectorAll('.hero-cta a,.nav-cta,.pk-cta,.btn-send').forEach(function(b){
+      b.classList.add('mag');
+      b.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect();
+        var dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+        b.style.setProperty('transform','translate('+dx*.22+'px,'+dy*.32+'px)','important');
+      });
+      b.addEventListener('pointerleave',function(){b.style.removeProperty('transform');});
+    });
+
+    /* Lueur sur les cartes, inclinaison sur les cartes de tarifs */
+    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item,.impact-card').forEach(function(c){
+      c.classList.add('spot');
+      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card')||c.classList.contains('impact-card');
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        c.style.setProperty('--mx',x*100+'%'); c.style.setProperty('--my',y*100+'%');
+        /* « important » : .reveal.visible fige transform avec !important. */
+        if(incline) c.style.setProperty('transform','perspective(900px) rotateX('+((.5-y)*5)+'deg) rotateY('+((x-.5)*6)+'deg) translateY(-4px)','important');
+      });
+      c.addEventListener('pointerleave',function(){c.style.removeProperty('transform');});
+    });
+
+    /* Parallaxe légère du titre d'accueil */
+    var hero=document.getElementById('hero'), nom=document.querySelector('.hero-name'), sous=document.querySelector('.hero-title');
+    if(hero&&nom){
+      hero.addEventListener('pointermove',function(e){
+        var r=hero.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        nom.style.transform='translate('+x*-14+'px,'+y*-10+'px)';
+        if(sous) sous.style.transform='translate('+x*-7+'px,'+y*-5+'px)';
+      });
+      hero.addEventListener('pointerleave',function(){nom.style.transform='';if(sous)sous.style.transform='';});
+      nom.style.transition='transform .6s cubic-bezier(.22,.61,.36,1)';
+      if(sous) sous.style.transition='transform .6s cubic-bezier(.22,.61,.36,1)';
+    }
+  }
+
+  function init(){bandeau();souriseffets();}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<style>
+/* ══ ACCROCHE + SECTION IMPACT ══ */
+.hero-slogan{
+  font-family:var(--font-body);font-size:clamp(17px,1.6vw,22px);font-weight:600;
+  line-height:1.4;color:#fff;max-width:460px;margin:0 0 16px;
+}
+.hero-slogan span{color:var(--mg);}
+#impact{position:relative;}
+.impact-accent{color:var(--mg);}
+.impact-intro{max-width:640px;margin:8px 0 44px;}
+.impact-intro p{font-family:var(--font-body);font-size:15.5px;line-height:1.75;color:rgba(240,240,240,.7);margin:0 0 12px;}
+.impact-intro .impact-lead{font-size:clamp(18px,1.8vw,22px);font-weight:600;color:#fff;margin-bottom:16px;}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.impact-card{
+  position:relative;padding:30px 28px 28px;background:var(--card);border:1px solid var(--border);
+  transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;
+}
+.impact-card:hover{border-color:rgba(250,6,242,.55);box-shadow:0 0 30px rgba(250,6,242,.12);}
+.impact-card::before{content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--mg));opacity:.8;}
+.impact-num{font-family:var(--font-display);font-size:44px;line-height:1;color:var(--mg);margin-bottom:14px;letter-spacing:.04em;}
+.impact-card h3{font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.05;letter-spacing:.03em;color:#fff;margin:0 0 12px;}
+.impact-card p{font-family:var(--font-body);font-size:14px;line-height:1.7;color:rgba(240,240,240,.7);margin:0;}
+.impact-close{margin:40px 0 0;font-family:var(--font-display);font-size:clamp(26px,3.2vw,44px);
+  line-height:1.05;letter-spacing:.03em;color:#fff;}
+.impact-close span{color:var(--green);}
+html.fx-on #impact{background:rgba(14,14,14,.35);}
+body.contraste .impact-intro p,body.contraste .impact-card p{color:#ececec !important;}
+@media(max-width:900px){.impact-grid{grid-template-columns:1fr;}}
+
+/* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
+   Fumée violette et magenta + grille néon en perspective, pilotées par
+   la position et la vitesse du scroll. Derrière l'accueil uniquement. */
+#bg-fx{position:fixed;inset:0;width:100%;height:100%;z-index:0;
+  pointer-events:none;opacity:0;transition:opacity 1.4s ease;}
+html.fx-on #bg-fx{opacity:1;}
+html.fx-on #page-home{position:relative;z-index:1;}
+html.fx-on #hero-canvas{display:none;}
+html.fx-on #work{background:transparent;}
+html.fx-on #about{background:rgba(20,20,20,.55);}
+html.fx-on #packs{background:rgba(20,20,20,.6);}
+html.fx-on .svc-band{background:rgba(14,14,14,.3);}
+html.fx-on .pk-tv{background:radial-gradient(90% 70% at 100% 0%,rgba(57,5,105,.3) 0%,transparent 60%),rgba(14,14,14,.72);}
+</style>
+
+<script>
+/* ── Fond animé : shader plein écran, rendu en basse résolution puis
+   agrandi (le flou fait partie du rendu, et ça reste léger). ── */
+(function(){
+  var reduit=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function init(){
+    var cv=document.createElement('canvas'); cv.id='bg-fx'; cv.setAttribute('aria-hidden','true');
+    var gl=cv.getContext('webgl',{antialias:false,alpha:false,powerPreference:'low-power'});
+    if(!gl) return; /* sans WebGL : on garde le fond d'origine */
+    document.body.insertBefore(cv,document.body.firstChild);
+
+    var vs='attribute vec2 a;void main(){gl_Position=vec4(a,0.,1.);}';
+    var fs=[
+      'precision mediump float;',
+      'uniform vec2 R;uniform float T,P,V;uniform vec2 M;',
+      'float h(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+      'float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);',
+      ' return mix(mix(h(i),h(i+vec2(1.,0.)),f.x),mix(h(i+vec2(0.,1.)),h(i+1.),f.x),f.y);}',
+      'float fbm(vec2 p){float s=0.,a=.5;for(int i=0;i<5;i++){s+=a*n(p);p=p*2.03+vec2(1.7,9.2);a*=.5;}return s;}',
+      'void main(){',
+      ' vec2 uv=(gl_FragCoord.xy-.5*R)/R.y;',
+      ' float t=T*.04+P*2.5;',
+      /* fumée : fbm déformé deux fois (domain warping) */
+      ' vec2 q=vec2(fbm(uv*1.5+vec2(0.,t)),fbm(uv*1.5+vec2(5.2,-t)));',
+      ' vec2 r=vec2(fbm(uv*1.7+3.*q+vec2(1.7,9.2)+t*.7),fbm(uv*1.7+3.*q+vec2(8.3,2.8)-t*.5));',
+      ' float f=fbm(uv*1.3+(3.2+V*2.)*r+M*.12);',
+      ' vec3 vi=vec3(.223,.02,.41),mg=vec3(.98,.024,.95),gr=vec3(.224,.71,.29);',
+      ' vec3 col=mix(vec3(.015),vi,smoothstep(.3,.78,f));',
+      ' col=mix(col,mg,smoothstep(.66,.98,f)*(.45+.35*sin(P*6.283+1.2)));',
+      /* filaments verts, surtout en milieu de page */
+      ' col+=gr*smoothstep(.025,0.,abs(r.x-.52))*.35*sin(3.1416*clamp(P*1.4-.15,0.,1.));',
+      /* grille néon : l\'horizon monte et descend, on avance au scroll */
+      ' float hz=-.12-.22*sin(P*3.1416);',
+      ' if(uv.y<hz){',
+      '  float d=hz-uv.y,z=.3/d;',
+      '  vec2 g=vec2(uv.x*z*1.4,z+P*36.+T*.25);',
+      '  vec2 e=abs(fract(g)-.5);',
+      '  float w=.012*z+.008;',
+      '  float l=max(1.-smoothstep(0.,w,e.x),1.-smoothstep(0.,w,e.y));',
+      '  float fog=exp(-z*.22);',
+      '  col+=mix(mg,vi*2.,.35)*l*fog*(.55+V*1.5);',
+      ' }',
+      ' col+=mg*.22*exp(-abs(uv.y-hz)*22.)+vi*.25*exp(-abs(uv.y-hz)*5.);',
+      /* vignette, grain, intensité réduite pour garder le texte lisible */
+      ' col*=1.-.6*dot(uv*.75,uv*.75);',
+      ' col+=(h(gl_FragCoord.xy+fract(T)*61.)-.5)*.035;',
+      ' gl_FragColor=vec4(col*.62,1.);',
+      '}'].join('\n');
+    function sh(type,src){var s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+    var pr=gl.createProgram();
+    gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));
+    gl.linkProgram(pr);
+    if(!gl.getProgramParameter(pr,gl.LINK_STATUS)){cv.remove();return;}
+    gl.useProgram(pr);
+    var buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);
+    gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    var loc=gl.getAttribLocation(pr,'a');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    var U={};['R','T','P','V','M'].forEach(function(k){U[k]=gl.getUniformLocation(pr,k);});
+
+    var echelle=window.innerWidth<768?.35:.5;
+    function taille(){
+      cv.width=Math.max(1,Math.round(window.innerWidth*echelle));
+      cv.height=Math.max(1,Math.round(window.innerHeight*echelle));
+      gl.viewport(0,0,cv.width,cv.height);
+    }
+    taille();window.addEventListener('resize',taille);
+
+    var accueil=document.getElementById('page-home');
+    var p=0,pCible=0,v=0,dernierY=window.scrollY,mx=0,my=0,smx=0,smy=0,t0=performance.now();
+    function lireScroll(){
+      var max=document.documentElement.scrollHeight-window.innerHeight;
+      pCible=max>0?window.scrollY/max:0;
+    }
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY;v=Math.min(1,v+Math.abs(y-dernierY)/900);dernierY=y;lireScroll();
+    },{passive:true});
+    window.addEventListener('pointermove',function(e){
+      mx=e.clientX/window.innerWidth-.5;my=.5-e.clientY/window.innerHeight;
+    },{passive:true});
+    lireScroll();p=pCible;
+
+    function dessiner(now){
+      gl.uniform2f(U.R,cv.width,cv.height);
+      gl.uniform1f(U.T,(now-t0)/1000);
+      gl.uniform1f(U.P,p);gl.uniform1f(U.V,v);gl.uniform2f(U.M,smx,smy);
+      gl.drawArrays(gl.TRIANGLES,0,3);
+    }
+    document.documentElement.classList.add('fx-on');
+    if(reduit){dessiner(t0);return;} /* une image fixe, sans mouvement */
+    (function boucle(now){
+      requestAnimationFrame(boucle);
+      if(document.hidden||(accueil&&!accueil.classList.contains('active'))) return;
+      p+=(pCible-p)*.08; v*=.94; smx+=(mx-smx)*.04; smy+=(my-smy)*.04;
+      dessiner(now);
+    })(t0);
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();
