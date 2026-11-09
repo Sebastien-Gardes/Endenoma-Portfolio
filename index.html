@@ -2191,7 +2191,7 @@ function pageTransition(cb){
         <div class="hero-eyebrow">Studio Créatif —</div>
         <h1 class="hero-name">Sébastien<br>Gardes</h1>
         <div class="hero-title"><span style="color:#fa06f2">Monteur Vidéo</span><span style="color:#ffffff">, Branding &amp; Site Web</span></div>
-        <p class="hero-desc" style="color:rgb(255,255,255)">Je conçois des vidéos, des identités de marque et des sites web pour les entreprises et les projets qui veulent une image claire, forte et professionnelle.</p>
+        <p class="hero-slogan">Des images qui marquent.<br><span>Des marques qu’on retient.</span></p>
         <p class="hero-extra">Montage vidéo, motion design, branding et création de site vitrine. Une approche précise, esthétique et pensée pour donner plus d'impact à votre image.</p>
         <div class="hero-cta">
           <a class="cta-primary" onclick="const r=document.getElementById('work').getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-80,behavior:'smooth'});">Voir les projets</a>
@@ -2259,6 +2259,35 @@ function pageTransition(cb){
   </section>
 </noscript>
 </section>
+
+  <!-- Pourquoi des images marquantes rapportent plus -->
+  <section id="impact">
+    <div class="section-label">// Pourquoi ça marche</div>
+    <h2 class="section-title">Des images qui marquent.<br><span class="impact-accent">Des marques qu’on retient.</span></h2>
+    <div class="impact-intro reveal" data-from="bottom">
+      <p class="impact-lead">Une vidéo qu’on oublie, c’est un budget perdu.</p>
+      <p>Chaque jour, vos clients voient défiler des centaines de contenus. La plupart disparaissent en deux secondes. Ceux qui restent ont un point commun : une image forte, un rythme qui accroche, une identité qu’on reconnaît.</p>
+      <p>C’est ce que je crée. Des vidéos et des visuels pensés pour marquer, pas seulement pour exister.</p>
+    </div>
+    <div class="impact-grid">
+      <div class="impact-card reveal" data-from="left" data-delay="1">
+        <div class="impact-num">01</div>
+        <h3>On s’arrête sur votre contenu</h3>
+        <p>Une image soignée et un montage rythmé captent l’attention dès les premières secondes, là où tout se joue sur les réseaux.</p>
+      </div>
+      <div class="impact-card reveal" data-from="bottom" data-delay="2">
+        <div class="impact-num">02</div>
+        <h3>On se souvient de vous</h3>
+        <p>Une identité visuelle cohérente, vidéo après vidéo, installe votre marque dans la tête de votre public. Le jour où il a besoin de vous, c’est à vous qu’il pense.</p>
+      </div>
+      <div class="impact-card reveal" data-from="right" data-delay="3">
+        <div class="impact-num">03</div>
+        <h3>Chaque euro investi travaille plus longtemps</h3>
+        <p>Un contenu marquant se regarde jusqu’au bout, se partage et se réutilise. Il continue de vous faire connaître bien après sa publication.</p>
+      </div>
+    </div>
+    <p class="impact-close reveal" data-from="bottom">Moins de contenus oubliés, <span>plus de clients qui reviennent vers vous.</span></p>
+  </section>
 
   <section id="about">
     <div class="section-label" style="padding: 0px">// Studio</div>
@@ -3800,9 +3829,9 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
     });
 
     /* Lueur sur les cartes, inclinaison sur les cartes de tarifs */
-    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item').forEach(function(c){
+    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item,.impact-card').forEach(function(c){
       c.classList.add('spot');
-      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card');
+      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card')||c.classList.contains('impact-card');
       c.addEventListener('pointermove',function(e){
         var r=c.getBoundingClientRect();
         var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
@@ -3835,6 +3864,35 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
 </script>
 
 <style>
+/* ══ ACCROCHE + SECTION IMPACT ══ */
+.hero-slogan{
+  font-family:var(--font-body);font-size:clamp(17px,1.6vw,22px);font-weight:600;
+  line-height:1.4;color:#fff;max-width:460px;margin:0 0 16px;
+}
+.hero-slogan span{color:var(--mg);}
+#impact{position:relative;}
+.impact-accent{color:var(--mg);}
+.impact-intro{max-width:640px;margin:8px 0 44px;}
+.impact-intro p{font-family:var(--font-body);font-size:15.5px;line-height:1.75;color:rgba(240,240,240,.7);margin:0 0 12px;}
+.impact-intro .impact-lead{font-size:clamp(18px,1.8vw,22px);font-weight:600;color:#fff;margin-bottom:16px;}
+.impact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.impact-card{
+  position:relative;padding:30px 28px 28px;background:var(--card);border:1px solid var(--border);
+  transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;
+}
+.impact-card:hover{border-color:rgba(250,6,242,.55);box-shadow:0 0 30px rgba(250,6,242,.12);}
+.impact-card::before{content:'';position:absolute;left:-1px;right:-1px;top:-1px;height:2px;
+  background:linear-gradient(90deg,var(--green),var(--mg));opacity:.8;}
+.impact-num{font-family:var(--font-display);font-size:44px;line-height:1;color:var(--mg);margin-bottom:14px;letter-spacing:.04em;}
+.impact-card h3{font-family:var(--font-display);font-weight:400;font-size:26px;line-height:1.05;letter-spacing:.03em;color:#fff;margin:0 0 12px;}
+.impact-card p{font-family:var(--font-body);font-size:14px;line-height:1.7;color:rgba(240,240,240,.7);margin:0;}
+.impact-close{margin:40px 0 0;font-family:var(--font-display);font-size:clamp(26px,3.2vw,44px);
+  line-height:1.05;letter-spacing:.03em;color:#fff;}
+.impact-close span{color:var(--green);}
+html.fx-on #impact{background:rgba(14,14,14,.35);}
+body.contraste .impact-intro p,body.contraste .impact-card p{color:#ececec !important;}
+@media(max-width:900px){.impact-grid{grid-template-columns:1fr;}}
+
 /* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
    Fumée violette et magenta + grille néon en perspective, pilotées par
    la position et la vitesse du scroll. Derrière l'accueil uniquement. */
