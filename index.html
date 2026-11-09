@@ -2425,6 +2425,17 @@ function pageTransition(cb){
     </div>
   </section>
 
+  <!-- Bandeau des savoir-faire : deux lignes qui défilent en sens
+       inverse, accélérées par le défilement de la page. Décoratif. -->
+  <div class="svc-band" aria-hidden="true">
+    <div class="svc-row svc-row--plein"><div class="svc-track">
+      <span>Montage vidéo</span><i>✦</i><span>Motion design</span><i>✦</i><span>Captation &amp; tournage</span><i>✦</i><span>Branding</span><i>✦</i><span>Site vitrine</span><i>✦</i>
+    </div></div>
+    <div class="svc-row svc-row--contour"><div class="svc-track">
+      <span>Contenu court</span><i>✦</i><span>Interview</span><i>✦</i><span>Reportage</span><i>✦</i><span>Podcast vidéo</span><i>✦</i><span>Aftermovie</span><i>✦</i>
+    </div></div>
+  </div>
+
   <section id="packs">
     <div class="section-label">// Prestations</div>
     <h2 class="section-title">Packs &amp; Tarifs</h2>
@@ -3644,6 +3655,180 @@ window._loadVidInCard = function _loadVidInCard(card,videoUrl){
       try{ localStorage.setItem(CLE,nouveau?'1':'0'); }catch(e){}
     });
   }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
+  else init();
+})();
+</script>
+
+<style>
+/* ══ INTERACTIONS SOURIS ══
+   Curseur, boutons aimantés, lueur et inclinaison des cartes : seulement
+   avec une souris (pointer:fine) et sans « réduire les animations ». */
+
+/* — Révélation : un léger flou qui se dissipe — */
+.reveal{
+  filter:blur(6px);
+  transition:opacity .75s cubic-bezier(.22,.61,.36,1),
+             transform .75s cubic-bezier(.22,.61,.36,1),
+             filter .75s cubic-bezier(.22,.61,.36,1);
+}
+.reveal.visible{filter:none;}
+
+/* — Curseur : point magenta + anneau qui suit avec du retard — */
+.cur-dot,.cur-ring{position:fixed;top:0;left:0;z-index:10000;pointer-events:none;
+  border-radius:50%;opacity:0;transition:opacity .25s ease;will-change:transform;}
+.cur-dot{width:6px;height:6px;margin:-3px 0 0 -3px;background:var(--mg);}
+.cur-ring{width:38px;height:38px;margin:-19px 0 0 -19px;
+  display:flex;align-items:center;justify-content:center;}
+.cur-ring::before{content:'';position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(250,6,242,.6);
+  transition:transform .3s cubic-bezier(.22,.61,.36,1),border-color .25s,background .25s;}
+.cur-ring span{position:relative;font-family:var(--font-display);font-size:13px;
+  letter-spacing:.14em;color:#0e0e0e;opacity:0;transform:scale(.6);
+  transition:opacity .2s,transform .3s cubic-bezier(.22,.61,.36,1);}
+html.cur-on .cur-dot,html.cur-on .cur-ring{opacity:1;}
+html.cur-lien .cur-ring::before{transform:scale(1.5);border-color:var(--green);}
+html.cur-voir .cur-ring::before{transform:scale(2.2);background:var(--green);border-color:var(--green);}
+html.cur-voir .cur-ring span{opacity:1;transform:none;}
+html.cur-voir .cur-dot,html.cur-texte .cur-dot,html.cur-texte .cur-ring{opacity:0;}
+html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
+
+/* — Boutons aimantés — */
+.mag{transition:transform .35s cubic-bezier(.22,.61,.36,1),background .25s,color .25s,border-color .25s,box-shadow .25s;}
+
+/* — Lueur qui suit la souris sur les cartes — */
+.spot{position:relative;}
+.spot::after{content:'';position:absolute;inset:0;pointer-events:none;opacity:0;
+  background:radial-gradient(320px circle at var(--mx,50%) var(--my,50%),rgba(250,6,242,.13),transparent 65%);
+  transition:opacity .3s ease;}
+.spot:hover::after{opacity:1;}
+.pk-tv-card.spot,.pk-card.spot{transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;}
+
+/* — Bandeau des savoir-faire — */
+.svc-band{overflow:hidden;padding:46px 0;background:var(--bg);
+  border-top:1px solid var(--border);}
+.svc-row{overflow:hidden;white-space:nowrap;}
+.svc-row + .svc-row{margin-top:6px;}
+.svc-track{display:inline-flex;align-items:center;gap:34px;padding-right:34px;will-change:transform;}
+.svc-track span{font-family:var(--font-display);font-size:clamp(52px,8vw,118px);
+  line-height:1;letter-spacing:.02em;text-transform:uppercase;transition:color .3s,-webkit-text-stroke-color .3s;}
+.svc-track i{font-style:normal;font-size:clamp(24px,3vw,44px);color:var(--mg);}
+.svc-row--plein span{color:var(--text);}
+.svc-row--plein span:hover{color:var(--mg);}
+.svc-row--contour span{color:transparent;-webkit-text-stroke:1px rgba(240,240,240,.38);}
+.svc-row--contour span:hover{-webkit-text-stroke-color:var(--green);}
+.svc-row--contour i{color:var(--green);}
+
+@media (prefers-reduced-motion:reduce){
+  .reveal{filter:none;}
+  .cur-dot,.cur-ring{display:none;}
+}
+</style>
+
+<script>
+/* ── Interactions souris : curseur, aimants, lueur, inclinaison, bandeau ── */
+(function(){
+  var reduit=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var souris=window.matchMedia('(pointer: fine)').matches;
+  var html=document.documentElement;
+
+  /* Bandeau : défilement continu, accéléré par le scroll ; deux sens. */
+  function bandeau(){
+    var rangs=[].slice.call(document.querySelectorAll('.svc-row'));
+    if(!rangs.length) return;
+    rangs.forEach(function(r){
+      var t=r.querySelector('.svc-track');
+      t.parentNode.appendChild(t.cloneNode(true)); /* 2 copies pour boucler */
+    });
+    if(reduit) return;
+    var pos=0, boost=0, dernierY=window.scrollY, visible=true;
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(e){visible=e[0].isIntersecting;}).observe(rangs[0].parentNode);
+    }
+    window.addEventListener('scroll',function(){
+      var y=window.scrollY; boost=Math.min(14,boost+Math.abs(y-dernierY)*.06); dernierY=y;
+    },{passive:true});
+    (function boucle(){
+      if(visible){
+        pos+=.45+boost; boost*=.92;
+        rangs.forEach(function(r,i){
+          var largeur=r.firstElementChild.offsetWidth||1;
+          var x=pos%largeur;
+          var v=i%2? x-largeur : -x;
+          [].forEach.call(r.children,function(t){t.style.transform='translate3d('+v+'px,0,0)';});
+        });
+      }
+      requestAnimationFrame(boucle);
+    })();
+  }
+
+  function souriseffets(){
+    if(reduit||!souris) return;
+
+    /* Curseur */
+    var dot=document.createElement('div'); dot.className='cur-dot';
+    var ring=document.createElement('div'); ring.className='cur-ring';
+    ring.innerHTML='<span>Voir</span>';
+    document.body.appendChild(dot); document.body.appendChild(ring);
+    var mx=-100,my=-100,rx=-100,ry=-100;
+    window.addEventListener('pointermove',function(e){
+      if(e.pointerType!=='mouse') return;
+      mx=e.clientX; my=e.clientY;
+      dot.style.transform='translate3d('+mx+'px,'+my+'px,0)';
+      html.classList.add('cur-on');
+      var el=e.target;
+      html.classList.toggle('cur-voir',!!(el.closest&&el.closest('.project-card,.works-card')));
+      html.classList.toggle('cur-texte',!!(el.closest&&el.closest('input,textarea,select,[contenteditable]')));
+      html.classList.toggle('cur-lien',!!(el.closest&&el.closest('a,button,[role="button"],.pk-cta,label,summary')));
+    },{passive:true});
+    document.addEventListener('mouseleave',function(){html.classList.remove('cur-on');});
+    (function suivre(){
+      rx+=(mx-rx)*.18; ry+=(my-ry)*.18;
+      ring.style.transform='translate3d('+rx+'px,'+ry+'px,0)';
+      requestAnimationFrame(suivre);
+    })();
+
+    /* Boutons aimantés */
+    document.querySelectorAll('.hero-cta a,.nav-cta,.pk-cta,.btn-send').forEach(function(b){
+      b.classList.add('mag');
+      b.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect();
+        var dx=e.clientX-(r.left+r.width/2), dy=e.clientY-(r.top+r.height/2);
+        b.style.setProperty('transform','translate('+dx*.22+'px,'+dy*.32+'px)','important');
+      });
+      b.addEventListener('pointerleave',function(){b.style.removeProperty('transform');});
+    });
+
+    /* Lueur sur les cartes, inclinaison sur les cartes de tarifs */
+    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item').forEach(function(c){
+      c.classList.add('spot');
+      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card');
+      c.addEventListener('pointermove',function(e){
+        var r=c.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
+        c.style.setProperty('--mx',x*100+'%'); c.style.setProperty('--my',y*100+'%');
+        /* « important » : .reveal.visible fige transform avec !important. */
+        if(incline) c.style.setProperty('transform','perspective(900px) rotateX('+((.5-y)*5)+'deg) rotateY('+((x-.5)*6)+'deg) translateY(-4px)','important');
+      });
+      c.addEventListener('pointerleave',function(){c.style.removeProperty('transform');});
+    });
+
+    /* Parallaxe légère du titre d'accueil */
+    var hero=document.getElementById('hero'), nom=document.querySelector('.hero-name'), sous=document.querySelector('.hero-title');
+    if(hero&&nom){
+      hero.addEventListener('pointermove',function(e){
+        var r=hero.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+        nom.style.transform='translate('+x*-14+'px,'+y*-10+'px)';
+        if(sous) sous.style.transform='translate('+x*-7+'px,'+y*-5+'px)';
+      });
+      hero.addEventListener('pointerleave',function(){nom.style.transform='';if(sous)sous.style.transform='';});
+      nom.style.transition='transform .6s cubic-bezier(.22,.61,.36,1)';
+      if(sous) sous.style.transition='transform .6s cubic-bezier(.22,.61,.36,1)';
+    }
+  }
+
+  function init(){bandeau();souriseffets();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();
 })();
