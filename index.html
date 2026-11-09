@@ -2468,10 +2468,113 @@ function pageTransition(cb){
   <section id="packs">
     <div class="section-label">// Prestations</div>
     <h2 class="section-title">Packs &amp; Tarifs</h2>
-    <p class="pk-intro">Des formules claires, du montage vidéo à la création de site vitrine. Chaque pack est un point de départ : le périmètre exact et le devis sont ajustés à votre projet.</p>
+    <p class="pk-intro">Six prestations, des prix clairs. Choisissez celle qui vous parle pour voir le détail des formules : chaque prix est un point de départ, ajusté à votre projet.</p>
 
-    <div class="pk-grid">
-      <div class="pk-card pk-card--wide reveal" data-from="left" data-delay="1">
+    <div class="pz-grid">
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="1" data-ouvre="pz-montage">
+        <span class="pz-ill">
+        <svg class="il il-montage" viewBox="0 0 240 150" aria-hidden="true">
+          <rect class="l" x="28" y="16" width="184" height="74" rx="6"/>
+          <path class="fm" d="M110 40l24 13-24 13z"/>
+          <line class="d" x1="20" y1="104" x2="220" y2="104"/>
+          <rect class="m" x="28" y="110" width="58" height="10" rx="2"/><rect class="l" x="90" y="110" width="42" height="10" rx="2"/><rect class="m" x="136" y="110" width="76" height="10" rx="2"/>
+          <rect class="g" x="40" y="126" width="88" height="10" rx="2"/><rect class="l" x="132" y="126" width="52" height="10" rx="2"/>
+          <g class="il-tete"><line class="g" x1="100" y1="100" x2="100" y2="142"/><path class="fg" d="M95 96h10l-5 6z"/></g>
+        </svg>
+        </span>
+        <span class="pz-cat">Montage vidéo</span>
+        <span class="pz-name">Montage vidéo</span>
+        <span class="pz-promesse">Vos images, montées avec rythme et habillées pour chaque réseau.</span>
+        <span class="pz-bas"><span class="pz-prix">dès 250 €</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="2" data-ouvre="pz-captation">
+        <span class="pz-ill">
+        <svg class="il il-captation" viewBox="0 0 240 150" aria-hidden="true">
+          <path class="l" d="M112 98l-24 42M112 98l24 42M112 98v42"/>
+          <rect class="l" x="70" y="34" width="30" height="12" rx="3"/>
+          <rect class="l" x="58" y="46" width="96" height="52" rx="7"/>
+          <path class="m" d="M154 60l40-14v52l-40-14z"/>
+          <circle class="l" cx="112" cy="72" r="13"/><circle class="m" cx="112" cy="72" r="6"/>
+          <circle class="il-rec fm" cx="72" cy="58" r="4.5"/>
+        </svg>
+        </span>
+        <span class="pz-cat">Captation</span>
+        <span class="pz-name">Captation &amp; tournage</span>
+        <span class="pz-promesse">On filme et on monte : interview, reportage, podcast, prêt à diffuser.</span>
+        <span class="pz-bas"><span class="pz-prix">dès 690 €</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="3" data-ouvre="pz-events">
+        <span class="pz-ill">
+        <svg class="il il-events" viewBox="0 0 240 150" aria-hidden="true">
+          <path class="il-faisceau il-f1" d="M62 8L30 112h64z"/>
+          <path class="il-faisceau il-f2" d="M178 8l-32 104h64z"/>
+          <line class="l" x1="16" y1="112" x2="224" y2="112"/>
+          <line class="l" x1="120" y1="74" x2="120" y2="112"/><rect class="m" x="114" y="56" width="12" height="18" rx="6"/>
+          <g class="d"><circle cx="34" cy="130" r="7"/><circle cx="58" cy="134" r="7"/><circle cx="82" cy="130" r="7"/><circle cx="106" cy="134" r="7"/><circle cx="134" cy="134" r="7"/><circle cx="158" cy="130" r="7"/><circle cx="182" cy="134" r="7"/><circle cx="206" cy="130" r="7"/></g>
+        </svg>
+        </span>
+        <span class="pz-cat">Événementiel</span>
+        <span class="pz-name">Événementiel</span>
+        <span class="pz-promesse">Aftermovie et capsules de votre événement, livrés à chaud.</span>
+        <span class="pz-bas"><span class="pz-prix">dès 1 490 €</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="1" data-ouvre="pz-court">
+        <span class="pz-ill">
+        <svg class="il il-court" viewBox="0 0 240 150" aria-hidden="true">
+          <rect class="d" x="66" y="20" width="52" height="112" rx="10" transform="rotate(-10 92 76)"/>
+          <rect class="l" x="96" y="12" width="58" height="124" rx="11"/>
+          <line class="l" x1="117" y1="21" x2="133" y2="21"/>
+          <path class="fm" d="M118 60l18 10-18 10z"/>
+          <rect class="fg" x="106" y="102" width="38" height="5" rx="2.5"/><rect class="fl" x="111" y="112" width="28" height="5" rx="2.5"/>
+          <g class="il-coeurs"><path class="fm" d="M172 70c-4-6-12-2-9 4l9 8 9-8c3-6-5-10-9-4z"/><path class="fg" d="M184 46c-3-4-8-1-6 3l6 5 6-5c2-4-3-7-6-3z"/></g>
+        </svg>
+        </span>
+        <span class="pz-cat">Contenu court</span>
+        <span class="pz-name">Contenu court</span>
+        <span class="pz-promesse">Des Reels, Shorts et TikTok chaque mois, sans y passer vos soirées.</span>
+        <span class="pz-bas"><span class="pz-prix">800 € / mois</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="2" data-ouvre="pz-marque">
+        <span class="pz-ill">
+        <svg class="il il-marque" viewBox="0 0 240 150" aria-hidden="true">
+          <rect class="m" x="46" y="25" width="100" height="100" rx="14"/>
+          <text x="96" y="92" text-anchor="middle">E<tspan class="tg">.</tspan><tspan class="tm">S</tspan></text>
+          <g class="il-pastilles"><circle class="fm" cx="178" cy="44" r="12"/><circle class="fg" cx="178" cy="75" r="12"/><circle class="l il-violet" cx="178" cy="106" r="12"/></g>
+        </svg>
+        </span>
+        <span class="pz-cat">Identité</span>
+        <span class="pz-name">Image de marque</span>
+        <span class="pz-promesse">Logo, couleurs et charte pour être reconnu au premier coup d’œil.</span>
+        <span class="pz-bas"><span class="pz-prix">dès 500 €</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+      <button type="button" class="pz-card reveal" data-from="bottom" data-delay="3" data-ouvre="pz-site">
+        <span class="pz-ill">
+        <svg class="il il-site" viewBox="0 0 240 150" aria-hidden="true">
+          <rect class="l" x="22" y="16" width="196" height="120" rx="8"/>
+          <line class="l" x1="22" y1="34" x2="218" y2="34"/>
+          <circle class="fm" cx="34" cy="25" r="3"/><circle class="fg" cx="44" cy="25" r="3"/><circle class="fl" cx="54" cy="25" r="3"/>
+          <g class="il-page">
+            <rect class="fm" x="36" y="48" width="88" height="10" rx="2"/><rect class="fl" x="36" y="64" width="68" height="5" rx="2"/><rect class="fl" x="36" y="73" width="56" height="5" rx="2"/>
+            <rect class="g" x="36" y="86" width="36" height="11" rx="5.5"/>
+            <rect class="l" x="140" y="46" width="64" height="50" rx="4"/><path class="m" d="M146 90l14-16 11 10 8-7 19 13"/>
+            <rect class="d" x="36" y="108" width="50" height="20" rx="3"/><rect class="d" x="95" y="108" width="50" height="20" rx="3"/><rect class="d" x="154" y="108" width="50" height="20" rx="3"/>
+          </g>
+        </svg>
+        </span>
+        <span class="pz-cat">Site web</span>
+        <span class="pz-name">Site vitrine</span>
+        <span class="pz-promesse">Un site clair et rapide, qui transforme les visites en demandes.</span>
+        <span class="pz-bas"><span class="pz-prix">dès 500 €</span><span class="pz-voir">Voir les formules</span></span>
+      </button>
+    </div>
+
+    <div class="pk-combo-label">Le détail des formules</div>
+    <div class="pz-acc">
+      <details class="pz-item" id="pz-montage">
+        <summary><span class="pz-item-nom">Montage vidéo</span><span class="pz-item-nb">2 formules</span><span class="pz-item-prix">dès 250 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+<div class="pk-grid">
+      <div class="pk-card pk-card--wide">
         <div class="pk-wide-head">
           <div class="pk-cat">Montage vidéo</div>
           <div class="pk-name">Pack Vidéo Impact</div>
@@ -2487,20 +2590,16 @@ function pageTransition(cb){
           <div class="pk-note">Une seule vidéo ? <strong>À partir de 250 €.</strong></div>
         </div>
       </div>
-    </div>
-
-    <!-- Captation & Tournage : offres où le studio filme lui-même. -->
-    <div class="pk-tv" id="captation">
-      <div class="pk-tv-head reveal" data-from="bottom">
-        <div class="pk-cat">// Nouveau</div>
-        <h3 class="pk-tv-title">Captation &amp; Tournage</h3>
-        <p class="pk-tv-sub">Des vidéos professionnelles filmées, montées et prêtes à diffuser.</p>
-        <p class="pk-tv-intro">Vous n’avez pas le temps de filmer ni de gérer le montage ? ENDENOMA Studio s’occupe de la captation, du montage et des formats adaptés à vos canaux. Vous repartez avec des contenus clairs, soignés et prêts à publier.</p>
-      </div>
-
+</div>
+        </div>
+      </details>
+      <details class="pz-item" id="pz-captation">
+        <summary><span class="pz-item-nom">Captation &amp; tournage</span><span class="pz-item-nb">6 formules</span><span class="pz-item-prix">dès 690 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+<p class="pz-intro">Vous n’avez pas le temps de filmer ni de gérer le montage ? On s’occupe de la captation, du montage et des formats adaptés à vos canaux.</p>
       <div class="pk-tv-grid">
 
-        <article class="pk-tv-card reveal" data-from="left" data-delay="1">
+        <article class="pk-tv-card">
           <div class="pk-name">Interview Signature</div>
           <div class="pk-price">890 €<small>à partir de</small></div>
           <p class="pk-tv-hook">Faites parler ceux qui font vivre votre entreprise.</p>
@@ -2518,7 +2617,7 @@ function pageTransition(cb){
           <div class="pk-tv-for"><span>Idéal pour</span>Dirigeant, expert, collaborateur, témoignage client.</div>
         </article>
 
-        <article class="pk-tv-card pk-tv-card--star reveal" data-from="bottom" data-delay="2">
+        <article class="pk-tv-card pk-tv-card--star">
           <div class="pk-name">Reportage Entreprise</div>
           <div class="pk-price">1 490 €<small>à partir de</small></div>
           <p class="pk-tv-hook">Racontez votre activité en images.</p>
@@ -2536,7 +2635,7 @@ function pageTransition(cb){
           <div class="pk-tv-for"><span>Idéal pour</span>PME, artisan, commerce, association, projet ou entreprise.</div>
         </article>
 
-        <article class="pk-tv-card reveal" data-from="right" data-delay="3">
+        <article class="pk-tv-card">
           <div class="pk-name">Podcast Vidéo / Série</div>
           <div class="pk-price">1 290 €<small>à partir de · par épisode</small></div>
           <p class="pk-tv-hook">Créez une série qui installe votre expertise.</p>
@@ -2558,39 +2657,20 @@ function pageTransition(cb){
 
       <div class="pk-tv-label">Autres formules</div>
       <div class="pk-tv-more">
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="1">
+        <div class="pk-tv-item">
           <div class="pk-tv-item-top"><span class="pk-tv-item-name">Capsule Tournée</span><span class="pk-tv-item-price">dès 690 €</span></div>
           <p>Demi-journée de tournage sur 1 lieu, 1 vidéo de 30 à 60 secondes, montage, sous-titres, 1 format 16:9 ou 9:16, 1 série de retouches incluse.</p>
           <p class="pk-tv-item-for">Idéal pour : témoignage client, annonce, présentation rapide.</p>
         </div>
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="2">
+        <div class="pk-tv-item">
           <div class="pk-tv-item-top"><span class="pk-tv-item-name">Vidéo Signature</span><span class="pk-tv-item-price">dès 1 190 €</span></div>
           <p>Journée de tournage sur 1 lieu, captation multi-plans et interviews, 1 vidéo de 1 à 2 minutes, formats 16:9 + 9:16, sous-titres, habillage graphique simple, 2 séries de retouches incluses.</p>
           <p class="pk-tv-item-for">Idéal pour : présentation d’entreprise, savoir-faire, service ou projet.</p>
         </div>
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="3">
+        <div class="pk-tv-item">
           <div class="pk-tv-item-top"><span class="pk-tv-item-name">Pack Contenus Tournés</span><span class="pk-tv-item-price">dès 1 690 €</span></div>
           <p>Journée de tournage sur 1 lieu, 1 vidéo principale de 1 à 2 minutes, 3 capsules verticales pour Reels, Shorts et TikTok, sous-titres animés, habillage graphique simple, 2 séries de retouches incluses.</p>
           <p class="pk-tv-item-for">Idéal pour : entreprises qui veulent des contenus réguliers sans gérer la production.</p>
-        </div>
-      </div>
-
-      <div class="pk-tv-label">Événementiel</div>
-      <div class="pk-tv-more">
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="1">
-          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Aftermovie Essentiel</span><span class="pk-tv-item-price">dès 1 490 €</span></div>
-          <p>Demi-journée de captation, 1 cadreur, aftermovie de 60 à 90 secondes, musique libre de droits, étalonnage, sous-titres, 1 format vertical.</p>
-          <p class="pk-tv-item-for">Idéal pour : inauguration, soirée, lancement, atelier.</p>
-        </div>
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="2">
-          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Captation Événement</span><span class="pk-tv-item-price">dès 2 190 €</span></div>
-          <p>Journée de captation, 1 cadreur, aftermovie de 1 à 2 minutes, 2 capsules verticales, sélection des temps forts.</p>
-          <p class="pk-tv-item-for">Idéal pour : salon, conférence, séminaire, événement d’entreprise.</p>
-        </div>
-        <div class="pk-tv-item reveal" data-from="bottom" data-delay="3">
-          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Couverture Complète</span><span class="pk-tv-item-price">dès 3 490 €</span></div>
-          <p>Journée de captation, 2 cadreurs ou 1 cadreur et une 2<sup>e</sup> caméra fixe, aftermovie de 2 à 3 minutes, interviews courts, 3 à 4 capsules verticales.</p>
-          <p class="pk-tv-item-for">Idéal pour : convention, festival, salon, événement important.</p>
         </div>
       </div>
 
@@ -2607,10 +2687,35 @@ function pageTransition(cb){
       </ul>
 
       <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis tournage</a>
-    </div>
-
-    <div class="pk-grid">
-      <div class="pk-card reveal" data-from="left" data-delay="2">
+        </div>
+      </details>
+      <details class="pz-item" id="pz-events">
+        <summary><span class="pz-item-nom">Événementiel</span><span class="pz-item-nb">3 formules</span><span class="pz-item-prix">dès 1 490 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+      <div class="pk-tv-more">
+        <div class="pk-tv-item">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Aftermovie Essentiel</span><span class="pk-tv-item-price">dès 1 490 €</span></div>
+          <p>Demi-journée de captation, 1 cadreur, aftermovie de 60 à 90 secondes, musique libre de droits, étalonnage, sous-titres, 1 format vertical.</p>
+          <p class="pk-tv-item-for">Idéal pour : inauguration, soirée, lancement, atelier.</p>
+        </div>
+        <div class="pk-tv-item">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Captation Événement</span><span class="pk-tv-item-price">dès 2 190 €</span></div>
+          <p>Journée de captation, 1 cadreur, aftermovie de 1 à 2 minutes, 2 capsules verticales, sélection des temps forts.</p>
+          <p class="pk-tv-item-for">Idéal pour : salon, conférence, séminaire, événement d’entreprise.</p>
+        </div>
+        <div class="pk-tv-item">
+          <div class="pk-tv-item-top"><span class="pk-tv-item-name">Couverture Complète</span><span class="pk-tv-item-price">dès 3 490 €</span></div>
+          <p>Journée de captation, 2 cadreurs ou 1 cadreur et une 2<sup>e</sup> caméra fixe, aftermovie de 2 à 3 minutes, interviews courts, 3 à 4 capsules verticales.</p>
+          <p class="pk-tv-item-for">Idéal pour : convention, festival, salon, événement important.</p>
+        </div>
+      </div>
+        </div>
+      </details>
+      <details class="pz-item" id="pz-court">
+        <summary><span class="pz-item-nom">Contenu court</span><span class="pz-item-nb">1 formule</span><span class="pz-item-prix">800 € / mois</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+<div class="pk-grid pz-solo">
+      <div class="pk-card">
         <div class="pk-cat">Contenu court</div>
         <div class="pk-name">Pack Shorts Rythme</div>
         <div class="pk-price">800 € / mois<small>contenu court prêt à publier</small></div>
@@ -2623,8 +2728,14 @@ function pageTransition(cb){
         <div class="pk-note">Premier lot livré <strong>sous 10 jours.</strong></div>
         <div class="pk-cond">Rushes fournis par le client · 1 série de retouches incluse par vidéo · Engagement minimum de 3 mois.</div>
       </div>
-
-      <div class="pk-card reveal" data-from="right" data-delay="3">
+</div>
+        </div>
+      </details>
+      <details class="pz-item" id="pz-marque">
+        <summary><span class="pz-item-nom">Image de marque</span><span class="pz-item-nb">1 formule</span><span class="pz-item-prix">dès 500 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+<div class="pk-grid pz-solo">
+      <div class="pk-card">
         <div class="pk-cat">Image de marque</div>
         <div class="pk-name">Pack Identité Express</div>
         <div class="pk-price">500 €<small>à partir de</small></div>
@@ -2635,8 +2746,14 @@ function pageTransition(cb){
           <li>3 gabarits de posts</li>
         </ul>
       </div>
-
-      <div class="pk-card reveal" data-from="right" data-delay="4">
+</div>
+        </div>
+      </details>
+      <details class="pz-item" id="pz-site">
+        <summary><span class="pz-item-nom">Site vitrine</span><span class="pz-item-nb">2 formules</span><span class="pz-item-prix">dès 500 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
+        <div class="pz-corps">
+<div class="pk-grid pz-solo">
+      <div class="pk-card">
         <div class="pk-cat">Site web</div>
         <div class="pk-name">Pack Site Vitrine</div>
         <div class="pk-price">900 €<small>à partir de · livré en 2 à 3 semaines</small></div>
@@ -2649,7 +2766,9 @@ function pageTransition(cb){
         </ul>
         <div class="pk-note">One-page <strong>à partir de 500 €.</strong></div>
       </div>
-
+</div>
+        </div>
+      </details>
     </div>
 
     <div class="pk-combo-label">Combos</div>
@@ -3829,9 +3948,9 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
     });
 
     /* Lueur sur les cartes, inclinaison sur les cartes de tarifs */
-    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item,.impact-card').forEach(function(c){
+    document.querySelectorAll('.pk-card,.pk-tv-card,.pk-combo,.pk-tv-item,.impact-card,.pz-card').forEach(function(c){
       c.classList.add('spot');
-      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card')||c.classList.contains('impact-card');
+      var incline=c.classList.contains('pk-card')||c.classList.contains('pk-tv-card')||c.classList.contains('impact-card')||c.classList.contains('pz-card');
       c.addEventListener('pointermove',function(e){
         var r=c.getBoundingClientRect();
         var x=(e.clientX-r.left)/r.width, y=(e.clientY-r.top)/r.height;
@@ -3857,7 +3976,19 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
     }
   }
 
-  function init(){bandeau();souriseffets();}
+  /* Carte de prestation → ouvre son volet de formules et y descend. */
+  function volets(){
+    document.querySelectorAll('.pz-card[data-ouvre]').forEach(function(c){
+      c.addEventListener('click',function(){
+        var d=document.getElementById(c.getAttribute('data-ouvre'));
+        if(!d) return;
+        d.open=true;
+        d.scrollIntoView({behavior:reduit?'auto':'smooth',block:'start'});
+      });
+    });
+  }
+
+  function init(){bandeau();volets();souriseffets();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();
 })();
@@ -3892,6 +4023,82 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
 html.fx-on #impact{background:rgba(14,14,14,.35);}
 body.contraste .impact-intro p,body.contraste .impact-card p{color:#ececec !important;}
 @media(max-width:900px){.impact-grid{grid-template-columns:1fr;}}
+
+/* ══ PRESTATIONS ILLUSTRÉES + DÉTAIL REPLIÉ ══ */
+.pz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:12px;}
+.pz-card{
+  position:relative;display:flex;flex-direction:column;align-items:flex-start;text-align:left;
+  font:inherit;color:inherit;cursor:pointer;padding:0 26px 24px;
+  background:var(--card);border:1px solid var(--border);overflow:hidden;
+  transition:border-color .25s ease,transform .25s ease,box-shadow .25s ease;
+}
+.pz-card:hover,.pz-card:focus-visible{border-color:rgba(250,6,242,.55);box-shadow:0 0 34px rgba(250,6,242,.14);}
+.pz-card:focus-visible{outline:2px solid var(--mg);outline-offset:3px;}
+.pz-ill{display:block;width:calc(100% + 52px);margin:0 -26px 18px;padding:22px 26px 8px;
+  background:radial-gradient(70% 80% at 50% 60%,rgba(57,5,105,.55) 0%,transparent 70%);
+  border-bottom:1px solid var(--border);}
+.pz-cat{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--green);font-weight:600;margin-bottom:8px;}
+.pz-name{font-family:var(--font-display);font-size:30px;line-height:1;letter-spacing:.03em;color:#fff;margin-bottom:10px;}
+.pz-promesse{font-family:var(--font-body);font-size:13.5px;line-height:1.6;color:rgba(240,240,240,.7);margin-bottom:18px;flex:1;}
+.pz-bas{display:flex;width:100%;align-items:baseline;justify-content:space-between;gap:12px;
+  padding-top:14px;border-top:1px solid var(--border);}
+.pz-prix{font-family:var(--font-display);font-size:26px;letter-spacing:.02em;color:var(--mg);line-height:1;}
+.pz-voir{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,240,240,.6);transition:color .2s;}
+.pz-voir::after{content:' ↓';}
+.pz-card:hover .pz-voir{color:var(--green);}
+
+/* Illustrations : traits néon, petite animation au survol de la carte */
+.il{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 0 6px rgba(250,6,242,.28));}
+.il *{fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+.il .l{stroke:rgba(240,240,240,.8);} .il .d{stroke:rgba(240,240,240,.28);}
+.il .m{stroke:var(--mg);} .il .g{stroke:var(--green);}
+.il .fm{fill:var(--mg);stroke:none;} .il .fg{fill:var(--green);stroke:none;} .il .fl{fill:rgba(240,240,240,.5);stroke:none;}
+.il .il-violet{fill:#390569;}
+.il text{fill:#fff;stroke:none;font-family:var(--font-display);font-size:46px;letter-spacing:.02em;}
+.il text .tg{fill:var(--green);} .il text .tm{fill:var(--mg);}
+.il-faisceau{stroke:none;opacity:.5;transform-origin:50% 0;transform-box:fill-box;transition:transform .9s cubic-bezier(.22,.61,.36,1);}
+.il-f1{fill:rgba(250,6,242,.28);} .il-f2{fill:rgba(57,181,74,.22);}
+.il-tete,.il-page,.il-coeurs,.il-pastilles circle{transition:transform .9s cubic-bezier(.22,.61,.36,1),opacity .4s;}
+.il-coeurs{opacity:.5;}
+.il-rec{animation:il-rec 1.4s steps(1) infinite;}
+@keyframes il-rec{50%{opacity:.15;}}
+.pz-card:hover .il-tete{transform:translateX(70px);}
+.pz-card:hover .il-f1{transform:rotate(9deg);} .pz-card:hover .il-f2{transform:rotate(-9deg);}
+.pz-card:hover .il-coeurs{opacity:1;transform:translateY(-12px);}
+.pz-card:hover .il-page{transform:translateY(-6px);}
+.pz-card:hover .il-pastilles circle:nth-child(1){transform:translateX(-6px);}
+.pz-card:hover .il-pastilles circle:nth-child(3){transform:translateX(6px);}
+
+/* Détail replié, une ligne par prestation */
+.pz-acc{display:flex;flex-direction:column;gap:10px;}
+.pz-item{background:rgba(24,24,24,.82);border:1px solid var(--border);transition:border-color .25s;scroll-margin-top:110px;}
+.pz-item[open]{border-color:rgba(250,6,242,.45);}
+.pz-item summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:16px;padding:18px 22px;}
+.pz-item summary::-webkit-details-marker{display:none;}
+.pz-item summary:focus-visible{outline:2px solid var(--mg);outline-offset:-2px;}
+.pz-item-nom{font-family:var(--font-display);font-size:26px;letter-spacing:.03em;color:#fff;line-height:1;transition:padding .25s;}
+.pz-item summary:hover .pz-item-nom{padding-left:6px;}
+.pz-item-nb{font-family:var(--font-body);font-size:12px;color:var(--muted);}
+.pz-item-prix{margin-left:auto;font-family:var(--font-display);font-size:20px;color:var(--mg);letter-spacing:.03em;white-space:nowrap;}
+.pz-item-plus{position:relative;flex:0 0 30px;height:30px;border-radius:50%;border:1px solid rgba(250,6,242,.55);transition:transform .3s,background .25s;}
+.pz-item-plus::before,.pz-item-plus::after{content:'';position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:#fff;transform:translate(-50%,-50%);}
+.pz-item-plus::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .3s;}
+.pz-item[open] .pz-item-plus{background:var(--mg);}
+.pz-item[open] .pz-item-plus::after{transform:translate(-50%,-50%) rotate(0deg);}
+.pz-corps{padding:6px 22px 26px;}
+.pz-corps .pk-grid{margin-bottom:0;}
+.pz-solo{grid-template-columns:minmax(0,520px);}
+.pz-intro{font-family:var(--font-body);font-size:14.5px;line-height:1.7;color:rgba(240,240,240,.72);max-width:640px;margin:0 0 20px;}
+.pz-corps .pk-tv-opts{margin-bottom:24px;}
+body.contraste .pz-promesse{color:#ececec !important;}
+@media(max-width:1024px){.pz-grid{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:640px){
+  .pz-grid{grid-template-columns:1fr;}
+  .pz-ill{padding:14px 56px 4px;}
+  .pz-item summary{flex-wrap:wrap;gap:6px 12px;padding:16px;}
+  .pz-item-nom{font-size:22px;} .pz-item-prix{font-size:18px;}
+  .pz-corps{padding:4px 16px 20px;}
+}
 
 /* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
    Fond plein écran piloté par la position et la vitesse du scroll,
