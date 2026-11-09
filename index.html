@@ -4002,8 +4002,8 @@ html.fx-on .pk-tv{background:radial-gradient(90% 70% at 100% 0%,rgba(57,5,105,.3
     taille();window.addEventListener('resize',taille);
 
     var accueil=document.getElementById('page-home'),estHors=false;
-    /* Style du fond : 0 brume, 1 ondes, 2 halos. « ?fond=1 » pour comparer. */
-    var style=1, choix=parseInt(new URLSearchParams(location.search).get('fond'),10);
+    /* Style du fond : 0 brume, 1 ondes, 2 halos (retenu). « ?fond=0 » pour comparer. */
+    var style=2, choix=parseInt(new URLSearchParams(location.search).get('fond'),10);
     if(choix>=0&&choix<=2) style=choix;
     var p=0,pCible=0,v=0,dernierY=window.scrollY,mx=0,my=0,smx=0,smy=0,t0=performance.now();
     function lireScroll(){
