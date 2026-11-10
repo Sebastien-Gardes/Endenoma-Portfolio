@@ -4177,6 +4177,90 @@ body.contraste .pz-promesse{color:#ececec !important;}
   .il-fusee,.il-flamme,.il-satellite,.il-etoiles circle{animation:none;}
 }
 
+/* ══ LIQUID GLASS ══
+   Verre dépoli : fond translucide légèrement éclairci, flou et saturation
+   de ce qui passe derrière (le fond animé), reflet clair sur l'arête du
+   haut, coins arrondis. Appliqué au menu, aux encadrés et au formulaire. */
+:root{
+  --verre:linear-gradient(140deg,rgba(255,255,255,.085) 0%,rgba(255,255,255,.025) 45%,rgba(250,6,242,.035) 100%);
+  --verre-bord:rgba(255,255,255,.13);
+  --verre-ombre:inset 0 1px 0 rgba(255,255,255,.2),inset 0 -1px 0 rgba(255,255,255,.04),0 18px 44px rgba(0,0,0,.38);
+  --verre-flou:blur(18px) saturate(165%);
+  --verre-rayon:20px;
+}
+.pz-card,.pz-item,.pk-card,.pk-tv-card,.pk-tv-item,.impact-card,.pk-tv-note,.pk-custom,.pk-combo{
+  background:var(--verre);
+  border:1px solid var(--verre-bord);
+  border-radius:var(--verre-rayon);
+  box-shadow:var(--verre-ombre);
+  -webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);
+}
+.pz-card:hover,.pk-card:hover,.pk-tv-card:hover,.pk-tv-item:hover,.impact-card:hover{
+  border-color:rgba(250,6,242,.5);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 0 0 1px rgba(250,6,242,.18),0 18px 50px rgba(250,6,242,.16);
+}
+.pz-item[open]{border-color:rgba(250,6,242,.45);}
+.pk-tv-card--star,.pk-combo{
+  background:linear-gradient(150deg,rgba(250,6,242,.16) 0%,rgba(57,5,105,.24) 55%,rgba(255,255,255,.03) 100%);
+  border-color:rgba(250,6,242,.38);
+}
+.pk-combo{overflow:hidden;}
+.pk-combo::before{border-radius:inherit;}
+.spot::after{border-radius:inherit;}
+.impact-card{overflow:hidden;}
+.pk-tv-item{border-left:1px solid var(--verre-bord);}
+.pk-tv-note,.pk-custom{border-left:3px solid var(--green);}
+.pz-ill{background:radial-gradient(70% 80% at 50% 60%,rgba(57,5,105,.45) 0%,transparent 70%);border-bottom-color:rgba(255,255,255,.08);}
+.pz-bas,.pk-tv-for,.pk-note{border-top-color:rgba(255,255,255,.09);}
+.pk-cta{border-radius:999px;}
+.pz-item-plus{border-color:rgba(255,255,255,.25);}
+
+/* Menu du haut : barre en verre, libellés plus grands et plus espacés */
+nav{
+  background:rgba(14,14,14,.28);
+  -webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  box-shadow:inset 0 -1px 0 rgba(255,255,255,.03);
+}
+nav.scrolled{background:rgba(14,14,14,.5);border-color:rgba(255,255,255,.1);
+  -webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);}
+@media(min-width:769px){
+  .nav-links{gap:10px;}
+  .nav-links a{font-size:13.5px;letter-spacing:.2em;padding:11px 18px;color:rgba(240,240,240,.72);border-radius:999px;}
+  .nav-links a::before{border-radius:999px;}
+}
+
+/* Formulaire de contact : panneau en verre, champs lisibles */
+.contact-form{
+  padding:34px 32px 30px;
+  background:var(--verre);border:1px solid var(--verre-bord);border-radius:24px;
+  box-shadow:var(--verre-ombre);
+  -webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);
+}
+.field-label{color:rgba(240,240,240,.7);}
+.field-input,.field-select,.field-textarea{
+  background-color:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.12);border-radius:12px;
+  padding:13px 15px;font-size:15px;
+  transition:border-color .25s,box-shadow .25s,background-color .25s;
+}
+.field-select{padding-right:38px;background-position:right 16px center;}
+.field-input::placeholder,.field-textarea::placeholder{color:rgba(240,240,240,.38);}
+.field-input:focus,.field-select:focus,.field-textarea:focus{
+  border-color:rgba(250,6,242,.7);background-color:rgba(255,255,255,.07);
+  box-shadow:0 0 0 3px rgba(250,6,242,.16);
+}
+.btn-send{border-radius:14px;}
+.hero-cta a{border-radius:999px;}
+.hero-cta .cta-ghost{background:rgba(255,255,255,.05);border-color:rgba(255,255,255,.16);-webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);}
+@media(max-width:768px){
+  .contact-form{padding:24px 18px 22px;border-radius:20px;}
+}
+/* Sans backdrop-filter (vieux navigateurs) : un fond plus opaque garde la lisibilité. */
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .pz-card,.pz-item,.pk-card,.pk-tv-card,.pk-tv-item,.impact-card,.pk-combo,.contact-form{background-color:rgba(24,24,24,.92);}
+}
+
 /* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
    Fond plein écran piloté par la position et la vitesse du scroll,
    derrière l'accueil uniquement. Les sections deviennent transparentes
