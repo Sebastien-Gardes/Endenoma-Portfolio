@@ -2776,21 +2776,64 @@ function pageTransition(cb){
     <div class="pk-combos">
 
       <div class="pk-combo reveal" data-from="left" data-delay="1">
-        <div class="pk-combo-tag">Clé en main</div>
-        <div class="pk-combo-name">Pack Lancement</div>
-        <div class="pk-combo-price">1 500 €</div>
-        <p class="pk-combo-desc">Identité Express + Site Vitrine + 1 vidéo de présentation.</p>
-        <p class="pk-combo-for">Pour lancer une entreprise clé en main.</p>
-        <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        <div class="pk-combo-txt">
+          <div class="pk-combo-tag">Clé en main</div>
+          <div class="pk-combo-name">Pack Lancement</div>
+          <div class="pk-combo-price">1 500 €</div>
+          <p class="pk-combo-desc">Identité Express + Site Vitrine + 1 vidéo de présentation.</p>
+          <p class="pk-combo-for">Pour lancer une entreprise clé en main.</p>
+          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        </div>
+        <div class="pk-combo-ill" aria-hidden="true">
+          <svg class="il il-lancement" viewBox="0 0 220 200">
+            <line class="d" x1="24" y1="180" x2="196" y2="180"/>
+            <g class="il-etoiles"><circle class="fl" cx="40" cy="30" r="1.8"/><circle class="fg" cx="70" cy="18" r="1.6"/><circle class="fl" cx="160" cy="24" r="1.8"/><circle class="fm" cx="196" cy="100" r="1.6"/><circle class="fl" cx="24" cy="128" r="1.6"/></g>
+            <g class="il-satellite il-s1"><rect class="l" x="18" y="56" width="40" height="30" rx="4"/><line class="l" x1="18" y1="64" x2="58" y2="64"/><rect class="fm" x="24" y="70" width="18" height="4" rx="2"/><rect class="fl" x="24" y="77" width="26" height="3" rx="1.5"/></g>
+            <g class="il-satellite il-s2"><rect class="m" x="162" y="42" width="36" height="36" rx="8"/><text x="180" y="67" text-anchor="middle" class="il-mini">E<tspan class="tg">.</tspan><tspan class="tm">S</tspan></text></g>
+            <g class="il-satellite il-s3"><circle class="l" cx="178" cy="132" r="15"/><path class="fm" d="M173 124l13 8-13 8z"/></g>
+            <g class="il-fusee">
+              <g class="il-flamme"><path class="fm" d="M99 134q11 44 22 0z"/><path class="fg" d="M104 134q6 26 12 0z"/></g>
+              <path class="m" d="M94 112l-18 26 18-5zM126 112l18 26-18-5z"/>
+              <path class="l" d="M110 34c19 19 23 55 18 100H92c-5-45-1-81 18-100z"/>
+              <circle class="m" cx="110" cy="80" r="11"/><circle class="fg" cx="110" cy="80" r="4"/>
+            </g>
+          </svg>
+        </div>
       </div>
 
       <div class="pk-combo reveal" data-from="right" data-delay="2">
-        <div class="pk-combo-tag">Le plus complet</div>
-        <div class="pk-combo-name">Pack 360°</div>
-        <div class="pk-combo-price">2 900 €</div>
-        <p class="pk-combo-desc">Site Vitrine + 3 mois de Pack Shorts Rythme.</p>
-        <p class="pk-combo-for">Pour exister en ligne ET sur les réseaux.</p>
-        <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        <div class="pk-combo-txt">
+          <div class="pk-combo-tag">Le plus complet</div>
+          <div class="pk-combo-name">Pack 360°</div>
+          <div class="pk-combo-price">2 900 €</div>
+          <p class="pk-combo-desc">Site Vitrine + 3 mois de Pack Shorts Rythme.</p>
+          <p class="pk-combo-for">Pour exister en ligne ET sur les réseaux.</p>
+          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        </div>
+        <div class="pk-combo-ill" aria-hidden="true">
+          <svg class="il il-orbite" viewBox="4 34 212 146">
+            <defs><path id="il-trajet" d="M14 104a96 38 0 1 0 192 0a96 38 0 1 0-192 0"/></defs>
+            <g class="il-etoiles"><circle class="fl" cx="30" cy="34" r="1.8"/><circle class="fg" cx="186" cy="30" r="1.6"/><circle class="fm" cx="200" cy="168" r="1.6"/><circle class="fl" cx="22" cy="170" r="1.6"/></g>
+            <use href="#il-trajet" class="d il-trace"/>
+            <path class="m" d="M200 92l6 12 8-10"/>
+            <g class="il-centre">
+              <rect class="l" x="68" y="72" width="84" height="62" rx="6"/>
+              <line class="l" x1="68" y1="82" x2="152" y2="82"/>
+              <circle class="fm" cx="76" cy="77" r="2"/><circle class="fg" cx="83" cy="77" r="2"/><circle class="fl" cx="90" cy="77" r="2"/>
+              <rect class="fm" x="76" y="90" width="38" height="6" rx="2"/><rect class="fl" x="76" y="101" width="30" height="3" rx="1.5"/>
+              <rect class="g" x="76" y="112" width="20" height="8" rx="4"/>
+              <rect class="l" x="120" y="90" width="24" height="30" rx="3"/><path class="m" d="M123 115l6-7 5 4 4-3 4 4"/>
+            </g>
+            <g class="il-orbiteur">
+              <rect class="l" x="-8" y="-14" width="16" height="28" rx="4"/><path class="fm" d="M-3-5l8 5-8 5z"/>
+              <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
+            </g>
+            <g class="il-orbiteur">
+              <circle class="g" r="9"/><path class="fg" d="M0 4c-3-4-8-1-6 2l6 5 6-5c2-3-3-6-6-2z" transform="translate(0 -4)"/>
+              <animateMotion dur="9s" begin="-4.5s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
+            </g>
+          </svg>
+        </div>
       </div>
 
     </div>
@@ -3988,7 +4031,10 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
     });
   }
 
-  function init(){bandeau();volets();souriseffets();}
+  function init(){
+    bandeau();volets();souriseffets();
+    if(reduit) document.querySelectorAll('.il-orbite').forEach(function(o){if(o.pauseAnimations)o.pauseAnimations();});
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);
   else init();
 })();
@@ -4101,6 +4147,34 @@ body.contraste .pz-promesse{color:#ececec !important;}
   .pz-item-plus{grid-column:3;grid-row:1 / 3;}
   .pz-ill{padding:12px 56px 2px;}
   .pz-corps{padding:4px 16px 20px;}
+}
+
+/* ══ COMBOS ILLUSTRÉS ══ */
+.pk-combo{display:grid;grid-template-columns:1fr minmax(150px,210px);gap:20px;align-items:center;}
+.pk-combo-ill{align-self:center;}
+.pk-combo-ill .il{max-height:200px;}
+.il text.il-mini{font-size:17px;}
+.il-fusee{animation:il-flotte 3.2s ease-in-out infinite;}
+.il-flamme{transform-origin:110px 134px;animation:il-flamme .18s ease-in-out infinite alternate;}
+.il-satellite{animation:il-flotte 4.2s ease-in-out infinite;}
+.il-s2{animation-delay:-1.4s;} .il-s3{animation-delay:-2.8s;}
+.il-etoiles circle{animation:il-scintille 2.4s ease-in-out infinite;}
+.il-etoiles circle:nth-child(2n){animation-delay:-1.2s;}
+.il-trace{stroke-dasharray:3 7;}
+.il-centre{transition:transform .9s cubic-bezier(.22,.61,.36,1);transform-origin:110px 103px;}
+.pk-combo:hover .il-fusee{animation-name:il-decolle;}
+.pk-combo:hover .il-flamme{animation-duration:.09s;}
+.pk-combo:hover .il-centre{transform:scale(1.06);}
+@keyframes il-flotte{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+@keyframes il-decolle{0%,100%{transform:translateY(-14px);}50%{transform:translateY(-22px);}}
+@keyframes il-flamme{from{transform:scaleY(.82);}to{transform:scaleY(1.12);}}
+@keyframes il-scintille{0%,100%{opacity:.25;}50%{opacity:1;}}
+@media(max-width:768px){
+  .pk-combo{grid-template-columns:1fr;}
+  .pk-combo-ill{order:-1;max-width:200px;}
+}
+@media(prefers-reduced-motion:reduce){
+  .il-fusee,.il-flamme,.il-satellite,.il-etoiles circle{animation:none;}
 }
 
 /* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
