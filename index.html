@@ -2568,11 +2568,106 @@ function pageTransition(cb){
       </button>
     </div>
 
-    <div class="pk-combo-label">Le détail des formules</div>
-    <div class="pz-acc">
-      <details class="pz-item" id="pz-montage">
-        <summary><span class="pz-item-nom">Montage vidéo</span><span class="pz-item-nb">2 formules</span><span class="pz-item-prix">dès 250 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+    <div class="pk-combo-label">Combos</div>
+
+    <div class="pk-combos">
+
+      <div class="pk-combo reveal" data-from="left" data-delay="1">
+        <div class="pk-combo-txt">
+          <div class="pk-combo-tag">Clé en main</div>
+          <div class="pk-combo-name">Pack Lancement</div>
+          <div class="pk-combo-price">1 500 €</div>
+          <p class="pk-combo-desc">Identité Express + Site Vitrine + 1 vidéo de présentation.</p>
+          <p class="pk-combo-for">Pour lancer une entreprise clé en main.</p>
+          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        </div>
+        <div class="pk-combo-ill" aria-hidden="true">
+          <svg class="il il-lancement" viewBox="0 0 220 200">
+            <line class="d" x1="24" y1="180" x2="196" y2="180"/>
+            <g class="il-etoiles"><circle class="fl" cx="40" cy="30" r="1.8"/><circle class="fg" cx="70" cy="18" r="1.6"/><circle class="fl" cx="160" cy="24" r="1.8"/><circle class="fm" cx="196" cy="100" r="1.6"/><circle class="fl" cx="24" cy="128" r="1.6"/></g>
+            <g class="il-satellite il-s1"><rect class="l" x="18" y="56" width="40" height="30" rx="4"/><line class="l" x1="18" y1="64" x2="58" y2="64"/><rect class="fm" x="24" y="70" width="18" height="4" rx="2"/><rect class="fl" x="24" y="77" width="26" height="3" rx="1.5"/></g>
+            <g class="il-satellite il-s2"><rect class="m" x="162" y="42" width="36" height="36" rx="8"/><text x="180" y="67" text-anchor="middle" class="il-mini">E<tspan class="tg">.</tspan><tspan class="tm">S</tspan></text></g>
+            <g class="il-satellite il-s3"><circle class="l" cx="178" cy="132" r="15"/><path class="fm" d="M173 124l13 8-13 8z"/></g>
+            <g class="il-fusee">
+              <g class="il-flamme"><path class="fm" d="M99 134q11 44 22 0z"/><path class="fg" d="M104 134q6 26 12 0z"/></g>
+              <path class="m" d="M94 112l-18 26 18-5zM126 112l18 26-18-5z"/>
+              <path class="l" d="M110 34c19 19 23 55 18 100H92c-5-45-1-81 18-100z"/>
+              <circle class="m" cx="110" cy="80" r="11"/><circle class="fg" cx="110" cy="80" r="4"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <div class="pk-combo reveal" data-from="right" data-delay="2">
+        <div class="pk-combo-txt">
+          <div class="pk-combo-tag">Le plus complet</div>
+          <div class="pk-combo-name">Pack 360°</div>
+          <div class="pk-combo-price">2 900 €</div>
+          <p class="pk-combo-desc">Site Vitrine + 3 mois de Pack Shorts Rythme.</p>
+          <p class="pk-combo-for">Pour exister en ligne ET sur les réseaux.</p>
+          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
+        </div>
+        <div class="pk-combo-ill" aria-hidden="true">
+          <svg class="il il-orbite" viewBox="4 34 212 146">
+            <defs><path id="il-trajet" d="M14 104a96 38 0 1 0 192 0a96 38 0 1 0-192 0"/></defs>
+            <g class="il-etoiles"><circle class="fl" cx="30" cy="34" r="1.8"/><circle class="fg" cx="186" cy="30" r="1.6"/><circle class="fm" cx="200" cy="168" r="1.6"/><circle class="fl" cx="22" cy="170" r="1.6"/></g>
+            <use href="#il-trajet" class="d il-trace"/>
+            <path class="m" d="M200 92l6 12 8-10"/>
+            <g class="il-centre">
+              <rect class="l" x="68" y="72" width="84" height="62" rx="6"/>
+              <line class="l" x1="68" y1="82" x2="152" y2="82"/>
+              <circle class="fm" cx="76" cy="77" r="2"/><circle class="fg" cx="83" cy="77" r="2"/><circle class="fl" cx="90" cy="77" r="2"/>
+              <rect class="fm" x="76" y="90" width="38" height="6" rx="2"/><rect class="fl" x="76" y="101" width="30" height="3" rx="1.5"/>
+              <rect class="g" x="76" y="112" width="20" height="8" rx="4"/>
+              <rect class="l" x="120" y="90" width="24" height="30" rx="3"/><path class="m" d="M123 115l6-7 5 4 4-3 4 4"/>
+            </g>
+            <g class="il-orbiteur">
+              <rect class="l" x="-8" y="-14" width="16" height="28" rx="4"/><path class="fm" d="M-3-5l8 5-8 5z"/>
+              <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
+            </g>
+            <g class="il-orbiteur">
+              <circle class="g" r="9"/><path class="fg" d="M0 4c-3-4-8-1-6 2l6 5 6-5c2-3-3-6-6-2z" transform="translate(0 -4)"/>
+              <animateMotion dur="9s" begin="-4.5s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
+
+    <p class="pk-foot">Tarifs indicatifs en euros (TVA non applicable, article 293 B du CGI), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
+  </section>
+
+
+
+
+
+</div>
+
+<!-- PAGE FORMULES : le détail de chaque prestation -->
+<div id="page-formules" class="page">
+  <div class="fm-wrap">
+    <a class="fm-retour" onclick="showPage('home');goTo('packs')">← Retour aux tarifs</a>
+    <div class="section-label">// Prestations</div>
+    <h1 class="section-title">Le détail des formules</h1>
+    <p class="pk-intro">Toutes les formules, leur contenu et leurs options. Chaque prix est un point de départ : le devis est ajusté à votre projet.</p>
+    <nav class="fm-sommaire" aria-label="Prestations">
+        <a class="fm-puce" onclick="allerFormule('montage')">Montage vidéo</a>
+        <a class="fm-puce" onclick="allerFormule('captation')">Captation &amp; tournage</a>
+        <a class="fm-puce" onclick="allerFormule('events')">Événementiel</a>
+        <a class="fm-puce" onclick="allerFormule('court')">Contenu court</a>
+        <a class="fm-puce" onclick="allerFormule('marque')">Image de marque</a>
+        <a class="fm-puce" onclick="allerFormule('site')">Site vitrine</a>
+    </nav>
+      <section class="fm-bloc" id="fm-montage">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Montage vidéo</h2>
+          <span class="fm-nb">2 formules</span>
+          <span class="fm-prix">dès 250 €</span>
+        </div>
+        <div class="fm-corps">
 <div class="pk-grid">
       <div class="pk-card pk-card--wide">
         <div class="pk-wide-head">
@@ -2592,10 +2687,14 @@ function pageTransition(cb){
       </div>
 </div>
         </div>
-      </details>
-      <details class="pz-item" id="pz-captation">
-        <summary><span class="pz-item-nom">Captation &amp; tournage</span><span class="pz-item-nb">6 formules</span><span class="pz-item-prix">dès 690 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+      </section>
+      <section class="fm-bloc" id="fm-captation">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Captation &amp; tournage</h2>
+          <span class="fm-nb">6 formules</span>
+          <span class="fm-prix">dès 690 €</span>
+        </div>
+        <div class="fm-corps">
 <p class="pz-intro">Vous n’avez pas le temps de filmer ni de gérer le montage ? On s’occupe de la captation, du montage et des formats adaptés à vos canaux.</p>
       <div class="pk-tv-grid">
 
@@ -2688,10 +2787,14 @@ function pageTransition(cb){
 
       <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis tournage</a>
         </div>
-      </details>
-      <details class="pz-item" id="pz-events">
-        <summary><span class="pz-item-nom">Événementiel</span><span class="pz-item-nb">3 formules</span><span class="pz-item-prix">dès 1 490 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+      </section>
+      <section class="fm-bloc" id="fm-events">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Événementiel</h2>
+          <span class="fm-nb">3 formules</span>
+          <span class="fm-prix">dès 1 490 €</span>
+        </div>
+        <div class="fm-corps">
       <div class="pk-tv-more">
         <div class="pk-tv-item">
           <div class="pk-tv-item-top"><span class="pk-tv-item-name">Aftermovie Essentiel</span><span class="pk-tv-item-price">dès 1 490 €</span></div>
@@ -2710,10 +2813,14 @@ function pageTransition(cb){
         </div>
       </div>
         </div>
-      </details>
-      <details class="pz-item" id="pz-court">
-        <summary><span class="pz-item-nom">Contenu court</span><span class="pz-item-nb">1 formule</span><span class="pz-item-prix">800 € / mois</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+      </section>
+      <section class="fm-bloc" id="fm-court">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Contenu court</h2>
+          <span class="fm-nb">1 formule</span>
+          <span class="fm-prix">800 € / mois</span>
+        </div>
+        <div class="fm-corps">
 <div class="pk-grid pz-solo">
       <div class="pk-card">
         <div class="pk-cat">Contenu court</div>
@@ -2730,10 +2837,14 @@ function pageTransition(cb){
       </div>
 </div>
         </div>
-      </details>
-      <details class="pz-item" id="pz-marque">
-        <summary><span class="pz-item-nom">Image de marque</span><span class="pz-item-nb">1 formule</span><span class="pz-item-prix">dès 500 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+      </section>
+      <section class="fm-bloc" id="fm-marque">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Image de marque</h2>
+          <span class="fm-nb">1 formule</span>
+          <span class="fm-prix">dès 500 €</span>
+        </div>
+        <div class="fm-corps">
 <div class="pk-grid pz-solo">
       <div class="pk-card">
         <div class="pk-cat">Image de marque</div>
@@ -2748,10 +2859,14 @@ function pageTransition(cb){
       </div>
 </div>
         </div>
-      </details>
-      <details class="pz-item" id="pz-site">
-        <summary><span class="pz-item-nom">Site vitrine</span><span class="pz-item-nb">2 formules</span><span class="pz-item-prix">dès 500 €</span><span class="pz-item-plus" aria-hidden="true"></span></summary>
-        <div class="pz-corps">
+      </section>
+      <section class="fm-bloc" id="fm-site">
+        <div class="fm-tete">
+          <h2 class="fm-nom">Site vitrine</h2>
+          <span class="fm-nb">2 formules</span>
+          <span class="fm-prix">dès 500 €</span>
+        </div>
+        <div class="fm-corps">
 <div class="pk-grid pz-solo">
       <div class="pk-card">
         <div class="pk-cat">Site web</div>
@@ -2768,85 +2883,13 @@ function pageTransition(cb){
       </div>
 </div>
         </div>
-      </details>
+      </section>
+    <div class="fm-fin">
+      <p>Un doute sur la formule qui vous correspond ? Décrivez votre projet, je vous oriente.</p>
+      <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
     </div>
-
-    <div class="pk-combo-label">Combos</div>
-
-    <div class="pk-combos">
-
-      <div class="pk-combo reveal" data-from="left" data-delay="1">
-        <div class="pk-combo-txt">
-          <div class="pk-combo-tag">Clé en main</div>
-          <div class="pk-combo-name">Pack Lancement</div>
-          <div class="pk-combo-price">1 500 €</div>
-          <p class="pk-combo-desc">Identité Express + Site Vitrine + 1 vidéo de présentation.</p>
-          <p class="pk-combo-for">Pour lancer une entreprise clé en main.</p>
-          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
-        </div>
-        <div class="pk-combo-ill" aria-hidden="true">
-          <svg class="il il-lancement" viewBox="0 0 220 200">
-            <line class="d" x1="24" y1="180" x2="196" y2="180"/>
-            <g class="il-etoiles"><circle class="fl" cx="40" cy="30" r="1.8"/><circle class="fg" cx="70" cy="18" r="1.6"/><circle class="fl" cx="160" cy="24" r="1.8"/><circle class="fm" cx="196" cy="100" r="1.6"/><circle class="fl" cx="24" cy="128" r="1.6"/></g>
-            <g class="il-satellite il-s1"><rect class="l" x="18" y="56" width="40" height="30" rx="4"/><line class="l" x1="18" y1="64" x2="58" y2="64"/><rect class="fm" x="24" y="70" width="18" height="4" rx="2"/><rect class="fl" x="24" y="77" width="26" height="3" rx="1.5"/></g>
-            <g class="il-satellite il-s2"><rect class="m" x="162" y="42" width="36" height="36" rx="8"/><text x="180" y="67" text-anchor="middle" class="il-mini">E<tspan class="tg">.</tspan><tspan class="tm">S</tspan></text></g>
-            <g class="il-satellite il-s3"><circle class="l" cx="178" cy="132" r="15"/><path class="fm" d="M173 124l13 8-13 8z"/></g>
-            <g class="il-fusee">
-              <g class="il-flamme"><path class="fm" d="M99 134q11 44 22 0z"/><path class="fg" d="M104 134q6 26 12 0z"/></g>
-              <path class="m" d="M94 112l-18 26 18-5zM126 112l18 26-18-5z"/>
-              <path class="l" d="M110 34c19 19 23 55 18 100H92c-5-45-1-81 18-100z"/>
-              <circle class="m" cx="110" cy="80" r="11"/><circle class="fg" cx="110" cy="80" r="4"/>
-            </g>
-          </svg>
-        </div>
-      </div>
-
-      <div class="pk-combo reveal" data-from="right" data-delay="2">
-        <div class="pk-combo-txt">
-          <div class="pk-combo-tag">Le plus complet</div>
-          <div class="pk-combo-name">Pack 360°</div>
-          <div class="pk-combo-price">2 900 €</div>
-          <p class="pk-combo-desc">Site Vitrine + 3 mois de Pack Shorts Rythme.</p>
-          <p class="pk-combo-for">Pour exister en ligne ET sur les réseaux.</p>
-          <a class="pk-cta" onclick="pageTransition(function(){showPage('contact');})">Demander un devis</a>
-        </div>
-        <div class="pk-combo-ill" aria-hidden="true">
-          <svg class="il il-orbite" viewBox="4 34 212 146">
-            <defs><path id="il-trajet" d="M14 104a96 38 0 1 0 192 0a96 38 0 1 0-192 0"/></defs>
-            <g class="il-etoiles"><circle class="fl" cx="30" cy="34" r="1.8"/><circle class="fg" cx="186" cy="30" r="1.6"/><circle class="fm" cx="200" cy="168" r="1.6"/><circle class="fl" cx="22" cy="170" r="1.6"/></g>
-            <use href="#il-trajet" class="d il-trace"/>
-            <path class="m" d="M200 92l6 12 8-10"/>
-            <g class="il-centre">
-              <rect class="l" x="68" y="72" width="84" height="62" rx="6"/>
-              <line class="l" x1="68" y1="82" x2="152" y2="82"/>
-              <circle class="fm" cx="76" cy="77" r="2"/><circle class="fg" cx="83" cy="77" r="2"/><circle class="fl" cx="90" cy="77" r="2"/>
-              <rect class="fm" x="76" y="90" width="38" height="6" rx="2"/><rect class="fl" x="76" y="101" width="30" height="3" rx="1.5"/>
-              <rect class="g" x="76" y="112" width="20" height="8" rx="4"/>
-              <rect class="l" x="120" y="90" width="24" height="30" rx="3"/><path class="m" d="M123 115l6-7 5 4 4-3 4 4"/>
-            </g>
-            <g class="il-orbiteur">
-              <rect class="l" x="-8" y="-14" width="16" height="28" rx="4"/><path class="fm" d="M-3-5l8 5-8 5z"/>
-              <animateMotion dur="9s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
-            </g>
-            <g class="il-orbiteur">
-              <circle class="g" r="9"/><path class="fg" d="M0 4c-3-4-8-1-6 2l6 5 6-5c2-3-3-6-6-2z" transform="translate(0 -4)"/>
-              <animateMotion dur="9s" begin="-4.5s" repeatCount="indefinite"><mpath href="#il-trajet"/></animateMotion>
-            </g>
-          </svg>
-        </div>
-      </div>
-
-    </div>
-
-    <p class="pk-custom">Les tarifs affichés correspondent à des périmètres standardisés. Projet sur mesure, animation avancée, développement spécifique ou structures avec processus de validation complexe : devis personnalisé.</p>
-
-    <p class="pk-foot">Tarifs indicatifs en euros (TVA non applicable, article 293 B du CGI), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;" onclick="event.preventDefault();pageTransition(function(){location.href='CGU.html';})">conditions générales de vente</a>.</p>
-  </section>
-
-
-
-
-
+    <p class="pk-foot">Tarifs indicatifs en euros (TVA non applicable, article 293 B du CGI), hors achats de licences (images, sons, polices). Toute prestation fait l'objet d'un devis détaillé — voir les <a href="CGU.html" style="color:var(--mg);text-decoration:underline;text-underline-offset:3px;">conditions générales de vente</a>.</p>
+  </div>
 </div>
 
 <!-- PAGE WORKS -->
@@ -3013,7 +3056,8 @@ function showPage(name,arg){
     setTimeout(function(){
       var el=document.getElementById('page-contact');
       if(!el) return;
-      var target=el.getBoundingClientRect().top+window.scrollY;
+      var h=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))||96;
+      var target=el.getBoundingClientRect().top+window.scrollY-h;
       var start=window.scrollY, dist=target-start, dur=600, t0=null;
       function step(ts){
         if(t0===null) t0=ts;
@@ -3035,6 +3079,19 @@ function showPage(name,arg){
     filterWorks(arg||'all');
   }
   if(name==='project'&&arg)renderProject(arg);
+  if(name==='formules'){
+    document.getElementById('nav-packs').classList.add('active');
+    if(arg) setTimeout(function(){
+      var el=document.getElementById('fm-'+arg); if(!el) return;
+      var h=parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h'))||96;
+      window.scrollTo({top:el.getBoundingClientRect().top+window.scrollY-h-16,behavior:'smooth'});
+    },80);
+  }
+}
+/* Ouvre la page des formules sur une prestation (montage, captation…). */
+function allerFormule(k){
+  if(document.getElementById('page-formules').classList.contains('active')) showPage('formules',k);
+  else pageTransition(function(){showPage('formules',k);});
 }
 function goTo(id){
   setTimeout(()=>{const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth'});},60);
@@ -4019,14 +4076,11 @@ html.cur-on .project-card,html.cur-on .works-card{cursor:none;}
     }
   }
 
-  /* Carte de prestation → ouvre son volet de formules et y descend. */
+  /* Carte de prestation → page des formules, à la bonne section. */
   function volets(){
     document.querySelectorAll('.pz-card[data-ouvre]').forEach(function(c){
       c.addEventListener('click',function(){
-        var d=document.getElementById(c.getAttribute('data-ouvre'));
-        if(!d) return;
-        d.open=true;
-        d.scrollIntoView({behavior:reduit?'auto':'smooth',block:'start'});
+        allerFormule(c.getAttribute('data-ouvre').replace('pz-',''));
       });
     });
   }
@@ -4090,7 +4144,7 @@ body.contraste .impact-intro p,body.contraste .impact-card p{color:#ececec !impo
   padding-top:12px;border-top:1px solid var(--border);}
 .pz-prix{font-family:var(--font-display);font-size:23px;letter-spacing:.02em;color:var(--mg);line-height:1;}
 .pz-voir{font-family:var(--font-body);font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(240,240,240,.6);transition:color .2s;}
-.pz-voir::after{content:' ↓';}
+.pz-voir::after{content:' →';}
 .pz-card:hover .pz-voir{color:var(--green);}
 
 /* Illustrations : traits néon, petite animation au survol de la carte */
@@ -4261,6 +4315,73 @@ nav.scrolled{background:rgba(14,14,14,.5);border-color:rgba(255,255,255,.1);
   .pz-card,.pz-item,.pk-card,.pk-tv-card,.pk-tv-item,.impact-card,.pk-combo,.contact-form{background-color:rgba(24,24,24,.92);}
 }
 
+/* ══ PAGE « LE DÉTAIL DES FORMULES » ══ */
+#page-formules{padding-top:var(--nav-h);min-height:100vh;}
+.fm-wrap{max-width:1240px;margin:0 auto;padding:48px 48px 80px;}
+.fm-retour{display:inline-block;cursor:pointer;margin-bottom:28px;font-family:var(--font-body);font-size:12px;font-weight:600;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(240,240,240,.7);transition:color .2s;}
+.fm-retour:hover{color:var(--green);}
+.fm-sommaire{position:sticky;top:calc(var(--nav-h) + 10px);z-index:5;display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 40px;padding:10px;
+  background:rgba(14,14,14,.45);border:1px solid var(--verre-bord);border-radius:999px;
+  -webkit-backdrop-filter:var(--verre-flou);backdrop-filter:var(--verre-flou);width:max-content;max-width:100%;}
+.fm-puce{cursor:pointer;padding:8px 16px;border-radius:999px;font-family:var(--font-body);font-size:13px;font-weight:600;
+  color:rgba(240,240,240,.8);border:1px solid transparent;transition:border-color .2s,color .2s,background .2s;}
+.fm-puce:hover{border-color:rgba(250,6,242,.55);color:#fff;background:rgba(250,6,242,.12);}
+.fm-bloc{padding:34px 0 10px;border-top:1px solid rgba(255,255,255,.08);scroll-margin-top:calc(var(--nav-h) + 80px);}
+.fm-tete{display:flex;align-items:baseline;flex-wrap:wrap;gap:8px 18px;margin-bottom:22px;}
+.fm-nom{font-family:var(--font-display);font-weight:400;font-size:clamp(34px,4vw,52px);line-height:1;letter-spacing:.03em;color:#fff;margin:0;}
+.fm-nb{font-family:var(--font-body);font-size:13px;color:var(--muted);}
+.fm-prix{margin-left:auto;font-family:var(--font-display);font-size:28px;color:var(--mg);letter-spacing:.03em;}
+.fm-corps .pk-grid{margin-bottom:0;}
+.fm-fin{margin:48px 0 10px;padding:30px 32px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  background:var(--verre);border:1px solid var(--verre-bord);border-radius:var(--verre-rayon);box-shadow:var(--verre-ombre);}
+.fm-fin p{margin:0;font-family:var(--font-body);font-size:16px;color:#fff;}
+@media(max-width:768px){
+  .fm-wrap{padding:28px 18px 60px;}
+  .fm-sommaire{border-radius:18px;}
+  .fm-prix{margin-left:0;}
+}
+
+/* ══ CONTACT : en-tête qui ressort ══ */
+.contact-eyebrow{font-size:13px;font-weight:600;color:var(--green);letter-spacing:.24em;}
+.contact-eyebrow::before{width:44px;height:2px;box-shadow:0 0 10px var(--mg);}
+.contact-form-title{text-shadow:0 0 24px rgba(250,6,242,.35);}
+.contact-left::after{-webkit-text-stroke:1px rgba(250,6,242,.38);opacity:.9;}
+
+/* ══ CONTRASTE RENFORCÉ (version 2) ══
+   Couleurs plus claires et plus franches, fond noir uni sans animation,
+   encadrés opaques à bordure nette, textes et libellés agrandis, focus
+   jaune très visible, effets décoratifs coupés. */
+body.contraste{
+  --mg:#FF6EF7; --green:#7CF08A; --muted:#e6e6e6; --border:#9a9a9a; --text:#ffffff;
+  --verre:#0b0b0b; --verre-bord:#9a9a9a; --verre-ombre:none; --verre-flou:none;
+  background:#000;
+}
+html.fx-on body.contraste #bg-fx{opacity:0;}
+body.contraste p,body.contraste li,body.contraste .pz-promesse,body.contraste .field-label,
+body.contraste .contact-tagline,body.contraste .contact-info-label{color:#fff !important;}
+body.contraste p,body.contraste li{line-height:1.8;letter-spacing:.01em;}
+body.contraste .section-label,body.contraste .pz-cat,body.contraste .pk-cat,body.contraste .pk-tv-inc,
+body.contraste .contact-eyebrow{font-size:13px !important;color:var(--green) !important;}
+body.contraste .pz-card,body.contraste .pk-card,body.contraste .pk-tv-card,body.contraste .pk-tv-item,
+body.contraste .impact-card,body.contraste .pk-combo,body.contraste .contact-form,body.contraste .fm-fin,
+body.contraste .pz-item{background:#0b0b0b !important;border:2px solid #9a9a9a !important;box-shadow:none !important;}
+body.contraste .pz-card:hover,body.contraste .pk-card:hover,body.contraste .pk-combo:hover{border-color:var(--mg) !important;}
+body.contraste .spot::after,body.contraste .pk-combo::before{display:none;}
+body.contraste nav,body.contraste nav.scrolled{background:#000;border-bottom:2px solid #9a9a9a;}
+body.contraste .nav-links a{color:#fff;text-shadow:none;}
+body.contraste .field-input,body.contraste .field-select,body.contraste .field-textarea{background-color:#000;border:2px solid #bdbdbd;color:#fff;}
+body.contraste .field-input::placeholder,body.contraste .field-textarea::placeholder{color:#d0d0d0;}
+body.contraste .pk-cta,body.contraste .hero-cta .cta-ghost{border:2px solid #fff;color:#fff;}
+body.contraste a:not(.pk-cta):not(.cta-primary):not(.cta-ghost):not(.nav-logo):not(.fm-puce):not([class*="nav"]){text-decoration:underline;text-underline-offset:3px;}
+body.contraste .svc-row--contour span{-webkit-text-stroke-color:#fff;}
+body.contraste .nav-links a{text-decoration:none !important;}
+body.contraste .pz-voir,body.contraste .fm-nb,body.contraste .fm-retour{color:#fff;}
+body.contraste .reveal{opacity:1 !important;transform:none !important;filter:none !important;}
+body.contraste .cur-dot,body.contraste .cur-ring{display:none !important;}
+html.cur-on body.contraste .project-card,html.cur-on body.contraste .works-card{cursor:pointer;}
+body.contraste :focus-visible{outline:3px solid #EDEF00 !important;outline-offset:3px !important;}
+
 /* ══ FOND ANIMÉ AU SCROLL (WebGL) ══
    Fond plein écran piloté par la position et la vitesse du scroll,
    derrière l'accueil uniquement. Les sections deviennent transparentes
@@ -4396,7 +4517,8 @@ html.fx-on .pk-tv{background:radial-gradient(90% 70% at 100% 0%,rgba(57,5,105,.3
     if(reduit){dessiner(t0);return;} /* une image fixe, sans mouvement */
     (function boucle(now){
       requestAnimationFrame(boucle);
-      var hors=!!(accueil&&!accueil.classList.contains('active'));
+      var formules=document.getElementById('page-formules');
+      var hors=!!(accueil&&!accueil.classList.contains('active')&&!(formules&&formules.classList.contains('active')));
       if(hors!==estHors){estHors=hors;document.documentElement.classList.toggle('fx-hors',hors);}
       if(document.hidden||hors) return;
       p+=(pCible-p)*.08; v*=.94; smx+=(mx-smx)*.04; smy+=(my-smy)*.04;
